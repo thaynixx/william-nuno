@@ -106,7 +106,7 @@ Argumento: `/paineis-funil semanal` ou `/paineis-funil semanal 2026-11-03` (para
 
 ### Rotina
 
-1. Defina a semana fechada: segunda a domingo.
+1. Defina a semana fechada: sabado a sexta (o time de vendas trabalha seg-sex antes do corte).
 2. GA4 por dia: sessions, activeUsers, sign_up, Book a Demo, qualified_event. Filtro PT-BR (fullPageUrl).
 3. HubSpot por dia, Inbound, team BR:
    - Deals criados por createdate: lead_source App Signup, Web Request e Qualified.
