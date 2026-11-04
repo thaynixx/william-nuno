@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roteiro da 1:1</title>
+<style>
+:root { --bg:#FBFAF7; --fg:#1A1A19; --muted:#5B5A55; --card:#FFFFFF; --line:#E4E1D8; --accent:#1F4E9E; --cue-bg:#EAF1FB; --cue-fg:#1F4E9E; --warn-bg:#FFF4E0; --warn-fg:#8A4B00; --ok-bg:#E9F6EE; --ok-fg:#0B5B33; --fs:26px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121211; --fg:#F2F0EA; --muted:#B5B2A8; --card:#1B1B1A; --line:#34332F; --accent:#8DB5F2; --cue-bg:#15233B; --cue-fg:#9DC0F5; --warn-bg:#33240D; --warn-fg:#F3C27A; --ok-bg:#0F2A1B; --ok-fg:#7FD6A5; color-scheme:dark; } }
+:root[data-theme="dark"] { --bg:#121211; --fg:#F2F0EA; --muted:#B5B2A8; --card:#1B1B1A; --line:#34332F; --accent:#8DB5F2; --cue-bg:#15233B; --cue-fg:#9DC0F5; --warn-bg:#33240D; --warn-fg:#F3C27A; --ok-bg:#0F2A1B; --ok-fg:#7FD6A5; color-scheme:dark; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font-family:Georgia,"Times New Roman",serif; line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:860px; margin:0 auto; padding:20px 0 90px; }
+.bar { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line); padding:10px 0; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.bar span { font-size:13px; color:var(--muted); }
+.bar button { font:inherit; font-size:15px; font-weight:700; padding:6px 14px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+h1 { font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:34px; letter-spacing:-0.02em; margin:26px 0 6px; line-height:1.15; }
+.sub { font-family:system-ui,sans-serif; color:var(--muted); font-size:16px; margin:0 0 24px; }
+section { margin:42px 0 0; }
+h2 { font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:20px; letter-spacing:.02em; text-transform:uppercase; color:var(--accent); margin:0 0 4px; }
+.time { font-family:system-ui,sans-serif; font-size:13px; color:var(--muted); margin:0 0 14px; }
+h3 { font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:17px; margin:28px 0 6px; }
+.say { font-size:var(--fs); margin:0 0 18px; }
+.say b { font-weight:700; }
+.cue { font-family:system-ui,sans-serif; font-size:15px; background:var(--cue-bg); color:var(--cue-fg); border-radius:8px; padding:8px 12px; margin:0 0 16px; }
+.warn { font-family:system-ui,sans-serif; font-size:16px; background:var(--warn-bg); color:var(--warn-fg); border-radius:10px; padding:12px 14px; margin:0 0 18px; }
+.ok { font-family:system-ui,sans-serif; font-size:16px; background:var(--ok-bg); color:var(--ok-fg); border-radius:10px; padding:12px 14px; margin:0 0 18px; }
+.pause { font-family:system-ui,sans-serif; text-align:center; color:var(--muted); letter-spacing:.3em; margin:6px 0 18px; }
+.qa { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:0 0 14px; }
+.qa .q { font-family:system-ui,sans-serif; font-weight:700; font-size:17px; margin:0 0 6px; }
+.qa .a { font-size:22px; margin:0; }
+table { width:100%; border-collapse:collapse; font-family:system-ui,sans-serif; font-size:15px; background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+th, td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+ul.chk { font-family:system-ui,sans-serif; font-size:17px; padding-left:22px; display:flex; flex-direction:column; gap:6px; }
+@media (max-width:560px){ :root { --fs:22px; } h1 { font-size:28px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="bar">
+  <span>Tamanho da letra</span>
+  <div><button type="button" id="menos" aria-label="Diminuir a letra">A-</button> <button type="button" id="mais" aria-label="Aumentar a letra">A+</button></div>
+</div>
+
+<h1>Roteiro da 1:1</h1>
+<p class="sub">Book a Demo e Signup, set contra out. Cerca de 20 a 25 minutos falando, sem contar as perguntas. Texto em primeira pessoa, para ler em voz alta. As caixas azuis dizem o que abrir na tela. As caixas laranja são limites: o que não dá para afirmar.</p>
+
+<section>
+  <h2>Antes de começar</h2>
+  <p class="time">2 minutos para deixar tudo aberto</p>
+  <ul class="chk">
+    <li>Abrir três arquivos: o painel de Book a Demo, o painel de Signup e o monitor semanal.</li>
+    <li>Em cada painel de análise, deixar as duas abas à mão: a primeira é o funil, a segunda é Company Size.</li>
+    <li>Nas tabelas, violeta é o primeiro período e verde é o segundo. Se a Ana perguntar, a legenda está no topo.</li>
+    <li>Regra da conversa: se ela pedir um número que eu não tenho confirmado, eu digo "não tenho confirmado, levo na próxima".</li>
+  </ul>
+</section>
+
+<section>
+  <h2>1. Abertura</h2>
+  <p class="time">1 minuto</p>
+  <p class="say">Oi, Ana. Hoje eu trouxe as duas análises que você pediu na última 1:1: Book a Demo e Signup, no nível de detalhe que você falou, das sessões até o SQL.</p>
+  <p class="say">Cada uma tem duas abas. A primeira é o funil. A segunda é Company Size, porque foi ali que a gente achou o que mais pesa.</p>
+  <p class="say">Vou seguir esta ordem: a foto geral, Book a Demo, Signup, Company Size dos dois, o monitor semanal, e no fim o que eu preciso de você.</p>
+  <p class="say">Quando algum número parecer diferente do que você viu, eu explico de onde ele vem.</p>
+</section>
+
+<section>
+  <h2>2. A foto geral</h2>
+  <p class="time">1 minuto</p>
+  <p class="cue">Mostrar: painel de Book a Demo, tabela "GA4" da seção 1.</p>
+  <p class="say">Começo pela foto que você já passou para a liderança, para a gente falar da mesma base.</p>
+  <p class="say">As sessões foram de <b>297 mil para 312,6 mil</b>. Mais 5,2%. O Book a Demo foi de <b>842 para 857</b>. Mais 1,8%. O sign-up foi de <b>4.393 para 4.309</b>. Menos 1,9%.</p>
+  <p class="say">E o investimento subiu 40%.</p>
+  <p class="pause">&middot; &middot; &middot;</p>
+  <p class="say">Ou seja: colocamos 40% a mais de dinheiro e o topo andou praticamente de lado.</p>
+  <p class="say">Só que o problema maior não está no topo. Está no que acontece depois que o lead entra. O SQL de Web Request caiu <b>23%</b>. É isso que eu vou abrir.</p>
+</section>
+
+<section>
+  <h2>3. Book a Demo</h2>
+  <p class="time">9 minutos</p>
+
+  <h3>3.1 As datas</h3>
+  <p class="cue">Mostrar: cards de "Checkpoint de datas".</p>
+  <p class="say">Antes dos números, as datas, porque muita coisa mudou junto.</p>
+  <p class="say">Dia 27 de agosto, o tráfego virou para 99% no novo Book a Demo, no VWO. Dia 23 de setembro foi o deploy oficial. Dia 24 de setembro, o HubSpot começou a descobrir o tamanho real da empresa, o enriquecimento pelo Harvest.</p>
+  <p class="say">Dia 7 de outubro, a gente padronizou o envio do Company Size no step 2. E dia 29, encontramos a causa de um problema que isso gerou e mapeamos a correção. Eu já volto nisso.</p>
+
+  <h3>3.2 O volume não caiu. Mudou de lugar</h3>
+  <p class="cue">Mostrar: gráfico e tabela da seção 1.</p>
+  <p class="say">O total de Book a Demo ficou estável. O que mudou foi de onde ele vem.</p>
+  <p class="say">O formulário do site, o step 2, <b>caiu 24%</b>: de 476 para 364. As landing pages <b>subiram 29%</b>: de 368 para 474. Quem puxou foram a landing de compras, mais 32, a de workflow, mais 26, e a de plataforma no-code, mais 17.</p>
+  <p class="say">Você esperava que o step 2 crescesse depois do rollout. Não cresceu. Por dia útil, ele foi de 19,8 antes do rollout para 17,7 na semana do rollout, e 14,6 em outubro.</p>
+  <p class="warn">Limite: eu não afirmo que o rollout derrubou o step 2. A queda continua em outubro e só há 6 dias úteis pós-rollout em setembro. Eu afirmo que o ganho esperado não apareceu.</p>
+
+  <h3>3.3 Canal e previous page</h3>
+  <p class="cue">Mostrar: seção 2 (canais) e seção 3 (previous page).</p>
+  <p class="say">Por canal: as sessões de Paid Search subiram 38%, e o Book a Demo de Paid Search só 5%. Eu tomaria cuidado com essa leitura, porque o Cross-network, que também é Google, caiu em sessão e subiu em Book a Demo. Somando os dois, as sessões sobem 11% e o Book a Demo 8,5%. A conversão fica praticamente igual.</p>
+  <p class="say">O que eu afirmo é outra coisa: o tráfego orgânico, direto e social orgânico caiu 11% em sessões, e o Book a Demo desse grupo caiu 17%, de 224 para 186. Você estranhou isso na 1:1: não era para cair. O dado confirma que caiu.</p>
+  <p class="say">Sobre previous page, no formulário do site: quem chega pela home subiu 55%, e quem chega por preços subiu 71%. Nas landing pages, 79% a 87% dos envios vêm de quem entrou direto na página, sem navegar antes.</p>
+  <p class="say">E a conversão por sessão da página de demo caiu de 19,4% para 14,2%. Essa queda está só em Paid Search: de 21% para 10%, num canal que mandou 317 sessões a mais para a página.</p>
+  <p class="warn">Limite: eu não afirmo que Paid Search piorou. Com o Cross-network somado, a conversão é igual.</p>
+
+  <h3>3.4 Do deal ao SQL</h3>
+  <p class="cue">Mostrar: seção 4, tabela do recorte do novo Signup e tabela por formulário de origem.</p>
+  <p class="say">Agora o fundo do funil. No recorte que você definiu, 17 de setembro a 6 de outubro contra 7 a 26 de outubro, os deals de Web Request no Inbound foram de <b>463 para 549</b>. Mais 18,6%. O SQL foi de <b>81 para 62</b>. Menos 23,5%. O SQL por deal caiu de 17,5% para 11,3%. Isso não é ruído.</p>
+  <p class="say">No recorte do mês, que é o do painel, os deals ficaram praticamente iguais, 680 e 690, e o SQL foi de 100 para 77. A leitura é a mesma: o deal entra e não vira SQL.</p>
+  <p class="say">De onde vem a perda? Do deal que veio do <b>formulário do site</b>. Ele convertia 30,5% em SQL e agora converte 18,6%. As landing pages ficaram em 5%.</p>
+  <p class="say">E não é mix. Se eu pego as taxas de setembro e aplico ao mix de outubro, eu esperava 105 SQL. Saíram 77.</p>
+  <p class="say">Por tamanho de empresa, a perda está na faixa de <b>11 a 200 funcionários</b>. O SQL foi de 57 para 39. Todas as outras faixas somam menos 2.</p>
+
+  <h3>3.5 MQL, SAL e atendimento</h3>
+  <p class="cue">Mostrar: seção 5 (atendimento) e seção 6 (leitura).</p>
+  <p class="say">Sobre a sua hipótese do MQL: o MQL subiu, de 395 para 530. Desses 135 a mais, <b>125 vêm de quem declarou 1 a 10 funcionários ou ficou sem tamanho</b>. Esses dois grupos geraram 1 SQL em 308 deals. O MQL a mais é o enriquecimento promovendo gente, e essa gente não vira SQL.</p>
+  <p class="say">Sobre o SAL, eu não uso o SAL de setembro como base. A Anny disse que muita gente foi empurrada para SAL em setembro. De fato, em setembro 99% do MQL virou SAL. O número confiável é o SQL.</p>
+  <p class="say">Sobre o atendimento, você tinha dito que a equipe se dividiu por entrada. O dado confirma. Em Web Request, a Laura e o Antonio passaram a receber 79% dos deals. Em setembro eram 25%.</p>
+  <p class="warn">Limite: eu não consigo separar se o SQL cai por falta de tempo do time ou por lead pior. Os dois mudaram juntos em outubro.</p>
+</section>
+
+<section>
+  <h2>4. Signup</h2>
+  <p class="time">7 minutos</p>
+
+  <h3>4.1 Contexto e topo</h3>
+  <p class="cue">Mostrar: painel de Signup, hero e seção 1.</p>
+  <p class="say">Agora o Signup. O novo formulário em etapas entrou no ar dia 7 de outubro. O recorte é o seu: 17 de setembro a 6 de outubro contra 7 a 26 de outubro. São 14 dias úteis em cada um.</p>
+  <p class="say">Você perguntou se a etapa final estava trazendo mais ou menos. Está trazendo um pouco mais. Os sign-ups no GA foram de <b>3.078 para 3.173</b>. Mais 3,1%. As sessões subiram 8%.</p>
+  <p class="say">O que puxou foi Paid Search: os sign-ups foram de 666 para 1.084. E quase tudo isso vem de uma página só, a landing de compras: de 62 para <b>475 sign-ups</b>.</p>
+  <p class="say">Então, no topo, o novo formulário não perdeu volume.</p>
+
+  <h3>4.2 Os steps</h3>
+  <p class="cue">Mostrar: seção 3, tabela dos steps.</p>
+  <p class="say">Você também pediu para comparar os steps com o que era antes. Isso eu não consigo fazer. Os steps novos só passaram a ser medidos no GA em <b>14 de outubro</b>, e o begin_sign_up mudou de definição: antes era visualização de página, agora é a pessoa começar a digitar.</p>
+  <p class="say">O que dá para ver, entre 14 e 26 de outubro: 3.610 chegam ao identity e 2.035 criam a conta. É 56%. O vazamento está no começo. Do begin ao identity, 33%. Do identity ao segmento, 81%. Do segmento à empresa, 69%. Depois da empresa, quase todo mundo termina.</p>
+  <p class="say">Isso quer dizer que cerca de <b>1.575 pessoas começaram e não terminaram</b>. E elas não viram deal. Os deals de App Signup são 1,06 por sign-up. O que eu não sei, e queria levar ao Léo e ao Gus, é se essas pessoas entram no HubSpot como contato e se são enriquecidas.</p>
+
+  <h3>4.3 O funil no HubSpot</h3>
+  <p class="cue">Mostrar: seção 4.</p>
+  <p class="say">No HubSpot: o MQL de Signup subiu <b>35%</b>, de 1.513 para 2.045. O SAL subiu 10%. Mas os conectados <b>caíram 17%</b>, de 192 para 160. A taxa de conectado por SAL foi de 16,7% para 12,7%. Isso é significativo, p igual a 0,005.</p>
+  <p class="say">O SQL de Signup é muito pequeno, 13 contra 11. Então eu uso o conectado como termômetro de qualidade.</p>
+  <p class="warn">Limite: o conectado por deal, que foi de 5,6% para 4,9%, não é diferença significativa. Só a taxa por SAL é. Não dizer que "o conectado piorou por deal".</p>
+
+  <h3>4.4 Enriquecimento</h3>
+  <p class="cue">Mostrar: seção 5.</p>
+  <p class="say">Aqui está a resposta para a sua hipótese de enriquecimento. Dos 532 MQL a mais, <b>448 vêm de deals que passaram pelo Harvest</b>. A cobertura do Harvest foi de 38% para 66% dos deals.</p>
+  <p class="say">Esses deals viram SAL em <b>40%</b>, contra 82% dos demais. E viram conectado em 1,9% dos deals, contra 10,7%.</p>
+  <p class="say">Você perguntou se o time estaria priorizando quem foi enriquecido, em vez de quem preencheu até o final. Os dados dizem o contrário: o time aceita o enriquecido na <b>metade</b> da taxa.</p>
+  <p class="warn">Limite: como a cobertura do Harvest mudou, os dois grupos não são populações iguais. Eu apresento isso como leitura, não como prova.</p>
+
+  <h3>4.5 Atendimento</h3>
+  <p class="cue">Mostrar: seção 6.</p>
+  <p class="say">Antes, seis pessoas atendiam Signup. Depois, duas: a Alessandra e a Bruna, com 63% dos deals. Os deals sem dono caíram de 56% para 37%. Entre os deals com dono, o SAL foi de 76% para 62%.</p>
+</section>
+
+<section>
+  <h2>5. Company Size</h2>
+  <p class="time">4 minutos</p>
+  <p class="cue">Mostrar: painel de Signup, aba Company Size. Depois, a aba Company Size de Book a Demo.</p>
+  <p class="say">Foi aqui que eu achei o que mais pesa nos dois.</p>
+  <p class="say">No Signup, o novo formulário trocou <b>10 faixas por 5</b>. Self-employed foi de 1.510 deals para 13. A faixa 11 a 50, de 287 para 7. E o topo, de 1.001 funcionários para cima, perdeu o tamanho: foi de 294 deals para 16, e os sem tamanho foram de 3 para 268.</p>
+  <p class="say">O relatório do Léo explica: 372 dos 8.594 envios do Signup chegaram com um formato de faixa que o HubSpot não aceita, e o campo ficou vazio.</p>
+  <p class="say">Importante: o topo não sumiu. Somando os de 1.001 ou mais com os sem tamanho, são 297 deals antes e 284 depois. Ele só perdeu o campo.</p>
+  <p class="pause">&middot; &middot; &middot;</p>
+  <p class="say">Você perguntou quantos entraram declarando 1 a 10 e na verdade eram grandes. No Signup, depois do novo formulário, 1.927 deals declararam 1 a 10. Em <b>250 deles, 13%</b>, o Harvest aponta 501 funcionários ou mais. Quase todos viraram MQL, 249. Cinquenta e três chegaram a SAL. Um foi conectado.</p>
+  <p class="say">No Book a Demo, é parecido: 34 de 214 declararam 1 a 10 e o Harvest aponta 501 ou mais. Todos viraram MQL e nenhum virou SQL.</p>
+  <p class="warn">Limite: em 45% dos casos do Signup e em 61% dos de Book a Demo que declararam 1 a 10, o Harvest não encontrou a empresa. Então 250 e 34 são o mínimo confirmado, não o total.</p>
+  <p class="warn">Limite de método: eu tratei o company_size como tamanho declarado. Você mesma disse que o enriquecimento pode sobrescrever esse campo. O campo do Harvest existe separado, mas eu não tenho a data em que ele passou a ser gravado. Isso eu preciso confirmar com o CRM.</p>
+</section>
+
+<section>
+  <h2>6. Monitor semanal</h2>
+  <p class="time">1 minuto e meio</p>
+  <p class="cue">Mostrar: monitor semanal, seção "Qualified: o que está dentro do evento".</p>
+  <p class="say">Sobre o monitor semanal: o Qualified agora é aberto por ação, como você pediu. Eu não olho mais o total.</p>
+  <p class="say">Na semana de 24 a 30 de outubro, de sábado a sexta: <b>Conversation Started 683</b>, mais 13% sobre a semana anterior. <b>Email Captured 94</b>, mais 12%. <b>Meeting Booked 28</b>, mais 56%, mas com 28 eventos eu só monitoro.</p>
+  <p class="say">Uma dúvida: no GA a ação se chama Conversation Started, e não Qualified. Eu assumi que é essa que você chama de Qualified. Pode me confirmar?</p>
+  <p class="say">A taxa de email por conversa caiu de 16,6% para 13,8% entre a primeira e a terceira semana e está estável desde então. Fica no radar.</p>
+  <p class="say">Outro ponto do monitor: o SAL de Signup da última semana foi 317, o mais baixo da série. Vale acompanhar na primeira semana cheia de novembro.</p>
+</section>
+
+<section>
+  <h2>7. O que eu não afirmo</h2>
+  <p class="time">1 minuto</p>
+  <p class="say">Para fechar a análise com honestidade, quatro coisas que eu não afirmo.</p>
+  <p class="say">Uma: que o rollout de 23 de setembro derrubou o step 2.</p>
+  <p class="say">Duas: que a causa do SQL menor é falta de capacidade do time, lead pior ou enriquecimento. Os três mudaram juntos.</p>
+  <p class="say">Três: que Paid Search piorou de conversão.</p>
+  <p class="say">E quatro: que o SQL de Signup mudou. Ele é pequeno demais. Eu uso o conectado.</p>
+</section>
+
+<section>
+  <h2>8. O que eu preciso de você</h2>
+  <p class="time">2 minutos</p>
+  <p class="say">Para terminar, o que eu preciso para fechar o que ficou em aberto.</p>
+  <p class="say"><b>Um.</b> Com o CRM: a data em que o campo do Harvest começou a ser gravado, se o company size é sobrescrito, e se existe histórico do tamanho original.</p>
+  <p class="say"><b>Dois.</b> Em setembro, 79 deals de Web Request ficaram sem time e 107 foram para o Outbound. Em outubro quase nenhum. Preciso entender a regra que mudou, porque isso afeta qualquer comparação de leads.</p>
+  <p class="say"><b>Três.</b> Para separar capacidade de qualidade, eu preciso do tempo até o primeiro contato e da carga por dono. Eu puxo, mas queria alinhar com você o recorte.</p>
+  <p class="say"><b>Quatro.</b> Com o Léo e o Gus: o que acontece com quem começa o Signup e não termina, e a definição do begin_sign_up.</p>
+  <p class="say"><b>Cinco.</b> Uma decisão sua: hoje o Harvest promove deals a MQL pelo tamanho enriquecido, e esses deals não andam. Queria sua opinião se o critério de MQL continua assim.</p>
+  <p class="say"><b>Seis.</b> Com a Anny: qual evento ela usa para otimizar a landing de compras, e a estimativa de tráfego das campanhas. Isso ficou pendente da outra 1:1, e a landing de compras já responde por 475 sign-ups.</p>
+  <p class="say"><b>Sete.</b> O blog: vou falar com a Diana e a Jess para fechar uma visão única, e quero propor um teste de formulário novo no lugar do popup, que está com bug.</p>
+  <p class="say">E, por último, um assunto meu: o banco de horas. Você pediu para eu tirar a folga até 15 de novembro. Queria combinar a data com você.</p>
+</section>
+
+<section>
+  <h2>9. Perguntas que a Ana pode fazer</h2>
+  <p class="time">Respostas curtas, para falar em voz alta</p>
+
+  <div class="qa"><p class="q">"Por que o total de Book a Demo é +1,8% e a soma das aberturas dá diferente?"</p>
+  <p class="a">O total é a visão fechada do mês, a mesma que foi para a liderança. As aberturas usam uma consulta própria no PT-BR e somam 844 e 838. A diferença é de até 2,3% e a conclusão é a mesma: volume estável.</p></div>
+
+  <div class="qa"><p class="q">"O SQL caiu 23%, mas o SQL total do Inbound só caiu 5%."</p>
+  <p class="a">Os 23% são só Web Request: 100 para 77. O total do Inbound, na sua planilha, foi de 218 para 206. Os outros canais compensaram parte da perda.</p></div>
+
+  <div class="qa"><p class="q">"O rollout é o culpado?"</p>
+  <p class="a">Não consigo afirmar. O step 2 não cresceu depois do deploy, mas a queda continua em outubro, e outras coisas mudaram junto, como o enriquecimento no dia 24 e o Company Size no dia 7.</p></div>
+
+  <div class="qa"><p class="q">"O enriquecimento é o culpado?"</p>
+  <p class="a">No Signup, ele explica o MQL a mais: 448 dos 532. Mas ele não explica sozinho a queda de conectado. No Book a Demo, mesmo quem não foi enriquecido converteu menos em SQL: de 17% para 13%.</p></div>
+
+  <div class="qa"><p class="q">"Por que você não usa o SAL?"</p>
+  <p class="a">Porque em setembro 99% do MQL de Web Request virou SAL, e a Anny disse que foi uma passagem em massa. O SAL de setembro não é uma base limpa. O SQL é.</p></div>
+
+  <div class="qa"><p class="q">"Dá para saber qual era o tamanho original da empresa?"</p>
+  <p class="a">Não com certeza. O campo company size pode ser sobrescrito pelo enriquecimento. O campo do Harvest guarda o valor enriquecido separado, mas eu preciso confirmar com o CRM desde quando ele grava.</p></div>
+
+  <div class="qa"><p class="q">"E o custo?"</p>
+  <p class="a">Na sua planilha, o investimento do Inbound BR foi de 294 mil para 413 mil dólares, mais 40%. O custo por SQL foi de 1.383 para 1.960 dólares, mais 42%.</p></div>
+
+  <div class="qa"><p class="q">"Por que o SQL de Signup não entra na análise?"</p>
+  <p class="a">Porque são 13 e 11 em 20 dias. Qualquer percentual em número tão pequeno é ruído. Por isso eu uso o conectado, que tem 192 e 160.</p></div>
+
+  <div class="qa"><p class="q">"O que você recomenda?"</p>
+  <p class="a">Três coisas. Primeira: recuperar os deals que ficaram sem Company Size e colocar a correção no ar. Segunda: separar capacidade de atendimento de qualidade do lead, com tempo até o primeiro contato. Terceira: decidir se o MQL deve continuar dependendo do tamanho enriquecido pelo Harvest.</p></div>
+
+  <div class="qa"><p class="q">Se ela perguntar algo que eu não tenho</p>
+  <p class="a">Não tenho esse dado confirmado. Eu levo na próxima e te mando por escrito.</p></div>
+</section>
+
+<section>
+  <h2>10. Cola de números</h2>
+  <p class="time">Para olhar de relance</p>
+  <table>
+    <thead><tr><th>Tema</th><th class="n">Antes (set)</th><th class="n">Depois (out)</th><th class="n">Var.</th></tr></thead>
+    <tbody>
+      <tr><td>Sessões (mês fechado)</td><td class="n">297.251</td><td class="n">312.615</td><td class="n">+5,2%</td></tr>
+      <tr><td>Book a Demo (mês fechado)</td><td class="n">842</td><td class="n">857</td><td class="n">+1,8%</td></tr>
+      <tr><td>Sign-ups (mês fechado)</td><td class="n">4.393</td><td class="n">4.309</td><td class="n">-1,9%</td></tr>
+      <tr><td>Investimento Inbound BR</td><td class="n">$294,5 mil</td><td class="n">$413,0 mil</td><td class="n">+40%</td></tr>
+      <tr><td>BaD: formulário do site (step 2)</td><td class="n">476</td><td class="n">364</td><td class="n">-24%</td></tr>
+      <tr><td>BaD: landing pages (submit LP)</td><td class="n">368</td><td class="n">474</td><td class="n">+29%</td></tr>
+      <tr><td>BaD, recorte do Signup: deals</td><td class="n">463</td><td class="n">549</td><td class="n">+18,6%</td></tr>
+      <tr><td>BaD, recorte do Signup: SQL</td><td class="n">81</td><td class="n">62</td><td class="n">-23,5%</td></tr>
+      <tr><td>BaD, mês: SQL (deals 680 → 690)</td><td class="n">100</td><td class="n">77</td><td class="n">-23%</td></tr>
+      <tr><td>BaD: SQL por deal, formulário do site</td><td class="n">30,5%</td><td class="n">18,6%</td><td class="n">p = 0,004</td></tr>
+      <tr><td>BaD: SQL na faixa 11 a 200</td><td class="n">57</td><td class="n">39</td><td class="n">-32%</td></tr>
+      <tr><td>BaD: MQL</td><td class="n">395</td><td class="n">530</td><td class="n">+34%</td></tr>
+      <tr><td>Signup: sign-ups (GA, recorte)</td><td class="n">3.078</td><td class="n">3.173</td><td class="n">+3,1%</td></tr>
+      <tr><td>Signup: sign-ups via /ads/compras</td><td class="n">62</td><td class="n">475</td><td class="n">+413</td></tr>
+      <tr><td>Signup: MQL</td><td class="n">1.513</td><td class="n">2.045</td><td class="n">+35%</td></tr>
+      <tr><td>Signup: SAL</td><td class="n">1.150</td><td class="n">1.263</td><td class="n">+10%</td></tr>
+      <tr><td>Signup: conectados</td><td class="n">192</td><td class="n">160</td><td class="n">-17%</td></tr>
+      <tr><td>Signup: conectado por SAL</td><td class="n">16,7%</td><td class="n">12,7%</td><td class="n">p = 0,005</td></tr>
+      <tr><td>Signup: cobertura do Harvest</td><td class="n">38%</td><td class="n">66%</td><td class="n"></td></tr>
+      <tr><td>Signup: SAL por MQL, com Harvest / sem</td><td class="n" colspan="2">40% / 82% (depois)</td><td class="n"></td></tr>
+      <tr><td>Signup: declararam 1 a 10 e Harvest 501+</td><td class="n">66 de 726</td><td class="n">250 de 1.927</td><td class="n"></td></tr>
+      <tr><td>Signup: deals sem dono</td><td class="n">56%</td><td class="n">37%</td><td class="n"></td></tr>
+      <tr><td>Steps (14 a 26/10): identity → sign_up</td><td class="n" colspan="2">3.610 → 2.035 (56%)</td><td class="n"></td></tr>
+      <tr><td>Qualified: Conversation Started</td><td class="n">605</td><td class="n">683</td><td class="n">+13%</td></tr>
+      <tr><td>Qualified: Email Captured</td><td class="n">84</td><td class="n">94</td><td class="n">+12%</td></tr>
+      <tr><td>Qualified: Meeting Booked (n&lt;40)</td><td class="n">18</td><td class="n">28</td><td class="n">+56%</td></tr>
+    </tbody>
+  </table>
+  <p class="time" style="margin-top:10px">Os períodos são: mês fechado (setembro e outubro), "recorte do Signup" (17/09 a 06/10 contra 07/10 a 26/10) e, no Qualified, semana anterior (17 a 23/10) contra semana atual (24 a 30/10).</p>
+</section>
+
+</div>
+<script>
+(function () {
+  var fs = 26, r = document.documentElement;
+  try { var s = parseInt(localStorage.getItem('fs'), 10); if (s) fs = s; } catch (e) {}
+  function ap() { r.style.setProperty('--fs', fs + 'px'); try { localStorage.setItem('fs', fs); } catch (e) {} }
+  ap();
+  document.getElementById('mais').addEventListener('click', function () { fs = Math.min(44, fs + 2); ap(); });
+  document.getElementById('menos').addEventListener('click', function () { fs = Math.max(16, fs - 2); ap(); });
+})();
+</script>
+</body>
+</html>
