@@ -26,386 +26,152 @@
   --hero-accent: #84ADFF;
   --stripe: #F8FAFC;
   --bar-blue: #2F5BEA;
-  --bar-blue-light: #A5B8E8;
-  --surface-dark: #1a1a19;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0C1222;
-    --fg: #E8ECF4;
-    --card: #162036;
-    --border: #253252;
-    --muted: #8896B0;
-    --accent: #60a5fa;
-    --red: #F97066;
-    --red-light: #1A0F0E;
-    --red-border: #55201D;
-    --amber: #FDB022;
-    --amber-light: #1A1508;
-    --amber-border: #4E3210;
-    --green: #47CD89;
-    --green-light: #0C1A13;
-    --green-border: #1C3D2C;
-    --gray: #667085;
-    --gray-light: #1D2939;
-    --gray-border: #344054;
-    --hero: #060D1F;
-    --hero-text: #B2C0E0;
-    --hero-accent: #84ADFF;
-    --stripe: #0F1A30;
-    --bar-blue: #5B7FEE;
-    --bar-blue-light: #3A4D80;
+    --bg: #0C1222; --fg: #E8ECF4; --card: #162036; --border: #253252;
+    --muted: #8896B0; --accent: #60a5fa;
+    --red: #F97066; --red-light: #1A0F0E; --red-border: #55201D;
+    --amber: #FDB022; --amber-light: #1A1508; --amber-border: #4E3210;
+    --green: #47CD89; --green-light: #0C1A13; --green-border: #1C3D2C;
+    --gray: #667085; --gray-light: #1D2939; --gray-border: #344054;
+    --hero: #060D1F; --hero-text: #B2C0E0; --hero-accent: #84ADFF;
+    --stripe: #0F1A30; --bar-blue: #5B7FEE;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0C1222;
-  --fg: #E8ECF4;
-  --card: #162036;
-  --border: #253252;
-  --muted: #8896B0;
-  --accent: #60a5fa;
-  --red: #F97066;
-  --red-light: #1A0F0E;
-  --red-border: #55201D;
-  --amber: #FDB022;
-  --amber-light: #1A1508;
-  --amber-border: #4E3210;
-  --green: #47CD89;
-  --green-light: #0C1A13;
-  --green-border: #1C3D2C;
-  --gray: #667085;
-  --gray-light: #1D2939;
-  --gray-border: #344054;
-  --hero: #060D1F;
-  --hero-text: #B2C0E0;
-  --hero-accent: #84ADFF;
-  --stripe: #0F1A30;
-  --bar-blue: #5B7FEE;
-  --bar-blue-light: #3A4D80;
+  --bg: #0C1222; --fg: #E8ECF4; --card: #162036; --border: #253252;
+  --muted: #8896B0; --accent: #60a5fa;
+  --red: #F97066; --red-light: #1A0F0E; --red-border: #55201D;
+  --amber: #FDB022; --amber-light: #1A1508; --amber-border: #4E3210;
+  --green: #47CD89; --green-light: #0C1A13; --green-border: #1C3D2C;
+  --gray: #667085; --gray-light: #1D2939; --gray-border: #344054;
+  --hero: #060D1F; --hero-text: #B2C0E0; --hero-accent: #84ADFF;
+  --stripe: #0F1A30; --bar-blue: #5B7FEE;
   color-scheme: dark;
 }
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.5; font-variant-numeric: tabular-nums;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 0;
-  margin: 0;
+  padding-block: 0; margin: 0;
 }
 * { box-sizing: border-box; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 24px 64px; display: flex; flex-direction: column; gap: 28px; }
 
-/* Hero */
 .hero {
-  background: var(--hero);
-  color: #fff;
-  border-radius: 20px;
-  padding: 36px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+  background: var(--hero); color: #fff; border-radius: 20px;
+  padding: 36px 40px; display: flex; flex-direction: column; gap: 28px;
 }
-.hero-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  font-size: 13px;
-  color: var(--hero-text);
-}
-.hero-body {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  align-items: center;
-}
+.hero-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--hero-text); }
+.hero-body { display: flex; gap: 40px; flex-wrap: wrap; align-items: center; }
 .hero-text { flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
-.hero-text h1 {
-  margin: 0;
-  font-family: 'Sora', 'Inter', sans-serif;
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.15;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
-}
+.hero-text h1 { margin: 0; font-family: 'Sora', 'Inter', sans-serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
 .hero-text p { margin: 0; font-size: 15px; color: var(--hero-text); }
 .hero-stat { flex: 0 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-.hero-big {
-  font-family: 'Sora', 'Inter', sans-serif;
-  font-size: clamp(56px, 8vw, 88px);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: #FDA29B;
-}
+.hero-big { font-family: 'Sora', 'Inter', sans-serif; font-size: clamp(56px, 8vw, 88px); line-height: 1; font-weight: 700; letter-spacing: -0.04em; color: #FDA29B; }
 .hero-big-label { font-size: 13px; color: var(--hero-text); }
 .hero-sub-row { display: flex; gap: 24px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.16); }
 .hero-sub-val { font-family: 'Sora', 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: #FDA29B; }
 .hero-sub-lbl { font-size: 12px; color: var(--hero-text); }
-.hero-next {
-  padding: 14px 18px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 12px;
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  align-items: baseline;
-}
-.hero-next-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--hero-accent);
-}
+.hero-next { padding: 14px 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; }
+.hero-next-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hero-accent); }
 
-/* Cards */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 1px 2px rgba(16,24,40,0.05);
-}
-
-/* Section headers */
-.sec-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 1px 2px rgba(16,24,40,0.05); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .sec-head h2 { margin: 0; font-size: 16px; font-weight: 700; }
 .sec-head .note { font-size: 12px; color: var(--muted); }
 
-/* Stat tiles */
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px; }
-.tile {
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.tile { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
 .tile-label { font-size: 13px; font-weight: 600; color: var(--muted); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .tile-val { font-family: 'Sora', 'Inter', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
 .tile-delta { font-size: 12px; color: var(--muted); }
 .tile-delta strong { font-weight: 600; }
 
-/* Badges */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  white-space: nowrap;
-}
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; }
 .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
 .b-ok { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
 .b-ok::before { background: var(--green); }
-.b-attn { background: var(--amber-light); color: var(--amber); border: 1px solid var(--amber-border); }
-.b-attn::before { background: var(--amber); }
 .b-red { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
 .b-red::before { background: var(--red); }
 .b-gray { background: var(--gray-light); color: var(--gray); border: 1px solid var(--gray-border); }
 .b-gray::before { background: var(--gray); }
 
-/* Deviation chart */
-.dev-chart { padding: 18px 20px; }
-.dev-chart-head {
-  padding-block-end: 14px;
+/* Comparison table */
+.tbl-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
+.tbl-head h2 { margin: 0 0 2px; font-size: 16px; font-weight: 700; }
+.tbl-head p { margin: 0; font-size: 13px; color: var(--muted); }
+.tbl-wrap { overflow-x: auto; padding: 0 0 8px; }
+.tbl { min-width: 740px; }
+.tbl-hdr {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.2fr) 80px 80px 68px 80px 68px 82px;
+  gap: 6px; padding: 10px 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted);
+  border-bottom: 2px solid var(--border);
+}
+.tbl-hdr span { white-space: nowrap; }
+.tbl-hdr span:nth-child(n+2) { text-align: right; }
+.tbl-group {
+  padding: 12px 20px 4px; font-size: 12px; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.03em; text-transform: uppercase; border-top: 1px solid var(--border);
+}
+.tbl-group:first-of-type { border-top: none; }
+.tbl-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.2fr) 80px 80px 68px 80px 68px 82px;
+  gap: 6px; padding: 9px 20px; align-items: center; font-size: 13px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 6px;
 }
-.dev-chart-head h2 { margin: 0 0 2px; font-size: 16px; font-weight: 700; }
-.dev-chart-head p { margin: 0; font-size: 13px; color: var(--muted); }
-.dev-row {
-  display: grid;
-  grid-template-columns: 130px minmax(0, 1fr) 80px;
-  gap: 14px;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-}
-.dev-row:last-child { border-bottom: none; }
-.dev-name { font-size: 13px; font-weight: 600; }
-.dev-name small { display: block; font-weight: 400; font-size: 11px; color: var(--muted); }
-.dev-bar-wrap {
-  position: relative;
-  height: 32px;
-}
-.dev-bar-bg {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: 6px;
-  background: var(--gray-light);
-}
-.dev-bar-fill {
-  position: absolute;
-  top: 4px;
-  height: 24px;
-  border-radius: 4px;
-  left: 0;
-  transition: width 0.3s;
-}
-.dev-bar-ref {
-  position: absolute;
-  top: 0;
-  height: 32px;
-  width: 2px;
-  background: var(--fg);
-  opacity: 0.25;
-}
-.dev-bar-ref::after {
-  content: 'mediana';
-  position: absolute;
-  top: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.dev-val {
-  text-align: right;
-  font-size: 13px;
-}
-.dev-val strong { display: block; font-family: 'Sora', 'Inter', sans-serif; font-size: 16px; font-weight: 700; }
-.dev-val span { font-size: 12px; font-weight: 600; }
-
-/* Funnel */
-.funil-grid { display: flex; gap: 16px; flex-wrap: wrap; align-items: stretch; }
-.funil-col { flex: 1 1 400px; min-width: 0; }
-.funil-inner { padding: 20px; display: flex; flex-direction: column; gap: 14px; height: 100%; }
-.funil-inner h3 { margin: 0; font-size: 15px; font-weight: 600; }
-.funil-inner .sub { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
-.funil-step {
-  display: grid;
-  grid-template-columns: 70px minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 10px;
-}
-.funil-step-name { font-size: 13px; font-weight: 600; }
-.funil-step-sub { font-size: 11px; color: var(--muted); }
-.funil-bar-outer {
-  position: relative;
-  height: 28px;
-}
-.funil-bar-ref {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 28px;
-  border: 1.5px dashed var(--gray);
-  border-radius: 6px;
-}
-.funil-bar-cur {
-  position: absolute;
-  top: 5px;
-  left: 0;
-  height: 18px;
-  min-width: 3px;
-  border-radius: 4px;
-}
-.funil-val { text-align: right; white-space: nowrap; }
-.funil-val strong { font-family: 'Sora', 'Inter', sans-serif; font-size: 18px; font-weight: 700; display: block; }
-.funil-val span { font-size: 12px; font-weight: 600; }
-
-/* Enrichment bars */
-.enrich-row {
-  display: grid;
-  grid-template-columns: minmax(110px, 160px) minmax(0, 1fr) 56px;
-  gap: 12px;
-  align-items: center;
-  font-size: 13px;
-  padding: 4px 0;
-}
-.enrich-bar { height: 10px; background: var(--gray-light); border-radius: 999px; overflow: hidden; }
-.enrich-bar-fill { height: 100%; border-radius: 999px; }
+.tbl-row:last-child { border-bottom: none; }
+.tbl-row.sub { padding-left: 36px; }
+.tbl-row.sub .tbl-name::before { content: '\21B3\00A0'; color: var(--muted); font-size: 12px; }
+.tbl-row.red-row { background: var(--red-light); }
+.tbl-name { font-weight: 600; }
+.tbl-name small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); }
+.tbl-row span:nth-child(n+2) { text-align: right; }
+.tbl-v { font-weight: 500; }
+.neg { color: var(--red); }
+.pos { color: var(--green); }
+.warn { color: var(--amber); }
+.d { font-weight: 600; font-size: 12px; }
 
 /* Heat map */
 .heat-wrap { overflow-x: auto; padding: 16px 20px 8px; }
 .heat-inner { min-width: 720px; display: flex; flex-direction: column; gap: 6px; }
-.heat-head {
-  display: grid;
-  grid-template-columns: 140px repeat(7, minmax(0, 1fr));
-  gap: 6px;
-  align-items: end;
-}
+.heat-head { display: grid; grid-template-columns: 160px repeat(7, minmax(0, 1fr)); gap: 6px; align-items: end; }
 .heat-head-day { text-align: center; font-size: 12px; color: var(--muted); line-height: 1.3; }
 .heat-head-day strong { font-weight: 600; color: var(--fg); display: block; }
-.heat-row {
-  display: grid;
-  grid-template-columns: 140px repeat(7, minmax(0, 1fr));
-  gap: 6px;
-  align-items: center;
-}
+.heat-row { display: grid; grid-template-columns: 160px repeat(7, minmax(0, 1fr)); gap: 6px; align-items: center; }
 .heat-label { font-size: 13px; font-weight: 600; }
 .heat-label small { display: block; font-weight: 400; font-size: 11px; color: var(--muted); }
-.heat-cell {
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
-}
-.heat-zero {
-  background: var(--red-light);
-  border: 1.5px dashed var(--red);
-  color: var(--red);
-  font-weight: 700;
-}
+.heat-cell { height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; }
 
 /* Rates */
-.rates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 12px; }
+.rates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px; }
 .rate-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
 .rate-name { font-size: 12px; color: var(--muted); }
 .rate-val { font-family: 'Sora', 'Inter', sans-serif; font-size: 22px; font-weight: 700; }
 .rate-delta { font-size: 12px; }
 
 /* Footer */
-.mfooter {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-.mfooter-col { flex: 1 1 380px; min-width: 0; }
-.mfooter h2 {
-  margin: 0 0 8px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+.mfooter { display: flex; gap: 32px; flex-wrap: wrap; padding: 20px; }
+.mfooter-col { flex: 1 1 340px; min-width: 0; }
+.mfooter h2 { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .mfooter p { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
 .mfooter p:last-child { margin-bottom: 0; }
 
-.neg { color: var(--red); }
-.pos { color: var(--green); }
-.warn { color: var(--amber); }
 .sm { font-size: 12px; color: var(--muted); padding: 0 20px 16px; margin: 0; }
 
 @media (max-width: 640px) {
   .hero { padding: 24px 20px; }
   .hero-body { gap: 24px; }
   .hero-stat { flex-basis: 100%; }
-  .dev-row { grid-template-columns: 100px minmax(0, 1fr) 64px; gap: 8px; }
-  .heat-head, .heat-row { grid-template-columns: 100px repeat(7, minmax(0, 1fr)); }
+  .heat-head, .heat-row { grid-template-columns: 120px repeat(7, minmax(0, 1fr)); }
 }
 </style>
 
@@ -415,13 +181,13 @@ body {
 <section class="hero">
   <div class="hero-top">
     <span><strong style="color:#fff">Monitor Semanal</strong> · Funil PT-BR · Inbound · Equipe BR</span>
-    <span>24/10 a 30/10/2026 (sab a sex) · gerado em 04/11/2026</span>
+    <span>24/10 a 30/10/2026 (sábado a sexta) · gerado em 04/11/2026</span>
   </div>
   <div class="hero-body">
     <div class="hero-text">
-      <h1>O topo segurou. O funil estreitou no SAL.</h1>
-      <p>Sessoes e sign-ups estaveis (77.177 e 945). Mas o SAL do Signup caiu 26% contra a semana anterior e 30% contra a mediana das 4 semanas.</p>
-      <p>SAL enriquecido caiu 36% vs anterior e 57% vs mediana. O estreitamento esta no meio do funil: MQL tambem caiu 22% vs anterior.</p>
+      <h1>O topo segurou. O funil estreitou no MQL e no SAL.</h1>
+      <p>Sessões e sign-ups estáveis (77.177 e 945). Mas o MQL do Signup caiu 22% vs anterior e o SAL caiu 26% vs anterior e 30% vs mediana.</p>
+      <p>O SAL enriquecido despencou: 56 entradas na semana contra 131 de mediana (-57%). Esse é o ponto mais critico do funil.</p>
     </div>
     <div class="hero-stat">
       <div>
@@ -441,32 +207,32 @@ body {
     </div>
   </div>
   <div class="hero-next">
-    <span class="hero-next-label">Proximo passo</span>
-    <span style="font-size:15px;flex:1 1 320px">Verificar se o SAL normaliza na primeira semana cheia de novembro. Se continuar abaixo de 350, escalar para operacao.</span>
+    <span class="hero-next-label">Próximo passo</span>
+    <span style="font-size:15px;flex:1 1 320px">Verificar se o SAL normaliza na primeira semana cheia de novembro. Se continuar abaixo de 350, escalar para operação.</span>
   </div>
 </section>
 
 <!-- TOPO DO FUNIL -->
 <section>
   <div class="sec-head">
-    <h2>Topo do funil: estavel</h2>
-    <span class="note">GA4 · sessoes com filtro PT-BR · eventos sem filtro (sign_up dispara fora de /pt-br/)</span>
+    <h2>Topo do funil</h2>
+    <span class="note">GA4 · sessões com filtro PT-BR · eventos sem filtro (sign_up dispara fora de /pt-br/)</span>
   </div>
   <div class="tiles" style="margin-top:12px">
     <div class="card tile">
-      <div class="tile-label">Sessoes PT-BR <span class="badge b-ok">OK</span></div>
+      <div class="tile-label">Sessões PT-BR <span class="badge b-ok">OK</span></div>
       <div class="tile-val">77.177</div>
-      <div class="tile-delta">vs ant. <strong class="pos">+9,9%</strong> · vs med. <strong class="pos">+18,4%</strong></div>
+      <div class="tile-delta">ant. 70.212 <strong class="pos">+9,9%</strong> · med. 65.178 <strong class="pos">+18,4%</strong></div>
     </div>
     <div class="card tile">
       <div class="tile-label">Sign-up <span class="badge b-ok">OK</span></div>
       <div class="tile-val">945</div>
-      <div class="tile-delta">vs ant. <strong>-6,9%</strong> · vs med. <strong class="pos">+2,6%</strong></div>
+      <div class="tile-delta">ant. 1.015 <strong>-6,9%</strong> · med. 921 <strong class="pos">+2,6%</strong></div>
     </div>
     <div class="card tile">
       <div class="tile-label">Book a Demo <span class="badge b-ok">OK</span></div>
       <div class="tile-val">190</div>
-      <div class="tile-delta">vs ant. <strong class="pos">+5,6%</strong> · vs med. <strong class="pos">+3,8%</strong></div>
+      <div class="tile-delta">ant. 180 <strong class="pos">+5,6%</strong> · med. 183 <strong class="pos">+3,8%</strong></div>
     </div>
     <div class="card tile">
       <div class="tile-label">Qualified Event <span class="badge b-ok">OK</span></div>
@@ -476,280 +242,223 @@ body {
   </div>
 </section>
 
-<!-- DESVIO DA MEDIANA -->
-<section class="card dev-chart">
-  <div class="dev-chart-head">
-    <h2>Quanto cada metrica esta da media</h2>
-    <p>A barra mostra o valor atual como proporcao da mediana das 4 semanas anteriores. Se a barra nao alcanca a linha, esta abaixo do esperado.</p>
+<!-- COMPARAÇÃO SEMANAL -->
+<section class="card">
+  <div class="tbl-head">
+    <h2>Comparação semanal: funil completo</h2>
+    <p>Cada linha mostra o valor desta semana, a semana anterior (19-25/10) e a mediana das 4 semanas anteriores. Linhas com ↳ são subconjuntos da linha acima.</p>
   </div>
+  <div class="tbl-wrap">
+    <div class="tbl">
+      <div class="tbl-hdr">
+        <span>Métrica</span>
+        <span>Semana</span>
+        <span>Anterior</span>
+        <span>Δ</span>
+        <span>Mediana</span>
+        <span>Δ</span>
+        <span>Situação</span>
+      </div>
 
-  <div class="dev-row">
-    <div class="dev-name">SAL Enriq. <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:30.7%;background:var(--red)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"><span style="display:none">med</span></div>
+      <div class="tbl-group">Deals criados (HubSpot)</div>
+
+      <div class="tbl-row">
+        <span class="tbl-name">App Signup</span>
+        <span class="tbl-v"><strong>1.006</strong></span>
+        <span class="tbl-v">1.150</span>
+        <span class="d neg">-12,5%</span>
+        <span class="tbl-v">1.089</span>
+        <span class="d">-7,6%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+
+      <div class="tbl-row">
+        <span class="tbl-name">Web Request</span>
+        <span class="tbl-v"><strong>195</strong></span>
+        <span class="tbl-v">193</span>
+        <span class="d pos">+1,0%</span>
+        <span class="tbl-v">178</span>
+        <span class="d pos">+9,9%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+
+      <div class="tbl-row">
+        <span class="tbl-name">Qualified</span>
+        <span class="tbl-v"><strong>135</strong></span>
+        <span class="tbl-v">149</span>
+        <span class="d">-9,4%</span>
+        <span class="tbl-v">154</span>
+        <span class="d">-12,3%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+
+      <div class="tbl-group">MQL (entradas na etapa)</div>
+
+      <div class="tbl-row red-row">
+        <span class="tbl-name">App Signup</span>
+        <span class="tbl-v"><strong>587</strong></span>
+        <span class="tbl-v">749</span>
+        <span class="d neg">-21,6%</span>
+        <span class="tbl-v">671</span>
+        <span class="d neg">-12,5%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
+      </div>
+
+      <div class="tbl-row">
+        <span class="tbl-name">Web Request</span>
+        <span class="tbl-v"><strong>160</strong></span>
+        <span class="tbl-v">179</span>
+        <span class="d">-10,6%</span>
+        <span class="tbl-v">143</span>
+        <span class="d pos">+11,9%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+
+      <div class="tbl-row red-row sub">
+        <span class="tbl-name">Signup enriquecido<small>ldr_source preenchido</small></span>
+        <span class="tbl-v"><strong>248</strong></span>
+        <span class="tbl-v">308</span>
+        <span class="d neg">-19,5%</span>
+        <span class="tbl-v">294</span>
+        <span class="d neg">-15,6%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
+      </div>
+
+      <div class="tbl-row sub">
+        <span class="tbl-name">Signup não enriquecido<small>ldr_source vazio</small></span>
+        <span class="tbl-v"><strong>339</strong></span>
+        <span class="tbl-v">441</span>
+        <span class="d neg">-23,1%</span>
+        <span class="tbl-v">377</span>
+        <span class="d">-10,1%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+
+      <div class="tbl-group">SAL (entradas na etapa)</div>
+
+      <div class="tbl-row red-row">
+        <span class="tbl-name">App Signup</span>
+        <span class="tbl-v"><strong>317</strong></span>
+        <span class="tbl-v">429</span>
+        <span class="d neg">-26,1%</span>
+        <span class="tbl-v">450</span>
+        <span class="d neg">-29,6%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
+      </div>
+
+      <div class="tbl-row">
+        <span class="tbl-name">Web Request</span>
+        <span class="tbl-v"><strong>110</strong></span>
+        <span class="tbl-v">123</span>
+        <span class="d">-10,6%</span>
+        <span class="tbl-v">116</span>
+        <span class="d">-5,2%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+
+      <div class="tbl-row red-row sub">
+        <span class="tbl-name">Signup enriquecido<small>ldr_source preenchido</small></span>
+        <span class="tbl-v"><strong>56</strong></span>
+        <span class="tbl-v">88</span>
+        <span class="d neg">-36,4%</span>
+        <span class="tbl-v">131</span>
+        <span class="d neg">-57,3%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
+      </div>
+
+      <div class="tbl-row sub">
+        <span class="tbl-name">Signup não enriquecido<small>ldr_source vazio</small></span>
+        <span class="tbl-v"><strong>261</strong></span>
+        <span class="tbl-v">341</span>
+        <span class="d neg">-23,5%</span>
+        <span class="tbl-v">319</span>
+        <span class="d neg">-18,2%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
+      </div>
+
+      <div class="tbl-group">SQL (entradas na etapa) · n&lt;40, só monitorar</div>
+
+      <div class="tbl-row">
+        <span class="tbl-name">App Signup</span>
+        <span class="tbl-v"><strong>5</strong></span>
+        <span class="tbl-v">5</span>
+        <span class="d" style="color:var(--gray)">0%</span>
+        <span class="tbl-v">6</span>
+        <span class="d" style="color:var(--gray)">-16,7%</span>
+        <span><span class="badge b-gray">n&lt;40</span></span>
+      </div>
+
+      <div class="tbl-row">
+        <span class="tbl-name">Web Request</span>
+        <span class="tbl-v"><strong>20</strong></span>
+        <span class="tbl-v">26</span>
+        <span class="d" style="color:var(--gray)">-23,1%</span>
+        <span class="tbl-v">24</span>
+        <span class="d" style="color:var(--gray)">-14,9%</span>
+        <span><span class="badge b-gray">n&lt;40</span></span>
+      </div>
     </div>
-    <div class="dev-val"><strong>56</strong><span class="neg">-57,3%</span></div>
   </div>
-
-  <div class="dev-row">
-    <div class="dev-name">Signup SAL <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:50.6%;background:var(--red)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>317</strong><span class="neg">-29,6%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">MQL Enriq. <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:60.6%;background:var(--red)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>248</strong><span class="neg">-15,6%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">Signup MQL <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:62.9%;background:var(--red)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>587</strong><span class="neg">-12,5%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">Qualified <small>Deals</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:63.0%;background:var(--amber)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>135</strong><span class="warn">-12,3%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">Signup Deals <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:67.2%;background:var(--amber)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>1.006</strong><span class="warn">-6,5%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">WR SAL <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:68.1%;background:var(--bar-blue)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>110</strong><span>-5,2%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">WR Deals <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:78.9%;background:var(--bar-blue)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>195</strong><span class="pos">+9,9%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">Sign-up GA <small>GA4</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:73.7%;background:var(--bar-blue)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>945</strong><span class="pos">+2,6%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">Demo GA <small>GA4</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:74.5%;background:var(--bar-blue)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>190</strong><span class="pos">+3,8%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">WR MQL <small>HubSpot</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:80.3%;background:var(--bar-blue)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>160</strong><span class="pos">+11,9%</span></div>
-  </div>
-
-  <div class="dev-row">
-    <div class="dev-name">Sessoes <small>GA4 PT-BR</small></div>
-    <div class="dev-bar-wrap">
-      <div class="dev-bar-bg"></div>
-      <div class="dev-bar-fill" style="width:85.1%;background:var(--bar-blue)"></div>
-      <div class="dev-bar-ref" style="left:71.8%"></div>
-    </div>
-    <div class="dev-val"><strong>77.177</strong><span class="pos">+18,4%</span></div>
-  </div>
-
-  <div style="padding-top:10px;font-size:12px;color:var(--muted)">
-    <strong style="color:var(--red)">Vermelho</strong> = queda 15%+ vs anterior E 10%+ vs mediana.
-    <strong style="color:var(--amber)">Amarelo</strong> = queda moderada em uma comparacao.
-    <strong style="color:var(--bar-blue)">Azul</strong> = no nivel ou acima da mediana.
-    SQL nao aparece (n&lt;40, so monitorar: Signup SQL 5, WR SQL 20).
-  </div>
+  <p class="sm" style="padding-top:8px">
+    <strong style="color:var(--red)">Vermelho</strong> = queda ≥15% vs anterior E ≥10% vs mediana.
+    <strong>OK</strong> = sem cruzar os dois limites.
+    <strong style="color:var(--gray)">n&lt;40</strong> = volume pequeno, só monitorar.
+    Semana anterior é Mon-based (19-25/10); mediana usa as 4 semanas Mon-based de 28/09 a 25/10.
+  </p>
 </section>
 
-<!-- FUNIL -->
+<!-- TAXAS DE CONVERSÃO -->
 <section>
   <div class="sec-head">
-    <h2>Onde o funil estreita</h2>
-    <div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:18px;height:8px;border-radius:3px;background:var(--bar-blue)"></span>semana atual</span>
-      <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:18px;height:10px;border-radius:3px;border:1.5px dashed var(--gray);box-sizing:border-box"></span>mediana 4 semanas</span>
+    <h2>Taxas de conversão</h2>
+    <span class="note">Signup: como cada etapa converte para a próxima</span>
+  </div>
+  <div class="rates-grid" style="margin-top:12px">
+    <div class="card rate-card">
+      <span class="rate-name">Sign-up por sessão (GA4)</span>
+      <span class="rate-val">1,22%</span>
+      <span class="rate-delta">ant. 1,45% <strong class="neg">-15,9%</strong></span>
+    </div>
+    <div class="card rate-card">
+      <span class="rate-name">Book a Demo por sessão (GA4)</span>
+      <span class="rate-val">0,25%</span>
+      <span class="rate-delta">ant. 0,26% <strong>-3,8%</strong></span>
+    </div>
+    <div class="card rate-card">
+      <span class="rate-name">Signup: MQL / Deals criados</span>
+      <span class="rate-val">58,3%</span>
+      <span class="rate-delta">ant. 65,1% <strong class="neg">-10,4%</strong></span>
+    </div>
+    <div class="card rate-card">
+      <span class="rate-name">Signup: SAL / MQL total</span>
+      <span class="rate-val">54,0%</span>
+      <span class="rate-delta">ant. 57,3% <strong>-5,8%</strong></span>
+    </div>
+    <div class="card rate-card">
+      <span class="rate-name">Signup enriquecido: SAL / MQL</span>
+      <span class="rate-val" style="color:var(--red)">22,6%</span>
+      <span class="rate-delta">ant. 28,6% <strong class="neg">-21,0%</strong></span>
+    </div>
+    <div class="card rate-card">
+      <span class="rate-name">Signup não enriquecido: SAL / MQL</span>
+      <span class="rate-val">77,0%</span>
+      <span class="rate-delta">ant. 77,3% <strong>-0,4%</strong></span>
     </div>
   </div>
-  <div class="funil-grid" style="margin-top:12px">
-
-    <div class="funil-col">
-      <div class="card funil-inner">
-        <div>
-          <h3>App Signup</h3>
-          <p class="sub">Deals criados e entradas em MQL, SAL e SQL na semana</p>
-        </div>
-
-        <div class="funil-step">
-          <div><div class="funil-step-name">Deals</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:100%"></div>
-            <div class="funil-bar-cur" style="width:93.5%;background:var(--bar-blue)"></div>
-          </div>
-          <div class="funil-val"><strong>1.006</strong><span class="warn">-6,5%</span></div>
-        </div>
-
-        <div class="funil-step" style="background:var(--red-light)">
-          <div><div class="funil-step-name">MQL</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:62.3%"></div>
-            <div class="funil-bar-cur" style="width:54.6%;background:var(--red)"></div>
-          </div>
-          <div class="funil-val"><strong>587</strong><span class="neg">-12,5%</span></div>
-        </div>
-
-        <div class="funil-step" style="background:var(--red-light)">
-          <div><div class="funil-step-name">SAL</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:41.8%"></div>
-            <div class="funil-bar-cur" style="width:29.5%;background:var(--red)"></div>
-          </div>
-          <div class="funil-val"><strong>317</strong><span class="neg">-29,6%</span></div>
-        </div>
-
-        <div class="funil-step">
-          <div><div class="funil-step-name">SQL</div><div class="funil-step-sub">n&lt;40</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:0.6%"></div>
-            <div class="funil-bar-cur" style="width:0.5%;background:var(--gray)"></div>
-          </div>
-          <div class="funil-val"><strong>5</strong><span style="color:var(--gray)">n&lt;40</span></div>
-        </div>
-
-        <div style="padding-top:14px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px">
-          <div style="font-size:13px;font-weight:600">Taxa MQL para SAL: enriquecidos vs nao enriquecidos</div>
-          <div class="enrich-row">
-            <span>Enriquecido <span style="color:var(--muted)">(248 &rarr; 56)</span></span>
-            <div class="enrich-bar"><div class="enrich-bar-fill" style="width:22.6%;background:var(--red)"></div></div>
-            <strong style="text-align:right;color:var(--red)">22,6%</strong>
-          </div>
-          <div class="enrich-row">
-            <span>Nao enriquecido <span style="color:var(--muted)">(339 &rarr; 261)</span></span>
-            <div class="enrich-bar"><div class="enrich-bar-fill" style="width:77.0%;background:var(--bar-blue)"></div></div>
-            <strong style="text-align:right">77,0%</strong>
-          </div>
-          <div class="enrich-row">
-            <span>Total Signup <span style="color:var(--muted)">(587 &rarr; 317)</span></span>
-            <div class="enrich-bar"><div class="enrich-bar-fill" style="width:54.0%;background:var(--muted)"></div></div>
-            <strong style="text-align:right">54,0%</strong>
-          </div>
-          <p style="margin:0;font-size:12px;color:var(--muted)">Enriquecido = ldr_source preenchido. MQL e SAL sao entradas na etapa durante a semana, nao conversao de coorte.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="funil-col">
-      <div class="card funil-inner">
-        <div>
-          <h3>Web Request</h3>
-          <p class="sub">Deals criados e entradas em MQL, SAL e SQL na semana</p>
-        </div>
-
-        <div class="funil-step">
-          <div><div class="funil-step-name">Deals</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:91.0%"></div>
-            <div class="funil-bar-cur" style="width:100%;background:var(--bar-blue)"></div>
-          </div>
-          <div class="funil-val"><strong>195</strong><span class="pos">+9,9%</span></div>
-        </div>
-
-        <div class="funil-step">
-          <div><div class="funil-step-name">MQL</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:73.3%"></div>
-            <div class="funil-bar-cur" style="width:82.1%;background:var(--bar-blue)"></div>
-          </div>
-          <div class="funil-val"><strong>160</strong><span class="pos">+11,9%</span></div>
-        </div>
-
-        <div class="funil-step" style="background:var(--red-light)">
-          <div><div class="funil-step-name">SAL</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:59.5%"></div>
-            <div class="funil-bar-cur" style="width:56.4%;background:var(--amber)"></div>
-          </div>
-          <div class="funil-val"><strong>110</strong><span class="warn">-5,2%</span></div>
-        </div>
-
-        <div class="funil-step">
-          <div><div class="funil-step-name">SQL</div><div class="funil-step-sub">n&lt;40</div></div>
-          <div class="funil-bar-outer">
-            <div class="funil-bar-ref" style="width:12.1%"></div>
-            <div class="funil-bar-cur" style="width:10.3%;background:var(--gray)"></div>
-          </div>
-          <div class="funil-val"><strong>20</strong><span style="color:var(--gray)">n&lt;40</span></div>
-        </div>
-
-        <div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:baseline;justify-content:space-between;gap:12px">
-          <span style="font-size:13px;color:var(--muted)">Qualified (deals criados)</span>
-          <span><strong style="font-family:'Sora','Inter',sans-serif;font-size:18px">135</strong> <span style="font-size:12px;font-weight:600;color:var(--amber)">-12,3% vs med.</span></span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <p style="margin:12px 0 0;font-size:12px;color:var(--muted)">A taxa de sign-up por sessão caiu 15,9% vs anterior, mas isso reflete o aumento de sessões (+9,9%) com sign-ups estáveis. O ponto critico é a conversão SAL dos enriquecidos: 22,6% contra 77,0% dos não enriquecidos, e caindo.</p>
 </section>
 
-<!-- HEAT MAP -->
+<!-- CALOR DIA A DIA -->
 <section class="card">
   <div style="padding:18px 20px;border-bottom:1px solid var(--border)">
-    <h2 style="margin:0;font-size:16px;font-weight:700">Dia a dia: sabado a sexta</h2>
-    <p style="margin:2px 0 0;font-size:13px;color:var(--muted)">Intensidade proporcional ao maior dia de cada linha. Celula vermelha = zero.</p>
+    <h2 style="margin:0;font-size:16px;font-weight:700">Dia a dia: sábado a sexta</h2>
+    <p style="margin:2px 0 0;font-size:13px;color:var(--muted)">Intensidade proporcional ao maior dia de cada linha.</p>
   </div>
   <div class="heat-wrap">
     <div class="heat-inner">
       <div class="heat-head">
         <span></span>
-        <div class="heat-head-day"><strong>sab</strong>24/10</div>
+        <div class="heat-head-day"><strong>sáb</strong>24/10</div>
         <div class="heat-head-day"><strong>dom</strong>25/10</div>
         <div class="heat-head-day"><strong>seg</strong>26/10</div>
         <div class="heat-head-day"><strong>ter</strong>27/10</div>
@@ -759,7 +468,7 @@ body {
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">Sessoes <small>GA4</small></div>
+        <div class="heat-label">Sessões <small>GA4 PT-BR</small></div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.20)">3.885</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.23)">4.652</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.50)">13.329</div>
@@ -803,7 +512,7 @@ body {
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">MQL Enriq. <small>HubSpot</small></div>
+        <div class="heat-label">MQL enriquecido <small>HubSpot Signup</small></div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.14)">7</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.18)">14</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.41)">42</div>
@@ -814,7 +523,7 @@ body {
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">SAL Enriq. <small>HubSpot</small></div>
+        <div class="heat-label">SAL enriquecido <small>HubSpot Signup</small></div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.14)">3</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.24)">7</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.44)">14</div>
@@ -825,63 +534,33 @@ body {
       </div>
     </div>
   </div>
-  <p class="sm">Sessoes total semanal (77.177) consultado em uma query separada. Eventos GA4 sem filtro de pagina. Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2. MQL/SAL enriquecidos: Inbound Signup, team BR, ldr_source preenchido.</p>
+  <p class="sm">Sessões: query semanal separada (77.177 total). Eventos GA4 sem filtro de página. Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2. MQL/SAL enriquecidos: Inbound Signup, team BR, ldr_source preenchido.</p>
 </section>
 
-<!-- TAXAS -->
-<section>
-  <div class="sec-head">
-    <h2>Taxas e ligacoes GA4 e HubSpot</h2>
-    <span class="note">Estaveis (variacao menor que 15%)</span>
-  </div>
-  <div class="rates-grid" style="margin-top:12px">
-    <div class="card rate-card">
-      <span class="rate-name">Sign-up / sessao</span>
-      <span class="rate-val">1,22%</span>
-      <span class="rate-delta">ant. 1,45% <strong>-15,5%</strong></span>
-    </div>
-    <div class="card rate-card">
-      <span class="rate-name">Demo / sessao</span>
-      <span class="rate-val">0,25%</span>
-      <span class="rate-delta">ant. 0,26% <strong>-4,7%</strong></span>
-    </div>
-    <div class="card rate-card">
-      <span class="rate-name">Signup MQL / Deals</span>
-      <span class="rate-val">58,3%</span>
-      <span class="rate-delta">ant. 65,1% <strong class="neg">-10,4%</strong></span>
-    </div>
-    <div class="card rate-card">
-      <span class="rate-name">Signup SAL / MQL</span>
-      <span class="rate-val">54,0%</span>
-      <span class="rate-delta">ant. 57,3% <strong>-5,7%</strong></span>
-    </div>
-    <div class="card rate-card">
-      <span class="rate-name">Signup Deals / Sign-up GA</span>
-      <span class="rate-val">1,06</span>
-      <span class="rate-delta">ant. 1,13 <strong>-5,9%</strong></span>
-    </div>
-    <div class="card rate-card">
-      <span class="rate-name">WR Deals / Demo GA</span>
-      <span class="rate-val">1,03</span>
-      <span class="rate-delta">ant. 1,07 <strong>-4,2%</strong></span>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- RODAPÉ -->
 <footer class="card mfooter">
   <div class="mfooter-col">
-    <h2>Fontes e filtros</h2>
-    <p>Sessoes GA4 via Supermetrics (propriedade 224213526), filtro fullPageUrl contem use.pipefy.com ou www.pipefy.com/pt-br. Fuso: America/Sao_Paulo.</p>
-    <p>Eventos GA4 sem filtro de pagina (sign_up dispara fora de /pt-br/).</p>
-    <p>HubSpot: pipeline Inside Sales Inbound (924876629), team BR. Enriquecido = ldr_source IS NOT NULL.</p>
+    <h2>Glossário</h2>
+    <p><strong>MQL</strong> = Marketing Qualified Lead (qualificado por marketing)</p>
+    <p><strong>SAL</strong> = Sales Accepted Lead (aceito por vendas)</p>
+    <p><strong>SQL</strong> = Sales Qualified Lead (qualificado por vendas)</p>
+    <p><strong>Enriquecido</strong> = ldr_source preenchido no HubSpot (dados complementares obtidos)</p>
   </div>
   <div class="mfooter-col">
-    <h2>Criterios de status</h2>
-    <p><strong style="color:var(--red)">Vermelho:</strong> queda de 15%+ vs anterior e de 10%+ vs mediana.</p>
-    <p><strong style="color:var(--amber)">Atencao:</strong> queda moderada em uma das comparacoes.</p>
-    <p><strong>n&lt;40:</strong> contagem pequena, so monitorar.</p>
-    <p>Janela: sabado a sexta (o time de vendas trabalha seg-sex). Comparativo usa semanas Mon-based do historico; pode haver diferenca de 1-2 dias.</p>
+    <h2>Fontes e filtros</h2>
+    <p>Sessões GA4 via Supermetrics (propriedade 224213526), filtro fullPageUrl contém use.pipefy.com ou www.pipefy.com/pt-br. Fuso: America/Sao_Paulo.</p>
+    <p>Eventos GA4 sem filtro de página (sign_up dispara fora de /pt-br/).</p>
+    <p>HubSpot: pipeline Inside Sales Inbound (924876629), team BR.</p>
+  </div>
+  <div class="mfooter-col">
+    <h2>Critérios de status</h2>
+    <p><strong style="color:var(--red)">Vermelho:</strong> queda ≥15% vs anterior E ≥10% vs mediana.</p>
+    <p><strong>OK:</strong> não cruza os dois limites.</p>
+    <p><strong>n&lt;40:</strong> volume pequeno, só monitorar.</p>
+    <p>Janela: sábado a sexta (o time de vendas trabalha seg-sex). Comparativos usam semanas Mon-based do histórico (pode haver diferença de 1-2 dias).</p>
+  </div>
+  <div style="flex-basis:100%;padding-top:8px;border-top:1px solid var(--border)">
+    <p style="margin:0;font-size:12px;color:var(--muted)"><strong>Verificação GA4 ↔ HubSpot:</strong> Signup Deals / Sign-up GA = 1,06 (ant. 1,13); Web Request Deals / Book a Demo GA = 1,03 (ant. 1,07). Ambos estáveis, sem alerta de descolamento.</p>
   </div>
 </footer>
 
