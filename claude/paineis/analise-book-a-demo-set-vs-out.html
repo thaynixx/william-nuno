@@ -136,7 +136,7 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 <section class="hero">
 <small>Book a Demo, setembro (01 a 30/09) contra outubro (01 a 31/10) · escopo PT-BR · extraído em 04/11/2026</small>
 <h1>O Book a Demo cresceu 1,8% no site, mas o SQL caiu 23%.</h1>
-<p class="lead">O volume de envios praticamente não mudou. Mudou de onde ele vem (menos formulário do site, mais landing page) e, depois do deal criado, o quanto ele vira SQL. A queda está nos deals do formulário do site, principalmente na faixa de 11 a 50 funcionários.</p>
+<p class="lead">O volume de envios praticamente não mudou. Mudou de onde ele vem (menos formulário do site, mais landing page) e, depois do deal criado, o quanto ele vira SQL. A queda está nos deals do formulário do site, principalmente na faixa de 11 a 200 funcionários.</p>
 <div class="kpis">
 <div class="kpi"><span class="v neu">297.251 → 312.615</span><span class="l">Sessões (GA4), +5,2%</span></div>
 <div class="kpi"><span class="v neu">842 → 857</span><span class="l">Envios de Book a Demo no site (GA4), +1,8%</span></div>
@@ -176,7 +176,7 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 <ul>
 <li>Formulário do site (step 2): 476 → 364, -24%. Paid Search 168 → 112 e Organic Search 110 → 89.</li>
 <li>Sessões orgânicas, diretas e social orgânico: -11%. Book a Demo desse grupo: 224 → 186.</li>
-<li>SQL: 100 → 77 com deals estáveis. Faixa de 11 a 50 funcionários: 39 → 18 SQL e 127 → 85 SAL.</li>
+<li>SQL: 100 → 77 com deals estáveis. Faixa de 11 a 200 funcionários: 57 → 39 SQL e 181 → 158 SAL.</li>
 <li>Entre deals com dono, SAL foi de 92% para 71% e conectados de 45% para 31%.</li>
 </ul>
 </div>
@@ -324,6 +324,19 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 </tbody>
 </table></div>
 <p class="note">* MQL sobre os deals do Inbound. SQL por deal: 14,7% → 11,2% (p = 0,050 com os dois pipelines; 0,025 sem o lote do Outbound; 0,006 só no Inbound).</p>
+<h3>No recorte do novo Signup (Inbound BR)</h3>
+<div class="tw"><table>
+<thead><tr><th>Deals de Web Request criados</th><th class="n ms">Set (17/09 a 06/10)</th><th class="n mo">Out (07/10 a 26/10)</th><th class="n">Var.</th></tr></thead>
+<tbody>
+<tr><td>Deals criados</td><td class="n ms">463</td><td class="n mo">549</td><td class="n pos">+18,6%</td></tr>
+<tr><td>MQL</td><td class="n ms">362</td><td class="n mo">432</td><td class="n pos">+19,3%</td></tr>
+<tr><td>SAL</td><td class="n ms">321</td><td class="n mo">304</td><td class="n neg">-5,3%</td></tr>
+<tr><td>SAL Connected</td><td class="n ms">149</td><td class="n mo">134</td><td class="n neg">-10,1%</td></tr>
+<tr class="hl"><td>SQL</td><td class="n ms">81</td><td class="n mo">62</td><td class="n neg">-23,5%</td></tr>
+<tr class="sum"><td>SQL por deal</td><td class="n ms">17,5%</td><td class="n mo">11,3%</td><td class="n neg">-35%</td></tr>
+</tbody>
+</table></div>
+<p class="note">Nesse recorte não há deals sem time nem lote no Outbound, e a leitura é a mesma, mais forte: deals +18,6% e SQL -23,5% (p = 0,005). Etapas até 14/10 (set) e 03/11 (out).</p>
 <div class="grid2">
 <div>
 <h3>Por formulário de origem (Inbound BR)</h3>
@@ -396,7 +409,7 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 <div class="fact"><i>1</i><div><b>Não é volume.</b> Deals de Web Request: 680 → 690. Envios no site: 842 → 857.</div></div>
 <div class="fact"><i>2</i><div><b>Não é mix de origem.</b> Com as taxas de setembro, o mix de outubro daria 105 SQL. Saíram 77.</div></div>
 <div class="fact"><i>3</i><div><b>É o deal do formulário do site.</b> 213 → 220 deals, SQL por deal de 30,5% para 18,6% (p = 0,004).</div></div>
-<div class="fact"><i>4</i><div><b>Está na faixa de 11 a 50 funcionários.</b> SQL 39 → 18 e SAL 127 → 85. As outras faixas somam +1 SQL (aba Company Size).</div></div>
+<div class="fact"><i>4</i><div><b>Está na faixa de 11 a 200 funcionários.</b> SQL 57 → 39 e SAL 181 → 158. As outras faixas somam -2 SQL (aba Company Size).</div></div>
 <div class="fact"><i>5</i><div><b>O MQL a mais não vira SQL.</b> Dos +135 MQL, +125 vêm de quem declarou 1 a 10 ou ficou sem tamanho. Esses dois grupos geraram 1 SQL em 308 deals.</div></div>
 <div class="fact"><i>6</i><div><b>O atendimento concentrou.</b> 2 donos com 79% dos deals; SAL por deal com dono de 92% para 71%.</div></div>
 </div>
@@ -429,7 +442,7 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 </section>
 <section class="card">
 <span class="sec-tag">1 · Funil por tamanho declarado</span>
-<h2>A perda de SQL está na faixa de 11 a 50 funcionários</h2>
+<h2>A perda de SQL está na faixa de 11 a 200 funcionários</h2>
 <p class="note">"Sem tamanho" é o campo vazio no HubSpot. Declarado é o tamanho informado no formulário.</p>
 <div class="tw"><table class="cols-g" style="min-width:700px">
 <thead>
@@ -440,13 +453,13 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 <tr><td>Sem tamanho</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">36</td><td class="n mo">41</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td></tr>
 <tr><td>1 a 10</td><td class="n ms">165</td><td class="n mo">214</td><td class="n ms">18</td><td class="n mo">88</td><td class="n ms">33</td><td class="n mo">48</td><td class="n ms">1</td><td class="n mo">1</td><td class="n ms">0,6%</td><td class="n mo">0,5%</td></tr>
 <tr class="hl"><td>11 a 50</td><td class="n ms">136</td><td class="n mo">108</td><td class="n ms">130</td><td class="n mo">107</td><td class="n ms">127</td><td class="n mo">85</td><td class="n ms">39</td><td class="n mo">18</td><td class="n ms">28,7%</td><td class="n mo">16,7%</td></tr>
-<tr><td>51 a 200</td><td class="n ms">58</td><td class="n mo">84</td><td class="n ms">55</td><td class="n mo">84</td><td class="n ms">54</td><td class="n mo">73</td><td class="n ms">18</td><td class="n mo">21</td><td class="n ms">31,0%</td><td class="n mo">25,0%</td></tr>
+<tr class="hl"><td>51 a 200</td><td class="n ms">58</td><td class="n mo">84</td><td class="n ms">55</td><td class="n mo">84</td><td class="n ms">54</td><td class="n mo">73</td><td class="n ms">18</td><td class="n mo">21</td><td class="n ms">31,0%</td><td class="n mo">25,0%</td></tr>
 <tr><td>201 ou mais</td><td class="n ms">155</td><td class="n mo">154</td><td class="n ms">153</td><td class="n mo">151</td><td class="n ms">142</td><td class="n mo">128</td><td class="n ms">39</td><td class="n mo">37</td><td class="n ms">25,2%</td><td class="n mo">24,0%</td></tr>
 <tr><td>Outros (Self-employed, Univ. Junior Enterprise)</td><td class="n ms">20</td><td class="n mo">13</td><td class="n ms">0</td><td class="n mo">6</td><td class="n ms">0</td><td class="n mo">2</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td></tr>
 <tr class="sum"><td>Total</td><td class="n ms">573</td><td class="n mo">667</td><td class="n ms">395</td><td class="n mo">530</td><td class="n ms">392</td><td class="n mo">377</td><td class="n ms">97</td><td class="n mo">77</td><td class="n ms">16,9%</td><td class="n mo">11,5%</td></tr>
 </tbody>
 </table></div>
-<div class="callout blue"><b>Dos +135 MQL, +125 vêm de quem declarou 1 a 10 (+70) ou ficou sem tamanho (+55).</b> Esses dois grupos geraram 1 SQL em 308 deals. Já a faixa de 11 a 50 perdeu 21 SQL, e todas as outras faixas somam +1.</div>
+<div class="callout blue"><b>Dos +135 MQL, +125 vêm de quem declarou 1 a 10 (+70) ou ficou sem tamanho (+55).</b> Esses dois grupos geraram 1 SQL em 308 deals. Já a faixa de 11 a 200 (11 a 50 e 51 a 200 somadas) perdeu 18 SQL, de 57 para 39, e todas as outras faixas somam -2.</div>
 </section>
 <section class="card">
 <span class="sec-tag">2 · Harvest</span>
