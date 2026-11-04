@@ -419,9 +419,9 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 <section class="hero">
 <small>Company Size · deals de Web Request, team BR, Inbound · criados de 02 a 26 de cada mês</small>
 <h1>Quem declarou 1 a 10 virou MQL, mas não virou SQL.</h1>
-<p class="lead">Declarado é o tamanho que a pessoa informou no formulário. Enriquecido é o tamanho que o Harvest encontrou depois. Em setembro quase nada era enriquecido. Em outubro, 42% dos deals foram.</p>
+<p class="lead">Declarado é o tamanho que a pessoa informou no formulário. Enriquecido é o tamanho que o Harvest encontrou depois. Em setembro quase nenhum deal passou pelo Harvest. Em outubro, 42% passaram, mas ele só encontrou o tamanho em 17%.</p>
 <div class="kpis">
-<div class="kpi"><span class="v neu">8 → 283</span><span class="l">Deals enriquecidos pelo Harvest (1,4% → 42,4%)</span></div>
+<div class="kpi"><span class="v neu">8 → 283</span><span class="l">Deals que passaram pelo Harvest (1,4% → 42,4%). Ele encontrou o tamanho em 2 → 113</span></div>
 <div class="kpi"><span class="v bad">34 de 214</span><span class="l">Declararam 1 a 10 e o Harvest aponta 501 ou mais funcionários</span></div>
 <div class="kpi"><span class="v bad">18 → 88</span><span class="l">MQL de quem declarou 1 a 10. SQL: 1 → 1</span></div>
 <div class="kpi"><span class="v bad">39 → 94</span><span class="l">Deals sem Company Size. 0 SQL nos dois meses</span></div>
@@ -430,43 +430,62 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 <section class="card">
 <span class="sec-tag">1 · Funil por tamanho declarado</span>
 <h2>A perda de SQL está na faixa de 11 a 50 funcionários</h2>
-<p class="note">"Sem tamanho" é o campo vazio no HubSpot. Enriquecido = o Harvest encontrou o tamanho da empresa.</p>
-<div class="tw"><table class="cols-g" style="min-width:860px">
+<p class="note">"Sem tamanho" é o campo vazio no HubSpot. Declarado é o tamanho informado no formulário.</p>
+<div class="tw"><table class="cols-g" style="min-width:700px">
 <thead>
-<tr><th></th><th class="g" colspan="2" style="text-align:center">Deals</th><th class="g" colspan="2" style="text-align:center">MQL</th><th class="g" colspan="2" style="text-align:center">SAL</th><th class="g" colspan="2" style="text-align:center">SQL</th><th class="g" colspan="2" style="text-align:center">SQL por deal</th><th class="g" style="text-align:center">Enriquecidos pelo Harvest</th></tr>
-<tr><th>Declarado</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n mo">Out</th></tr>
+<tr><th></th><th class="g" colspan="2" style="text-align:center">Deals</th><th class="g" colspan="2" style="text-align:center">MQL</th><th class="g" colspan="2" style="text-align:center">SAL</th><th class="g" colspan="2" style="text-align:center">SQL</th><th class="g" colspan="2" style="text-align:center">SQL por deal</th></tr>
+<tr><th>Declarado</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th></tr>
 </thead>
 <tbody>
-<tr><td>Sem tamanho</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">36</td><td class="n mo">41</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td><td class="n mo">37 de 94 (39%)</td></tr>
-<tr><td>1 a 10</td><td class="n ms">165</td><td class="n mo">214</td><td class="n ms">18</td><td class="n mo">88</td><td class="n ms">33</td><td class="n mo">48</td><td class="n ms">1</td><td class="n mo">1</td><td class="n ms">0,6%</td><td class="n mo">0,5%</td><td class="n mo">211 de 214 (99%)</td></tr>
-<tr class="hl"><td>11 a 50</td><td class="n ms">136</td><td class="n mo">108</td><td class="n ms">130</td><td class="n mo">107</td><td class="n ms">127</td><td class="n mo">85</td><td class="n ms">39</td><td class="n mo">18</td><td class="n ms">28,7%</td><td class="n mo">16,7%</td><td class="n mo">9 de 108 (8%)</td></tr>
-<tr><td>51 a 200</td><td class="n ms">58</td><td class="n mo">84</td><td class="n ms">55</td><td class="n mo">84</td><td class="n ms">54</td><td class="n mo">73</td><td class="n ms">18</td><td class="n mo">21</td><td class="n ms">31,0%</td><td class="n mo">25,0%</td><td class="n mo">9 de 84 (11%)</td></tr>
-<tr><td>201 ou mais</td><td class="n ms">155</td><td class="n mo">154</td><td class="n ms">153</td><td class="n mo">151</td><td class="n ms">142</td><td class="n mo">128</td><td class="n ms">39</td><td class="n mo">37</td><td class="n ms">25,2%</td><td class="n mo">24,0%</td><td class="n mo">4 de 154 (3%)</td></tr>
-<tr><td>Outros (Self-employed, Univ. Junior Enterprise)</td><td class="n ms">20</td><td class="n mo">13</td><td class="n ms">0</td><td class="n mo">6</td><td class="n ms">0</td><td class="n mo">2</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td><td class="n mo">13 de 13</td></tr>
-<tr class="sum"><td>Total</td><td class="n ms">573</td><td class="n mo">667</td><td class="n ms">395</td><td class="n mo">530</td><td class="n ms">392</td><td class="n mo">377</td><td class="n ms">97</td><td class="n mo">77</td><td class="n ms">16,9%</td><td class="n mo">11,5%</td><td class="n mo">283 de 667 (42%)</td></tr>
+<tr><td>Sem tamanho</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">36</td><td class="n mo">41</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td></tr>
+<tr><td>1 a 10</td><td class="n ms">165</td><td class="n mo">214</td><td class="n ms">18</td><td class="n mo">88</td><td class="n ms">33</td><td class="n mo">48</td><td class="n ms">1</td><td class="n mo">1</td><td class="n ms">0,6%</td><td class="n mo">0,5%</td></tr>
+<tr class="hl"><td>11 a 50</td><td class="n ms">136</td><td class="n mo">108</td><td class="n ms">130</td><td class="n mo">107</td><td class="n ms">127</td><td class="n mo">85</td><td class="n ms">39</td><td class="n mo">18</td><td class="n ms">28,7%</td><td class="n mo">16,7%</td></tr>
+<tr><td>51 a 200</td><td class="n ms">58</td><td class="n mo">84</td><td class="n ms">55</td><td class="n mo">84</td><td class="n ms">54</td><td class="n mo">73</td><td class="n ms">18</td><td class="n mo">21</td><td class="n ms">31,0%</td><td class="n mo">25,0%</td></tr>
+<tr><td>201 ou mais</td><td class="n ms">155</td><td class="n mo">154</td><td class="n ms">153</td><td class="n mo">151</td><td class="n ms">142</td><td class="n mo">128</td><td class="n ms">39</td><td class="n mo">37</td><td class="n ms">25,2%</td><td class="n mo">24,0%</td></tr>
+<tr><td>Outros (Self-employed, Univ. Junior Enterprise)</td><td class="n ms">20</td><td class="n mo">13</td><td class="n ms">0</td><td class="n mo">6</td><td class="n ms">0</td><td class="n mo">2</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td></tr>
+<tr class="sum"><td>Total</td><td class="n ms">573</td><td class="n mo">667</td><td class="n ms">395</td><td class="n mo">530</td><td class="n ms">392</td><td class="n mo">377</td><td class="n ms">97</td><td class="n mo">77</td><td class="n ms">16,9%</td><td class="n mo">11,5%</td></tr>
 </tbody>
 </table></div>
 <div class="callout blue"><b>Dos +135 MQL, +125 vêm de quem declarou 1 a 10 (+70) ou ficou sem tamanho (+55).</b> Esses dois grupos geraram 1 SQL em 308 deals. Já a faixa de 11 a 50 perdeu 21 SQL, e todas as outras faixas somam +1.</div>
 </section>
 <section class="card">
-<span class="sec-tag">2 · Quem declarou 1 a 10</span>
-<h2>O que o Harvest encontrou nesses 214 deals de outubro</h2>
-<div class="tw"><table>
-<thead><tr><th>O Harvest diz</th><th class="n">Deals</th><th class="n">% dos 214</th><th class="n">MQL</th><th class="n">SAL</th><th class="n">SQL</th></tr></thead>
+<span class="sec-tag">2 · Harvest</span>
+<h2>Dos 667 deals de outubro, 283 passaram pelo Harvest e ele encontrou o tamanho em 113</h2>
+<div class="tw"><table style="min-width:620px">
+<thead><tr><th>Declarado (out)</th><th class="n">Deals</th><th class="n">Passaram pelo Harvest</th><th class="n">Harvest encontrou o tamanho</th><th class="n">Harvest não encontrou a empresa</th></tr></thead>
 <tbody>
-<tr class="hl"><td>Empresa com 501 ou mais funcionários</td><td class="n">34</td><td class="n">16%</td><td class="n">34</td><td class="n">10</td><td class="n">0</td></tr>
-<tr><td>Empresa com 11 a 500 funcionários</td><td class="n">19</td><td class="n">9%</td><td class="n">19</td><td class="n">11</td><td class="n">0</td></tr>
-<tr><td>1 a 10 (confirma o que foi declarado)</td><td class="n">18</td><td class="n">8%</td><td class="n">3</td><td class="n">2</td><td class="n">0</td></tr>
-<tr><td>Self-employed</td><td class="n">9</td><td class="n">4%</td><td class="n">4</td><td class="n">2</td><td class="n">0</td></tr>
-<tr><td>Não encontrou a empresa</td><td class="n">131</td><td class="n">61%</td><td class="n">27</td><td class="n">22</td><td class="n">0</td></tr>
-<tr><td>Não foi enriquecido</td><td class="n">3</td><td class="n">1%</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
+<tr class="hl"><td>1 a 10</td><td class="n">214</td><td class="n">211</td><td class="n">80</td><td class="n">131</td></tr>
+<tr><td>Sem tamanho</td><td class="n">94</td><td class="n">37</td><td class="n">14</td><td class="n">23</td></tr>
+<tr><td>11 a 50</td><td class="n">108</td><td class="n">9</td><td class="n">4</td><td class="n">5</td></tr>
+<tr><td>51 a 200</td><td class="n">84</td><td class="n">9</td><td class="n">4</td><td class="n">5</td></tr>
+<tr><td>201 ou mais</td><td class="n">154</td><td class="n">4</td><td class="n">4</td><td class="n">0</td></tr>
+<tr><td>Outros (Self-employed, Univ. Junior Enterprise)</td><td class="n">13</td><td class="n">13</td><td class="n">7</td><td class="n">6</td></tr>
+<tr class="sum"><td>Total</td><td class="n">667</td><td class="n">283</td><td class="n">113</td><td class="n">170</td></tr>
+</tbody>
+</table></div>
+<p class="note">O Harvest foi usado quase só em quem declarou 1 a 10 (211 de 214) e em quem ficou sem tamanho (37 de 94). Em setembro, só 8 deals passaram por ele (o tamanho foi encontrado em 2).</p>
+</section>
+<section class="card">
+<span class="sec-tag">3 · Quem declarou 1 a 10</span>
+<h2>Dos 214 deals, 211 passaram pelo Harvest. O que ele encontrou</h2>
+<div class="tw"><table>
+<thead><tr><th>Declararam 1 a 10 (out)</th><th class="n">Deals</th><th class="n">% dos 214</th><th class="n">MQL</th><th class="n">SAL</th><th class="n">SQL</th></tr></thead>
+<tbody>
+<tr class="sum"><td>Passaram pelo Harvest</td><td class="n">211</td><td class="n">99%</td><td class="n">87</td><td class="n">47</td><td class="n">0</td></tr>
+<tr class="sub"><td>Harvest encontrou o tamanho</td><td class="n">80</td><td class="n">37%</td><td class="n">60</td><td class="n">25</td><td class="n">0</td></tr>
+<tr class="sub hl"><td>Empresa com 501 ou mais funcionários</td><td class="n">34</td><td class="n">16%</td><td class="n">34</td><td class="n">10</td><td class="n">0</td></tr>
+<tr class="sub"><td>Empresa com 11 a 500 funcionários</td><td class="n">19</td><td class="n">9%</td><td class="n">19</td><td class="n">11</td><td class="n">0</td></tr>
+<tr class="sub"><td>1 a 10 (confirma o que foi declarado)</td><td class="n">18</td><td class="n">8%</td><td class="n">3</td><td class="n">2</td><td class="n">0</td></tr>
+<tr class="sub"><td>Self-employed</td><td class="n">9</td><td class="n">4%</td><td class="n">4</td><td class="n">2</td><td class="n">0</td></tr>
+<tr class="sub"><td>Harvest não encontrou a empresa</td><td class="n">131</td><td class="n">61%</td><td class="n">27</td><td class="n">22</td><td class="n">0</td></tr>
+<tr><td>Não passaram pelo Harvest</td><td class="n">3</td><td class="n">1%</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
 <tr class="sum"><td>Total que declarou 1 a 10</td><td class="n">214</td><td class="n">100%</td><td class="n">88</td><td class="n">48</td><td class="n">1</td></tr>
 </tbody>
 </table></div>
-<div class="callout blue"><b>34 de 214 declararam 1 a 10 e o Harvest aponta 501 ou mais.</b> Todos viraram MQL, 10 chegaram a SAL e nenhum virou SQL. Se somarmos os 19 de 11 a 500, são 53 deals (25%) maiores do que o declarado.</div>
+<div class="callout blue"><b>34 de 214 declararam 1 a 10 e o Harvest aponta 501 ou mais.</b> Todos viraram MQL, 10 chegaram a SAL e nenhum virou SQL. Somando os 19 de 11 a 500, são 53 deals (25%) maiores do que o declarado.</div>
 </section>
 <section class="card chart">
-<span class="sec-tag">3 · Checkpoint do Company Size</span>
+<span class="sec-tag">4 · Checkpoint do Company Size</span>
 <h2>Deals sem Company Size por dia</h2>
 <div class="timeline">
 <div class="tl red"><b>07/10</b><span>Padronização do Company Size no step 2 do Book a Demo. Alguns valores enviados não existiam na lista do HubSpot e o campo ficou vazio. O Signup, no ar em 07/10, teve o mesmo problema.</span></div>
@@ -523,7 +542,7 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 <p class="note">Deals de Web Request (BR, Inbound) com Company Size vazio, por dia de criação. Antes de 06/10: 1,6 por dia. De 06/10 a 31/10: 4,3 por dia. De 07/10 a 26/10 foram 81 deals sem tamanho, com 0 SQL.</p>
 </section>
 <section class="foot">
-<p><b>Método.</b> HubSpot (query_crm_data, 04/11/2026): DEAL com lead_source = Web Request, team = BR, pipeline Inbound, criados de 02 a 26 de cada mês; MQL, SAL e SQL por data de entrada na etapa até 04/10 (set) e 03/11 (out). Declarado = company_size__c. Enriquecido = enrich_harvest_api_company_size preenchido. Os envios e as datas do Company Size vêm do relatório técnico do incidente.</p>
+<p><b>Método.</b> HubSpot (query_crm_data, 04/11/2026): DEAL com lead_source = Web Request, team = BR, pipeline Inbound, criados de 02 a 26 de cada mês; MQL, SAL e SQL por data de entrada na etapa até 04/10 (set) e 03/11 (out). Declarado = company_size__c. Passou pelo Harvest = enrich_harvest_api_company_size preenchido; o Harvest encontrou o tamanho quando o valor é uma faixa, e não encontrou quando o valor é Unknown. Os envios e as datas do Company Size vêm do relatório técnico do incidente.</p>
 </section>
 </div>
 <section class="foot">
