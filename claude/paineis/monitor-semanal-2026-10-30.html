@@ -173,8 +173,29 @@ body {
   .hero-stat { flex-basis: 100%; }
   .heat-head, .heat-row { grid-template-columns: 120px repeat(7, minmax(0, 1fr)); }
 }
-</style>
 
+:root { --mS:#6250d6; --mS-bg:#EFEDFB; --mO:#1baf7a; --mO-bg:#E4F6EE; --amber-row:#FFFAEB; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --mS:#9085e9; --mS-bg:#1E1A3D; --mO:#199e70; --mO-bg:#0F2D24; --amber-row:#1A1508; } }
+:root[data-theme="dark"] { --mS:#9085e9; --mS-bg:#1E1A3D; --mO:#199e70; --mO-bg:#0F2D24; --amber-row:#1A1508; }
+.tiles { grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); }
+.b-warn { background: var(--amber-light); color: var(--amber); border: 1px solid var(--amber-border); }
+.b-warn::before { background: var(--amber); }
+.tbl-row.warn-row { background: var(--amber-row); }
+.dtbl-wrap { max-height: 560px; overflow: auto; margin: 0 20px 8px; border: 1px solid var(--border); border-radius: 10px; }
+.dtbl { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.dtbl th { position: sticky; top: 0; background: var(--card); text-align: right; padding: 8px 10px; font-size: 11px; letter-spacing: .04em; color: var(--muted); border-bottom: 2px solid var(--border); font-weight: 700; }
+.dtbl th:first-child, .dtbl th:nth-child(2) { text-align: left; }
+.dtbl td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+.dtbl td.n { text-align: right; }
+.dtbl td.dw { color: var(--muted); }
+.dtbl tr.s td { background: var(--mS-bg); } .dtbl tr.o td { background: var(--mO-bg); }
+.dtbl tr.we td { color: var(--muted); }
+.dtbl tr.cw td { font-weight: 700; box-shadow: inset 0 0 0 9999px rgba(47,91,234,0.08); }
+.dtbl tr.tot td { font-weight: 700; background: var(--stripe); border-top: 2px solid var(--border); }
+.dtbl tr.tot.s td:first-child { box-shadow: inset 3px 0 0 var(--mS); } .dtbl tr.tot.o td:first-child { box-shadow: inset 3px 0 0 var(--mO); }
+.mleg { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--muted); padding: 0 20px 10px; }
+.mleg i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+</style>
 <div class="wrap">
 
 <!-- HERO -->
@@ -185,9 +206,9 @@ body {
   </div>
   <div class="hero-body">
     <div class="hero-text">
-      <h1>O topo segurou. O funil estreitou no MQL e no SAL.</h1>
-      <p>Sessões e sign-ups estáveis (77.177 e 945). Mas o MQL do Signup caiu 22% vs anterior e o SAL caiu 26% vs anterior e 30% vs mediana.</p>
-      <p>O SAL enriquecido despencou: 56 entradas na semana contra 131 de mediana (-57%). Esse é o ponto mais critico do funil.</p>
+      <h1>As sessões subiram, mas o Signup caiu em toda a linha.</h1>
+      <p>Sessões em 76.477 (+11% vs mediana), mas o sign-up no GA foi para 872 (-20% vs anterior). No HubSpot, os deals de Signup caíram 19%, o MQL 26% e o SAL 26% vs anterior.</p>
+      <p>O SAL enriquecido é o mais fraco: 56 entradas contra 131 de mediana (-57%). Web Request segue estável: 195 deals e 110 SAL.</p>
     </div>
     <div class="hero-stat">
       <div>
@@ -197,212 +218,142 @@ body {
       <div class="hero-sub-row">
         <div>
           <div class="hero-sub-val">-26%</div>
-          <div class="hero-sub-lbl">vs semana anterior</div>
+          <div class="hero-sub-lbl">SAL do Signup vs anterior</div>
         </div>
         <div>
-          <div class="hero-sub-val">-57%</div>
-          <div class="hero-sub-lbl">SAL enriquecido vs mediana</div>
+          <div class="hero-sub-val">-20%</div>
+          <div class="hero-sub-lbl">sign-up no GA vs anterior</div>
         </div>
       </div>
     </div>
   </div>
   <div class="hero-next">
     <span class="hero-next-label">Próximo passo</span>
-    <span style="font-size:15px;flex:1 1 320px">Verificar se o SAL normaliza na primeira semana cheia de novembro. Se continuar abaixo de 350, escalar para operação.</span>
+    <span style="font-size:15px;flex:1 1 320px">Conferir na primeira semana cheia de novembro se o sign-up e o SAL de Signup voltam perto da mediana (967 e 450). Se o sign-up continuar abaixo de 900 com sessões altas, abrir a conversão de sign-up por sessão (1.14% contra 1.45%).</span>
   </div>
 </section>
 
 <!-- TOPO DO FUNIL -->
 <section>
   <div class="sec-head">
-    <h2>Topo do funil</h2>
-    <span class="note">GA4 · sessões com filtro PT-BR · eventos sem filtro (sign_up dispara fora de /pt-br/)</span>
+    <h2>Topo do funil · GA4</h2>
+    <span class="note">Foto do BigQuery (planilha set_out_diarizado) · semanas de sábado a sexta · anterior 17-23/10 · mediana das 4 semanas anteriores</span>
   </div>
   <div class="tiles" style="margin-top:12px">
     <div class="card tile">
-      <div class="tile-label">Sessões PT-BR <span class="badge b-ok">OK</span></div>
-      <div class="tile-val">77.177</div>
-      <div class="tile-delta">ant. 70.212 <strong class="pos">+9,9%</strong> · med. 65.178 <strong class="pos">+18,4%</strong></div>
+      <div class="tile-label">Sessões <span class="badge b-ok">OK</span></div>
+      <div class="tile-val">76.477</div>
+      <div class="tile-delta">ant. 75.317 <strong class="">+1,5%</strong> · med. 68.750 <strong class="pos">+11,2%</strong></div>
     </div>
     <div class="card tile">
-      <div class="tile-label">Sign-up <span class="badge b-ok">OK</span></div>
-      <div class="tile-val">945</div>
-      <div class="tile-delta">ant. 1.015 <strong>-6,9%</strong> · med. 921 <strong class="pos">+2,6%</strong></div>
+      <div class="tile-label">Usuários <span class="badge b-ok">OK</span></div>
+      <div class="tile-val">55.825</div>
+      <div class="tile-delta">ant. 53.764 <strong class="">+3,8%</strong> · med. 47.894 <strong class="pos">+16,6%</strong></div>
+    </div>
+    <div class="card tile">
+      <div class="tile-label">Sign-up <span class="badge b-warn">Atenção</span></div>
+      <div class="tile-val">872</div>
+      <div class="tile-delta">ant. 1.093 <strong class="neg">-20,2%</strong> · med. 967 <strong class="">-9,8%</strong></div>
     </div>
     <div class="card tile">
       <div class="tile-label">Book a Demo <span class="badge b-ok">OK</span></div>
-      <div class="tile-val">190</div>
-      <div class="tile-delta">ant. 180 <strong class="pos">+5,6%</strong> · med. 183 <strong class="pos">+3,8%</strong></div>
-    </div>
-    <div class="card tile">
-      <div class="tile-label">Qualified: Conversation Started <span class="badge b-ok">OK</span></div>
-      <div class="tile-val">683</div>
-      <div class="tile-delta">ant. 605 <strong class="pos">+12,9%</strong> · med. 636 <strong class="pos">+7,4%</strong></div>
+      <div class="tile-val">187</div>
+      <div class="tile-delta">ant. 211 <strong class="neg">-11,4%</strong> · med. 196 <strong class="">-4,6%</strong></div>
     </div>
     <div class="card tile">
       <div class="tile-label">Qualified: Email Captured <span class="badge b-ok">OK</span></div>
-      <div class="tile-val">94</div>
-      <div class="tile-delta">ant. 84 <strong class="pos">+11,9%</strong> · med. 88 <strong class="pos">+7,4%</strong></div>
+      <div class="tile-val">89</div>
+      <div class="tile-delta">ant. 72 <strong class="pos">+23,6%</strong> · med. 68 <strong class="pos">+30,9%</strong></div>
     </div>
     <div class="card tile">
       <div class="tile-label">Qualified: Meeting Booked <span class="badge b-gray">n&lt;40</span></div>
-      <div class="tile-val">28</div>
-      <div class="tile-delta">ant. 18 <strong class="pos">+55,6%</strong> · med. 28 <strong>0,0%</strong></div>
+      <div class="tile-val">16</div>
+      <div class="tile-delta">ant. 22 <strong class="neg">-27,3%</strong> · med. 26 <strong class="neg">-38,5%</strong></div>
     </div>
   </div>
-</section>
-
-<!-- QUALIFIED POR AÇÃO -->
-<section class="card">
-  <div class="tbl-head">
-    <h2>Qualified: o que está dentro do evento</h2>
-    <p>O qualified_event é aberto pela dimensão qualified_action (categoria Qualified Chat). O total do evento não entra na análise. Semanas de sábado a sexta: anterior é 17 a 23/10 e a mediana usa as 4 semanas de 26/09 a 22/10.</p>
-  </div>
-  <div class="tbl-wrap">
-    <div class="tbl">
-      <div class="tbl-hdr">
-        <span>Ação</span><span>Semana</span><span>Anterior</span><span>Δ</span><span>Mediana</span><span>Δ</span><span>Situação</span>
-      </div>
-      <div class="tbl-row">
-        <span class="tbl-name">Conversation Started</span>
-        <span class="tbl-v"><strong>683</strong></span><span class="tbl-v">605</span><span class="d pos">+12,9%</span><span class="tbl-v">636</span><span class="d pos">+7,4%</span>
-        <span><span class="badge b-ok">OK</span></span>
-      </div>
-      <div class="tbl-row">
-        <span class="tbl-name">Email Captured</span>
-        <span class="tbl-v"><strong>94</strong></span><span class="tbl-v">84</span><span class="d pos">+11,9%</span><span class="tbl-v">88</span><span class="d pos">+7,4%</span>
-        <span><span class="badge b-ok">OK</span></span>
-      </div>
-      <div class="tbl-row">
-        <span class="tbl-name">Meeting Booked</span>
-        <span class="tbl-v"><strong>28</strong></span><span class="tbl-v">18</span><span class="d pos">+55,6%</span><span class="tbl-v">28</span><span class="d">0,0%</span>
-        <span><span class="badge b-gray">n&lt;40</span></span>
-      </div>
-      <div class="tbl-group">Conversão dentro do chat</div>
-      <div class="tbl-row">
-        <span class="tbl-name">Email Captured por Conversation Started</span>
-        <span class="tbl-v"><strong>13,8%</strong></span><span class="tbl-v">13,9%</span><span class="d">-0,9%</span><span class="tbl-v">14,6%</span><span class="d">-5,5%</span>
-        <span><span class="badge b-ok">OK</span></span>
-      </div>
-      <div class="tbl-row">
-        <span class="tbl-name">Meeting Booked por Conversation Started</span>
-        <span class="tbl-v"><strong>4,1%</strong></span><span class="tbl-v">3,0%</span><span class="d pos">+37,8%</span><span class="tbl-v">5,2%</span><span class="d" style="color:var(--gray)">-20,4%</span>
-        <span><span class="badge b-gray">n&lt;40</span></span>
-      </div>
-    </div>
-  </div>
-  <div class="tbl-head" style="border-top:1px solid var(--border);border-bottom:none;padding-bottom:6px">
-    <h2 style="font-size:14px">Últimas 5 semanas (sábado a sexta)</h2>
-  </div>
-  <div class="tbl-wrap">
-    <div class="tbl" style="min-width:640px">
-      <div class="tbl-hdr" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))">
-        <span>Semana</span><span>Conversation Started</span><span>Email Captured</span><span>Meeting Booked</span><span>Email por Conv.</span><span>Meeting por Conv.</span>
-      </div>
-      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">26/09 a 02/10</span><span class="tbl-v">409</span><span class="tbl-v">68</span><span class="tbl-v">21</span><span class="tbl-v">16,6%</span><span class="tbl-v">5,1%</span></div>
-      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">03/10 a 09/10</span><span class="tbl-v">673</span><span class="tbl-v">103</span><span class="tbl-v">42</span><span class="tbl-v">15,3%</span><span class="tbl-v">6,2%</span></div>
-      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">10/10 a 16/10</span><span class="tbl-v">667</span><span class="tbl-v">91</span><span class="tbl-v">35</span><span class="tbl-v">13,6%</span><span class="tbl-v">5,2%</span></div>
-      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">17/10 a 23/10</span><span class="tbl-v">605</span><span class="tbl-v">84</span><span class="tbl-v">18</span><span class="tbl-v">13,9%</span><span class="tbl-v">3,0%</span></div>
-      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr));background:var(--stripe)"><span class="tbl-name">24/10 a 30/10 (esta)</span><span class="tbl-v"><strong>683</strong></span><span class="tbl-v"><strong>94</strong></span><span class="tbl-v"><strong>28</strong></span><span class="tbl-v"><strong>13,8%</strong></span><span class="tbl-v"><strong>4,1%</strong></span></div>
-    </div>
-  </div>
-  <p class="sm" style="padding-top:8px">Os três volumes subiram contra a semana anterior e contra a mediana. A taxa de Email Captured por Conversation Started caiu de 16,6% para 13,8% entre a primeira e a terceira semana e está estável desde então. Meeting Booked tem 28 eventos (n&lt;40): variação de taxa só para monitorar.</p>
+  <p style="margin:10px 0 0;font-size:12px;color:var(--muted)">Qualified é lido pelas ações Email Captured e Meeting Booked, que são as que estão na planilha. A ação Conversation Started não está na planilha e por isso não entra no monitor.</p>
 </section>
 
 <!-- COMPARAÇÃO SEMANAL -->
 <section class="card">
   <div class="tbl-head">
-    <h2>Comparação semanal: funil completo</h2>
-    <p>Cada linha mostra o valor desta semana, a semana anterior (19-25/10) e a mediana das 4 semanas anteriores. Linhas com ↳ são subconjuntos da linha acima.</p>
+    <h2>Comparação semanal: HubSpot</h2>
+    <p>Deals e entradas por etapa, Inbound BR. Mesmas semanas do topo do funil: esta (24-30/10), anterior (17-23/10) e mediana das 4 semanas anteriores (26/09 a 23/10). Linhas com ↳ são subconjuntos da linha acima.</p>
   </div>
   <div class="tbl-wrap">
     <div class="tbl">
       <div class="tbl-hdr">
-        <span>Métrica</span>
-        <span>Semana</span>
-        <span>Anterior</span>
-        <span>Δ</span>
-        <span>Mediana</span>
-        <span>Δ</span>
-        <span>Situação</span>
+        <span>Métrica</span><span>Semana</span><span>Anterior</span><span>Δ</span><span>Mediana</span><span>Δ</span><span>Situação</span>
       </div>
 
       <div class="tbl-group">Deals criados (HubSpot)</div>
-
-      <div class="tbl-row">
+      <div class="tbl-row red-row">
         <span class="tbl-name">App Signup</span>
         <span class="tbl-v"><strong>1.006</strong></span>
-        <span class="tbl-v">1.150</span>
-        <span class="d neg">-12,5%</span>
-        <span class="tbl-v">1.089</span>
-        <span class="d">-7,6%</span>
-        <span><span class="badge b-ok">OK</span></span>
+        <span class="tbl-v">1.240</span>
+        <span class="d neg">-18,9%</span>
+        <span class="tbl-v">1.148</span>
+        <span class="d neg">-12,3%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
       </div>
-
       <div class="tbl-row">
         <span class="tbl-name">Web Request</span>
         <span class="tbl-v"><strong>195</strong></span>
-        <span class="tbl-v">193</span>
-        <span class="d pos">+1,0%</span>
-        <span class="tbl-v">178</span>
-        <span class="d pos">+9,9%</span>
+        <span class="tbl-v">218</span>
+        <span class="d neg">-10,6%</span>
+        <span class="tbl-v">192</span>
+        <span class="d ">+1,8%</span>
         <span><span class="badge b-ok">OK</span></span>
       </div>
-
-      <div class="tbl-row">
+      <div class="tbl-row red-row">
         <span class="tbl-name">Qualified</span>
         <span class="tbl-v"><strong>135</strong></span>
-        <span class="tbl-v">149</span>
-        <span class="d">-9,4%</span>
-        <span class="tbl-v">154</span>
-        <span class="d">-12,3%</span>
-        <span><span class="badge b-ok">OK</span></span>
+        <span class="tbl-v">159</span>
+        <span class="d neg">-15,1%</span>
+        <span class="tbl-v">166</span>
+        <span class="d neg">-18,9%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
       </div>
 
       <div class="tbl-group">MQL (entradas na etapa)</div>
-
       <div class="tbl-row red-row">
         <span class="tbl-name">App Signup</span>
         <span class="tbl-v"><strong>587</strong></span>
-        <span class="tbl-v">749</span>
-        <span class="d neg">-21,6%</span>
-        <span class="tbl-v">671</span>
-        <span class="d neg">-12,5%</span>
+        <span class="tbl-v">789</span>
+        <span class="d neg">-25,6%</span>
+        <span class="tbl-v">700</span>
+        <span class="d neg">-16,1%</span>
         <span><span class="badge b-red">Vermelho</span></span>
       </div>
-
-      <div class="tbl-row">
+      <div class="tbl-row warn-row">
         <span class="tbl-name">Web Request</span>
         <span class="tbl-v"><strong>160</strong></span>
-        <span class="tbl-v">179</span>
-        <span class="d">-10,6%</span>
-        <span class="tbl-v">143</span>
-        <span class="d pos">+11,9%</span>
-        <span><span class="badge b-ok">OK</span></span>
+        <span class="tbl-v">193</span>
+        <span class="d neg">-17,1%</span>
+        <span class="tbl-v">152</span>
+        <span class="d ">+4,9%</span>
+        <span><span class="badge b-warn">Atenção</span></span>
       </div>
-
       <div class="tbl-row red-row sub">
         <span class="tbl-name">Signup enriquecido<small>ldr_source preenchido</small></span>
         <span class="tbl-v"><strong>248</strong></span>
-        <span class="tbl-v">308</span>
-        <span class="d neg">-19,5%</span>
-        <span class="tbl-v">294</span>
-        <span class="d neg">-15,6%</span>
+        <span class="tbl-v">339</span>
+        <span class="d neg">-26,8%</span>
+        <span class="tbl-v">310</span>
+        <span class="d neg">-20,1%</span>
+        <span><span class="badge b-red">Vermelho</span></span>
+      </div>
+      <div class="tbl-row red-row sub">
+        <span class="tbl-name">Signup não enriquecido<small>ldr_source vazio</small></span>
+        <span class="tbl-v"><strong>339</strong></span>
+        <span class="tbl-v">450</span>
+        <span class="d neg">-24,7%</span>
+        <span class="tbl-v">389</span>
+        <span class="d neg">-12,9%</span>
         <span><span class="badge b-red">Vermelho</span></span>
       </div>
 
-      <div class="tbl-row sub">
-        <span class="tbl-name">Signup não enriquecido<small>ldr_source vazio</small></span>
-        <span class="tbl-v"><strong>339</strong></span>
-        <span class="tbl-v">441</span>
-        <span class="d neg">-23,1%</span>
-        <span class="tbl-v">377</span>
-        <span class="d">-10,1%</span>
-        <span><span class="badge b-ok">OK</span></span>
-      </div>
-
       <div class="tbl-group">SAL (entradas na etapa)</div>
-
       <div class="tbl-row red-row">
         <span class="tbl-name">App Signup</span>
         <span class="tbl-v"><strong>317</strong></span>
@@ -412,17 +363,15 @@ body {
         <span class="d neg">-29,6%</span>
         <span><span class="badge b-red">Vermelho</span></span>
       </div>
-
       <div class="tbl-row">
         <span class="tbl-name">Web Request</span>
         <span class="tbl-v"><strong>110</strong></span>
         <span class="tbl-v">123</span>
-        <span class="d">-10,6%</span>
+        <span class="d neg">-10,6%</span>
         <span class="tbl-v">116</span>
-        <span class="d">-5,2%</span>
+        <span class="d ">-5,2%</span>
         <span><span class="badge b-ok">OK</span></span>
       </div>
-
       <div class="tbl-row red-row sub">
         <span class="tbl-name">Signup enriquecido<small>ldr_source preenchido</small></span>
         <span class="tbl-v"><strong>56</strong></span>
@@ -432,29 +381,26 @@ body {
         <span class="d neg">-57,3%</span>
         <span><span class="badge b-red">Vermelho</span></span>
       </div>
-
-      <div class="tbl-row sub">
+      <div class="tbl-row red-row sub">
         <span class="tbl-name">Signup não enriquecido<small>ldr_source vazio</small></span>
         <span class="tbl-v"><strong>261</strong></span>
         <span class="tbl-v">341</span>
         <span class="d neg">-23,5%</span>
-        <span class="tbl-v">319</span>
-        <span class="d neg">-18,2%</span>
+        <span class="tbl-v">332</span>
+        <span class="d neg">-21,4%</span>
         <span><span class="badge b-red">Vermelho</span></span>
       </div>
 
       <div class="tbl-group">SQL (entradas na etapa) · n&lt;40, só monitorar</div>
-
       <div class="tbl-row">
         <span class="tbl-name">App Signup</span>
         <span class="tbl-v"><strong>5</strong></span>
         <span class="tbl-v">5</span>
-        <span class="d" style="color:var(--gray)">0%</span>
+        <span class="d" style="color:var(--gray)">+0,0%</span>
         <span class="tbl-v">6</span>
         <span class="d" style="color:var(--gray)">-16,7%</span>
         <span><span class="badge b-gray">n&lt;40</span></span>
       </div>
-
       <div class="tbl-row">
         <span class="tbl-name">Web Request</span>
         <span class="tbl-v"><strong>20</strong></span>
@@ -468,9 +414,10 @@ body {
   </div>
   <p class="sm" style="padding-top:8px">
     <strong style="color:var(--red)">Vermelho</strong> = queda ≥15% vs anterior E ≥10% vs mediana.
-    <strong>OK</strong> = sem cruzar os dois limites.
+    <strong style="color:var(--amber)">Atenção</strong> = queda ≥15% em uma das duas comparações.
+    <strong>OK</strong> = sem cruzar os limites.
     <strong style="color:var(--gray)">n&lt;40</strong> = volume pequeno, só monitorar.
-    Semana anterior é Mon-based (19-25/10); mediana usa as 4 semanas Mon-based de 28/09 a 25/10.
+    O sign-up do GA4 está no topo do funil; aqui só entra o que vem do HubSpot.
   </p>
 </section>
 
@@ -478,48 +425,48 @@ body {
 <section>
   <div class="sec-head">
     <h2>Taxas de conversão</h2>
-    <span class="note">Signup: como cada etapa converte para a próxima</span>
+    <span class="note">Anterior e mediana das 4 semanas anteriores, nas mesmas semanas de sábado a sexta</span>
   </div>
   <div class="rates-grid" style="margin-top:12px">
     <div class="card rate-card">
       <span class="rate-name">Sign-up por sessão (GA4)</span>
-      <span class="rate-val">1,22%</span>
-      <span class="rate-delta">ant. 1,45% <strong class="neg">-15,9%</strong></span>
+      <span class="rate-val" style="color:var(--red)">1,14%</span>
+      <span class="rate-delta">ant. 1,45% <strong class="neg">-21,4%</strong> · med. 1,50% <strong class="neg">-24,2%</strong></span>
     </div>
     <div class="card rate-card">
       <span class="rate-name">Book a Demo por sessão (GA4)</span>
-      <span class="rate-val">0,25%</span>
-      <span class="rate-delta">ant. 0,26% <strong>-3,8%</strong></span>
+      <span class="rate-val">0,24%</span>
+      <span class="rate-delta">ant. 0,28% <strong class="neg">-12,7%</strong> · med. 0,29% <strong class="neg">-15,1%</strong></span>
     </div>
     <div class="card rate-card">
-      <span class="rate-name">Signup: MQL / Deals criados</span>
+      <span class="rate-name">Signup: MQL / deals criados</span>
       <span class="rate-val">58,3%</span>
-      <span class="rate-delta">ant. 65,1% <strong class="neg">-10,4%</strong></span>
+      <span class="rate-delta">ant. 63,6% <strong class="">-8,3%</strong> · med. 61,0% <strong class="">-4,3%</strong></span>
     </div>
     <div class="card rate-card">
       <span class="rate-name">Signup: SAL / MQL total</span>
       <span class="rate-val">54,0%</span>
-      <span class="rate-delta">ant. 57,3% <strong>-5,8%</strong></span>
+      <span class="rate-delta">ant. 54,4% <strong class="">-0,7%</strong> · med. 66,3% <strong class="neg">-18,5%</strong></span>
     </div>
     <div class="card rate-card">
       <span class="rate-name">Signup enriquecido: SAL / MQL</span>
-      <span class="rate-val" style="color:var(--red)">22,6%</span>
-      <span class="rate-delta">ant. 28,6% <strong class="neg">-21,0%</strong></span>
+      <span class="rate-val">22,6%</span>
+      <span class="rate-delta">ant. 26,0% <strong class="neg">-13,0%</strong> · med. 44,4% <strong class="neg">-49,1%</strong></span>
     </div>
     <div class="card rate-card">
       <span class="rate-name">Signup não enriquecido: SAL / MQL</span>
       <span class="rate-val">77,0%</span>
-      <span class="rate-delta">ant. 77,3% <strong>-0,4%</strong></span>
+      <span class="rate-delta">ant. 75,8% <strong class="">+1,6%</strong> · med. 83,2% <strong class="">-7,4%</strong></span>
     </div>
   </div>
-  <p style="margin:12px 0 0;font-size:12px;color:var(--muted)">A taxa de sign-up por sessão caiu 15,9% vs anterior, mas isso reflete o aumento de sessões (+9,9%) com sign-ups estáveis. O ponto critico é a conversão SAL dos enriquecidos: 22,6% contra 77,0% dos não enriquecidos, e caindo.</p>
+  <p style="margin:12px 0 0;font-size:12px;color:var(--muted)">O sign-up por sessão caiu porque as sessões subiram (+1,5% vs anterior) enquanto o sign-up caiu (-20,2%). O ponto crítico no funil é o SAL dos enriquecidos: 22.6% do MQL, contra 77.0% dos não enriquecidos.</p>
 </section>
 
 <!-- CALOR DIA A DIA -->
 <section class="card">
   <div style="padding:18px 20px;border-bottom:1px solid var(--border)">
     <h2 style="margin:0;font-size:16px;font-weight:700">Dia a dia: sábado a sexta</h2>
-    <p style="margin:2px 0 0;font-size:13px;color:var(--muted)">Intensidade proporcional ao maior dia de cada linha.</p>
+    <p style="margin:2px 0 0;font-size:13px;color:var(--muted)">Intensidade proporcional ao maior dia de cada linha. As seis primeiras linhas são as colunas da planilha set_out_diarizado.</p>
   </div>
   <div class="heat-wrap">
     <div class="heat-inner">
@@ -535,95 +482,176 @@ body {
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">Sessões <small>GA4 PT-BR</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.20)">3.885</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.23)">4.652</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.50)">13.329</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">16.209</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">16.274</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.50)">13.018</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.41)">10.185</div>
+        <div class="heat-label">Sessões <small>GA4, planilha</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.20)">3.786</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.23)">4.647</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.51)">13.022</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">16.155</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.58)">15.555</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.51)">12.966</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.43)">10.346</div>
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">Sign-up <small>GA4</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.21)">51</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.20)">47</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.54)">180</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">202</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.50)">164</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">139</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.50)">162</div>
+        <div class="heat-label">Usuários <small>GA4, planilha</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.21)">3.101</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.27)">4.176</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.48)">8.905</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">11.801</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">11.739</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.50)">9.225</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.40)">6.878</div>
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">Book a Demo <small>GA4</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.16)">5</div>
+        <div class="heat-label">Sign-up <small>GA4, planilha</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.20)">45</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.17)">38</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.53)">163</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">190</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.47)">140</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.47)">137</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.52)">159</div>
+      </div>
+
+      <div class="heat-row">
+        <div class="heat-label">Book a Demo <small>GA4, planilha</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.12)">5</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.18)">13</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.37)">22</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">63</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.47)">39</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.33)">26</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.37)">22</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.28)">23</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">62</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.39)">36</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.30)">25</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.28)">23</div>
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">Conversation Started <small>Qualified, GA4</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.28)">53</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.27)">52</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.56)">133</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">145</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.56)">132</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.43)">93</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.36)">75</div>
+        <div class="heat-label">Email Captured <small>GA4, planilha</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.20)">6</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.12)">3</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.36)">13</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.43)">16</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">25</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.40)">15</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.32)">11</div>
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">Email Captured <small>Qualified, GA4</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.17)">4</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.21)">5</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">20</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.58)">19</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">20</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.46)">14</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.40)">12</div>
-      </div>
-
-      <div class="heat-row">
-        <div class="heat-label">Meeting Booked <small>Qualified, GA4</small></div>
+        <div class="heat-label">Meeting Booked <small>GA4, planilha</small></div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.08)">0</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.19)">2</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">6</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.38)">5</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">9</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.26)">3</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.26)">3</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.08)">0</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">4</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">4</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">6</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.26)">2</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.08)">0</div>
       </div>
 
       <div class="heat-row">
         <div class="heat-label">MQL enriquecido <small>HubSpot Signup</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.14)">7</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.18)">14</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.41)">42</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.22)">15</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.18)">11</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.56)">49</div>
         <div class="heat-cell" style="background:rgba(47,91,234,0.60)">54</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.46)">39</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">37</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.52)">43</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.47)">39</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.45)">37</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.50)">43</div>
       </div>
 
       <div class="heat-row">
         <div class="heat-label">SAL enriquecido <small>HubSpot Signup</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.14)">3</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.24)">7</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">14</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">13</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">9</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.52)">12</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.38)">8</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.08)">0</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.08)">0</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">14</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.57)">13</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.43)">9</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.53)">12</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.39)">8</div>
       </div>
     </div>
   </div>
-  <p class="sm">Sessões: query semanal separada (77.177 total). Eventos GA4 sem filtro de página. Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2. Qualified = qualified_event aberto por qualified_action (Conversation Started, Email Captured, Meeting Booked). MQL/SAL enriquecidos: Inbound Signup, team BR, ldr_source preenchido.</p>
+  <p class="sm">GA4: planilha set_out_diarizado (foto do BigQuery). Book a Demo = coluna demo. MQL e SAL enriquecidos: HubSpot, Inbound Signup, team BR, ldr_source preenchido.</p>
+</section>
+
+<!-- DIARIZADO -->
+<section class="card">
+  <div style="padding:18px 20px 8px">
+    <h2 style="margin:0;font-size:16px;font-weight:700">Diarizado de setembro e outubro</h2>
+    <p style="margin:2px 0 0;font-size:13px;color:var(--muted)">Reprodução da aba set_out_diarizado, com as mesmas colunas e os totais de cada mês. A semana atual (24 a 30/10) está em negrito.</p>
+  </div>
+  <div class="mleg"><span><i style="background:var(--mS-bg);box-shadow:inset 0 3px 0 var(--mS)"></i>Setembro</span><span><i style="background:var(--mO-bg);box-shadow:inset 0 3px 0 var(--mO)"></i>Outubro</span></div>
+  <div class="dtbl-wrap">
+    <table class="dtbl">
+      <thead><tr><th>date</th><th></th><th>sessions</th><th>users</th><th>demo</th><th>signup</th><th>meeting_booked</th><th>email_captured</th></tr></thead>
+      <tbody>
+<tr class="s  "><td>2026-09-01</td><td class="dw">ter</td><td class="n">13.250</td><td class="n">9.013</td><td class="n">29</td><td class="n">229</td><td class="n">0</td><td class="n">12</td></tr>
+<tr class="s  "><td>2026-09-02</td><td class="dw">qua</td><td class="n">12.782</td><td class="n">8.727</td><td class="n">47</td><td class="n">220</td><td class="n">9</td><td class="n">10</td></tr>
+<tr class="s  "><td>2026-09-03</td><td class="dw">qui</td><td class="n">11.769</td><td class="n">8.058</td><td class="n">40</td><td class="n">211</td><td class="n">17</td><td class="n">25</td></tr>
+<tr class="s  "><td>2026-09-04</td><td class="dw">sex</td><td class="n">11.390</td><td class="n">7.748</td><td class="n">31</td><td class="n">171</td><td class="n">5</td><td class="n">9</td></tr>
+<tr class="s we "><td>2026-09-05</td><td class="dw">sáb</td><td class="n">2.028</td><td class="n">1.446</td><td class="n">14</td><td class="n">46</td><td class="n">3</td><td class="n">5</td></tr>
+<tr class="s we "><td>2026-09-06</td><td class="dw">dom</td><td class="n">1.981</td><td class="n">1.431</td><td class="n">5</td><td class="n">34</td><td class="n">0</td><td class="n">5</td></tr>
+<tr class="s  "><td>2026-09-07</td><td class="dw">seg</td><td class="n">3.569</td><td class="n">2.585</td><td class="n">7</td><td class="n">57</td><td class="n">0</td><td class="n">5</td></tr>
+<tr class="s  "><td>2026-09-08</td><td class="dw">ter</td><td class="n">10.195</td><td class="n">6.905</td><td class="n">35</td><td class="n">157</td><td class="n">7</td><td class="n">15</td></tr>
+<tr class="s  "><td>2026-09-09</td><td class="dw">qua</td><td class="n">12.883</td><td class="n">8.802</td><td class="n">38</td><td class="n">199</td><td class="n">9</td><td class="n">17</td></tr>
+<tr class="s  "><td>2026-09-10</td><td class="dw">qui</td><td class="n">14.238</td><td class="n">9.886</td><td class="n">39</td><td class="n">208</td><td class="n">9</td><td class="n">9</td></tr>
+<tr class="s  "><td>2026-09-11</td><td class="dw">sex</td><td class="n">14.118</td><td class="n">9.854</td><td class="n">32</td><td class="n">188</td><td class="n">0</td><td class="n">9</td></tr>
+<tr class="s we "><td>2026-09-12</td><td class="dw">sáb</td><td class="n">4.550</td><td class="n">3.317</td><td class="n">8</td><td class="n">66</td><td class="n">3</td><td class="n">5</td></tr>
+<tr class="s we "><td>2026-09-13</td><td class="dw">dom</td><td class="n">5.354</td><td class="n">3.930</td><td class="n">19</td><td class="n">82</td><td class="n">3</td><td class="n">7</td></tr>
+<tr class="s  "><td>2026-09-14</td><td class="dw">seg</td><td class="n">15.674</td><td class="n">10.816</td><td class="n">32</td><td class="n">196</td><td class="n">5</td><td class="n">14</td></tr>
+<tr class="s  "><td>2026-09-15</td><td class="dw">ter</td><td class="n">16.758</td><td class="n">11.735</td><td class="n">37</td><td class="n">235</td><td class="n">13</td><td class="n">25</td></tr>
+<tr class="s  "><td>2026-09-16</td><td class="dw">qua</td><td class="n">15.889</td><td class="n">11.124</td><td class="n">49</td><td class="n">217</td><td class="n">3</td><td class="n">12</td></tr>
+<tr class="s  "><td>2026-09-17</td><td class="dw">qui</td><td class="n">17.380</td><td class="n">12.083</td><td class="n">49</td><td class="n">232</td><td class="n">7</td><td class="n">12</td></tr>
+<tr class="s  "><td>2026-09-18</td><td class="dw">sex</td><td class="n">15.071</td><td class="n">10.516</td><td class="n">47</td><td class="n">198</td><td class="n">9</td><td class="n">12</td></tr>
+<tr class="s we "><td>2026-09-19</td><td class="dw">sáb</td><td class="n">3.685</td><td class="n">2.686</td><td class="n">7</td><td class="n">44</td><td class="n">0</td><td class="n">8</td></tr>
+<tr class="s we "><td>2026-09-20</td><td class="dw">dom</td><td class="n">6.893</td><td class="n">4.139</td><td class="n">16</td><td class="n">50</td><td class="n">0</td><td class="n">2</td></tr>
+<tr class="s  "><td>2026-09-21</td><td class="dw">seg</td><td class="n">14.355</td><td class="n">9.375</td><td class="n">22</td><td class="n">202</td><td class="n">0</td><td class="n">2</td></tr>
+<tr class="s  "><td>2026-09-22</td><td class="dw">ter</td><td class="n">12.272</td><td class="n">8.185</td><td class="n">43</td><td class="n">193</td><td class="n">5</td><td class="n">16</td></tr>
+<tr class="s  "><td>2026-09-23</td><td class="dw">qua</td><td class="n">12.785</td><td class="n">8.624</td><td class="n">36</td><td class="n">183</td><td class="n">0</td><td class="n">8</td></tr>
+<tr class="s  "><td>2026-09-24</td><td class="dw">qui</td><td class="n">10.076</td><td class="n">6.716</td><td class="n">34</td><td class="n">169</td><td class="n">4</td><td class="n">8</td></tr>
+<tr class="s  "><td>2026-09-25</td><td class="dw">sex</td><td class="n">8.213</td><td class="n">5.434</td><td class="n">25</td><td class="n">123</td><td class="n">0</td><td class="n">14</td></tr>
+<tr class="s we "><td>2026-09-26</td><td class="dw">sáb</td><td class="n">1.992</td><td class="n">1.392</td><td class="n">17</td><td class="n">27</td><td class="n">0</td><td class="n">2</td></tr>
+<tr class="s we "><td>2026-09-27</td><td class="dw">dom</td><td class="n">2.643</td><td class="n">1.895</td><td class="n">8</td><td class="n">30</td><td class="n">5</td><td class="n">4</td></tr>
+<tr class="s  "><td>2026-09-28</td><td class="dw">seg</td><td class="n">10.176</td><td class="n">6.712</td><td class="n">36</td><td class="n">147</td><td class="n">0</td><td class="n">8</td></tr>
+<tr class="s  "><td>2026-09-29</td><td class="dw">ter</td><td class="n">8.787</td><td class="n">5.764</td><td class="n">33</td><td class="n">167</td><td class="n">6</td><td class="n">15</td></tr>
+<tr class="s  "><td>2026-09-30</td><td class="dw">qua</td><td class="n">6.495</td><td class="n">4.090</td><td class="n">7</td><td class="n">112</td><td class="n">0</td><td class="n">2</td></tr>
+<tr class="tot s"><td>Total setembro</td><td></td><td class="n">297.251</td><td class="n">202.988</td><td class="n">842</td><td class="n">4.393</td><td class="n">122</td><td class="n">297</td></tr>
+<tr class="o  "><td>2026-10-01</td><td class="dw">qui</td><td class="n">10.070</td><td class="n">5.983</td><td class="n">26</td><td class="n">216</td><td class="n">7</td><td class="n">16</td></tr>
+<tr class="o  "><td>2026-10-02</td><td class="dw">sex</td><td class="n">10.092</td><td class="n">6.407</td><td class="n">20</td><td class="n">142</td><td class="n">7</td><td class="n">16</td></tr>
+<tr class="o we "><td>2026-10-03</td><td class="dw">sáb</td><td class="n">2.785</td><td class="n">2.195</td><td class="n">8</td><td class="n">34</td><td class="n">0</td><td class="n">6</td></tr>
+<tr class="o we "><td>2026-10-04</td><td class="dw">dom</td><td class="n">3.102</td><td class="n">2.677</td><td class="n">7</td><td class="n">30</td><td class="n">5</td><td class="n">7</td></tr>
+<tr class="o  "><td>2026-10-05</td><td class="dw">seg</td><td class="n">14.396</td><td class="n">9.745</td><td class="n">33</td><td class="n">137</td><td class="n">5</td><td class="n">9</td></tr>
+<tr class="o  "><td>2026-10-06</td><td class="dw">ter</td><td class="n">13.166</td><td class="n">8.925</td><td class="n">39</td><td class="n">189</td><td class="n">5</td><td class="n">24</td></tr>
+<tr class="o  "><td>2026-10-07</td><td class="dw">qua</td><td class="n">13.991</td><td class="n">9.150</td><td class="n">48</td><td class="n">186</td><td class="n">9</td><td class="n">19</td></tr>
+<tr class="o  "><td>2026-10-08</td><td class="dw">qui</td><td class="n">14.181</td><td class="n">9.842</td><td class="n">54</td><td class="n">200</td><td class="n">9</td><td class="n">20</td></tr>
+<tr class="o  "><td>2026-10-09</td><td class="dw">sex</td><td class="n">11.983</td><td class="n">8.254</td><td class="n">39</td><td class="n">162</td><td class="n">11</td><td class="n">22</td></tr>
+<tr class="o we "><td>2026-10-10</td><td class="dw">sáb</td><td class="n">3.354</td><td class="n">2.698</td><td class="n">12</td><td class="n">59</td><td class="n">0</td><td class="n">2</td></tr>
+<tr class="o we "><td>2026-10-11</td><td class="dw">dom</td><td class="n">4.277</td><td class="n">3.671</td><td class="n">8</td><td class="n">95</td><td class="n">5</td><td class="n">20</td></tr>
+<tr class="o  "><td>2026-10-12</td><td class="dw">seg</td><td class="n">4.805</td><td class="n">3.928</td><td class="n">5</td><td class="n">76</td><td class="n">0</td><td class="n">0</td></tr>
+<tr class="o  "><td>2026-10-13</td><td class="dw">ter</td><td class="n">13.761</td><td class="n">9.189</td><td class="n">40</td><td class="n">226</td><td class="n">7</td><td class="n">12</td></tr>
+<tr class="o  "><td>2026-10-14</td><td class="dw">qua</td><td class="n">13.471</td><td class="n">9.073</td><td class="n">44</td><td class="n">189</td><td class="n">9</td><td class="n">18</td></tr>
+<tr class="o  "><td>2026-10-15</td><td class="dw">qui</td><td class="n">12.530</td><td class="n">8.434</td><td class="n">39</td><td class="n">197</td><td class="n">3</td><td class="n">4</td></tr>
+<tr class="o  "><td>2026-10-16</td><td class="dw">sex</td><td class="n">11.698</td><td class="n">8.007</td><td class="n">33</td><td class="n">154</td><td class="n">3</td><td class="n">8</td></tr>
+<tr class="o we "><td>2026-10-17</td><td class="dw">sáb</td><td class="n">3.879</td><td class="n">3.241</td><td class="n">25</td><td class="n">67</td><td class="n">0</td><td class="n">0</td></tr>
+<tr class="o we "><td>2026-10-18</td><td class="dw">dom</td><td class="n">5.012</td><td class="n">4.443</td><td class="n">11</td><td class="n">56</td><td class="n">3</td><td class="n">4</td></tr>
+<tr class="o  "><td>2026-10-19</td><td class="dw">seg</td><td class="n">11.959</td><td class="n">7.697</td><td class="n">36</td><td class="n">177</td><td class="n">5</td><td class="n">12</td></tr>
+<tr class="o  "><td>2026-10-20</td><td class="dw">ter</td><td class="n">13.206</td><td class="n">8.876</td><td class="n">30</td><td class="n">212</td><td class="n">0</td><td class="n">2</td></tr>
+<tr class="o  "><td>2026-10-21</td><td class="dw">qua</td><td class="n">13.674</td><td class="n">9.664</td><td class="n">27</td><td class="n">216</td><td class="n">6</td><td class="n">14</td></tr>
+<tr class="o  "><td>2026-10-22</td><td class="dw">qui</td><td class="n">13.967</td><td class="n">9.755</td><td class="n">43</td><td class="n">218</td><td class="n">8</td><td class="n">33</td></tr>
+<tr class="o  "><td>2026-10-23</td><td class="dw">sex</td><td class="n">13.620</td><td class="n">10.088</td><td class="n">39</td><td class="n">147</td><td class="n">0</td><td class="n">7</td></tr>
+<tr class="o we cw"><td>2026-10-24</td><td class="dw">sáb</td><td class="n">3.786</td><td class="n">3.101</td><td class="n">5</td><td class="n">45</td><td class="n">0</td><td class="n">6</td></tr>
+<tr class="o we cw"><td>2026-10-25</td><td class="dw">dom</td><td class="n">4.647</td><td class="n">4.176</td><td class="n">13</td><td class="n">38</td><td class="n">0</td><td class="n">3</td></tr>
+<tr class="o  cw"><td>2026-10-26</td><td class="dw">seg</td><td class="n">13.022</td><td class="n">8.905</td><td class="n">23</td><td class="n">163</td><td class="n">4</td><td class="n">13</td></tr>
+<tr class="o  cw"><td>2026-10-27</td><td class="dw">ter</td><td class="n">16.155</td><td class="n">11.801</td><td class="n">62</td><td class="n">190</td><td class="n">4</td><td class="n">16</td></tr>
+<tr class="o  cw"><td>2026-10-28</td><td class="dw">qua</td><td class="n">15.555</td><td class="n">11.739</td><td class="n">36</td><td class="n">140</td><td class="n">6</td><td class="n">25</td></tr>
+<tr class="o  cw"><td>2026-10-29</td><td class="dw">qui</td><td class="n">12.966</td><td class="n">9.225</td><td class="n">25</td><td class="n">137</td><td class="n">2</td><td class="n">15</td></tr>
+<tr class="o  cw"><td>2026-10-30</td><td class="dw">sex</td><td class="n">10.346</td><td class="n">6.878</td><td class="n">23</td><td class="n">159</td><td class="n">0</td><td class="n">11</td></tr>
+<tr class="o we "><td>2026-10-31</td><td class="dw">sáb</td><td class="n">3.159</td><td class="n">2.518</td><td class="n">4</td><td class="n">52</td><td class="n">0</td><td class="n">5</td></tr>
+<tr class="tot o"><td>Total outubro</td><td></td><td class="n">312.615</td><td class="n">220.285</td><td class="n">857</td><td class="n">4.309</td><td class="n">123</td><td class="n">369</td></tr>
+<tr class="tot"><td>Variação</td><td></td><td class="n pos">+5,2%</td><td class="n pos">+8,5%</td><td class="n ">+1,8%</td><td class="n ">-1,9%</td><td class="n ">+0,8%</td><td class="n pos">+24,2%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sm" style="padding-top:8px">Os totais fecham com a foto do fechamento: setembro 297.251 sessões, 842 demos e 4.393 sign-ups; outubro 312.615 sessões, 857 demos e 4.309 sign-ups. Usuários não são somados corretamente entre dias no GA4; o total de usuários acima é a soma simples das linhas da planilha.</p>
 </section>
 
 <!-- RODAPÉ -->
@@ -634,22 +662,23 @@ body {
     <p><strong>SAL</strong> = Sales Accepted Lead (aceito por vendas)</p>
     <p><strong>SQL</strong> = Sales Qualified Lead (qualificado por vendas)</p>
     <p><strong>Enriquecido</strong> = ldr_source preenchido no HubSpot (dados complementares obtidos)</p>
+    <p><strong>Email Captured / Meeting Booked</strong> = ações do Qualified (chat): e-mail capturado e reunião agendada</p>
   </div>
   <div class="mfooter-col">
-    <h2>Fontes e filtros</h2>
-    <p>Sessões GA4 via Supermetrics (propriedade 224213526), filtro fullPageUrl contém use.pipefy.com ou www.pipefy.com/pt-br. Fuso: America/Sao_Paulo.</p>
-    <p>Eventos GA4 sem filtro de página (sign_up dispara fora de /pt-br/).</p>
-    <p>HubSpot: pipeline Inside Sales Inbound (924876629), team BR.</p>
+    <h2>Fontes e janelas</h2>
+    <p>GA4: planilha [MKT] GA4 - Sessões por mês, aba set_out_diarizado (foto do BigQuery): sessions, users, demo, signup, meeting_booked e email_captured por dia.</p>
+    <p>HubSpot: consultas diárias, pipeline Inside Sales Inbound (924876629), team BR, por data de criação (deals) e por data de entrada na etapa (MQL, SAL, SQL).</p>
+    <p>Todas as comparações usam semanas de sábado a sexta (o time de vendas trabalha seg-sex antes do corte): anterior 17-23/10 e mediana de 26/09-02/10, 03-09/10, 10-16/10 e 17-23/10.</p>
   </div>
   <div class="mfooter-col">
     <h2>Critérios de status</h2>
     <p><strong style="color:var(--red)">Vermelho:</strong> queda ≥15% vs anterior E ≥10% vs mediana.</p>
-    <p><strong>OK:</strong> não cruza os dois limites.</p>
+    <p><strong style="color:var(--amber)">Atenção:</strong> queda ≥15% em uma das duas comparações.</p>
+    <p><strong>OK:</strong> não cruza os limites.</p>
     <p><strong>n&lt;40:</strong> volume pequeno, só monitorar.</p>
-    <p>Janela: sábado a sexta (o time de vendas trabalha seg-sex). Comparativos usam semanas Mon-based do histórico (pode haver diferença de 1-2 dias).</p>
   </div>
   <div style="flex-basis:100%;padding-top:8px;border-top:1px solid var(--border)">
-    <p style="margin:0;font-size:12px;color:var(--muted)"><strong>Verificação GA4 ↔ HubSpot:</strong> Signup Deals / Sign-up GA = 1,06 (ant. 1,13); Web Request Deals / Book a Demo GA = 1,03 (ant. 1,07). Ambos estáveis, sem alerta de descolamento.</p>
+    <p style="margin:0;font-size:12px;color:var(--muted)"><strong>Verificação GA4 ↔ HubSpot:</strong> deals de Signup por sign-up = 1,15 (ant. 1,13); deals de Web Request por Book a Demo = 1,04 (ant. 1,03). Variação abaixo de 15%, sem alerta de descolamento.</p>
   </div>
 </footer>
 

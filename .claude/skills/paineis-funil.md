@@ -59,7 +59,9 @@ Campos uteis: `date`, `hostName`, `pagePath`, `fullPageUrl`, `sessions`, `active
 
 Eventos: `sign_up` (Signup), `begin_sign_up`, `signupSteps`, `book_a_demo_pageview`, `book_a_demo_step_1` a `book_a_demo_step_5_typ`, `book_a_demo_step_5_skip`, `book_a_demo_submit_lp`, `form_submit`, `qualified_event`.
 
-Qualified: nunca use o total do `qualified_event`. Abra sempre pela dimensao `c_customevent_qualified_action` (categoria `c_customevent_qualified_category` = Qualified Chat). Valores: `Conversation Started`, `Email Captured`, `Meeting Booked`. A soma das tres acoes fecha com o total do evento. Consulte por dia (`date`, `c_customevent_qualified_action`, `eventCount`) e some por semana sabado a sexta.
+Qualified: nunca use o total do `qualified_event`. As acoes que importam sao `Email Captured` e `Meeting Booked` (dimensao `c_customevent_qualified_action`, categoria Qualified Chat). No monitor semanal elas vem da planilha de fotos do BigQuery (abaixo), nao do Supermetrics. `Conversation Started` nao esta na planilha e fica fora do monitor.
+
+Fonte do GA no monitor semanal: planilha `[MKT] GA4 - Sessoes por mes` (id `1wBAJdLs7kgWtHucTv7h53NS3kacMplYfUqfL67Jlun4`), aba `set_out_diarizado`, uma linha por dia com `date, sessions, users, demo, signup, meeting_booked, email_captured`. E a foto do BigQuery, a mesma usada no fechamento (setembro: 297.251 sessoes, 842 demos, 4.393 sign-ups; outubro: 312.615, 857, 4.309). Leia com a ferramenta de Google Sheets; o Supermetrics so serve para aberturas (canal, pagina) e nunca para o numero geral. Nao misture as duas fontes na mesma comparacao.
 
 Book a Demo = `book_a_demo_submit_lp` + `book_a_demo_step_2`.
 
@@ -83,7 +85,7 @@ Argumento: `/paineis-funil mensal` ou `/paineis-funil mensal nov` (para novembro
 3. Funil por lead source, so Inbound: deals, MQL, SAL, Conectado, SQL.
 4. Signup e Web Request por Company Size (Inbound): deals, MQL, SAL, Conectado, SQL.
 5. Enriquecidos (ldr_source preenchido), Signup: deals, MQL, SAL, Conectado, SQL.
-6. GA4: sessoes, usuarios, sign_up, Book a Demo e Qualified por acao (Conversation Started, Email Captured, Meeting Booked) por dia na janela.
+6. GA4: sessoes, usuarios, sign_up, Book a Demo, Email Captured e Meeting Booked por dia na janela (foto do BigQuery; mensal pode usar a planilha, aberturas usam o Supermetrics).
 
 ### Paineis a gerar
 
@@ -109,7 +111,7 @@ Argumento: `/paineis-funil semanal` ou `/paineis-funil semanal 2026-11-03` (para
 ### Rotina
 
 1. Defina a semana fechada: sabado a sexta (o time de vendas trabalha seg-sex antes do corte).
-2. GA4 por dia: sessions, activeUsers, sign_up, Book a Demo. Filtro PT-BR (fullPageUrl). Qualified por acao (qualified_action), sem filtro de pagina.
+2. GA4 por dia: ler a aba `set_out_diarizado` da planilha de fotos (sessions, users, signup, demo, email_captured, meeting_booked). Semanas de sabado a sexta, sempre as mesmas para GA e HubSpot (anterior e mediana das 4 anteriores).
 3. HubSpot por dia, Inbound, team BR:
    - Deals criados por createdate: lead_source App Signup, Web Request e Qualified.
    - Entradas em MQL, SAL e SQL Converted por data de entrada na etapa, separando App Signup e Web Request.
@@ -120,9 +122,9 @@ Argumento: `/paineis-funil semanal` ou `/paineis-funil semanal 2026-11-03` (para
 
 ### Colunas do CSV
 
-`semana_inicio,semana_fim,sessoes,usuarios,signup_ga,demo_ga,qualified_ga,signup_deals,wr_deals,qualified_deals,signup_mql,wr_mql,signup_sal,wr_sal,signup_sql,wr_sql,signup_mql_enriq,signup_sal_enriq,qualified_conversation,qualified_email,qualified_meeting`
+`semana_inicio,semana_fim,sessoes,usuarios,signup_ga,demo_ga,email_captured,meeting_booked,signup_deals,wr_deals,qualified_deals,signup_mql,wr_mql,signup_sal,wr_sal,signup_sql,wr_sql,signup_mql_enriq,signup_sal_enriq`
 
-`qualified_ga` e a soma das tres acoes. Conversation Started, Email Captured e Meeting Booked sao as metricas de Qualified no monitor; compare tambem Email Captured e Meeting Booked por Conversation Started.
+Todas as linhas sao semanas de sabado a sexta (GA vem da planilha, HubSpot das consultas diarias). Compare GA e HubSpot sempre na mesma semana.
 
 ### Metricas e taxas
 
