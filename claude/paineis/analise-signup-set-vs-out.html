@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Signup Set vs Out</title>
+<style>
+:root {
+  --bg:#F5F7FB; --fg:#0F1B3D; --card:#FFFFFF; --border:#E3E8F0; --muted:#475467;
+  --hero:#0B1B3F; --hero-text:#D5DEF2; --stripe:#F8FAFC;
+  --red:#B42318; --red-l:#FEF3F2; --red-b:#FECDCA;
+  --amber:#B54708; --amber-l:#FFFAEB; --amber-b:#FEDF89;
+  --green:#067647; --green-l:#ECFDF3; --green-b:#ABEFC6;
+  --blue:#1F5FBF; --blue-l:#EFF6FF; --blue-b:#BFD7F6; --navy:#243B66;
+  --c1:#2a78d6; --c2:#eb6834; --grid:#E1E0D9; --mark:#898781;
+  --mS:#6250d6; --mS-bg:#EFEDFB; --mO:#1baf7a; --mO-bg:#E4F6EE;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0C1222; --fg:#E8ECF4; --card:#162036; --border:#253252; --muted:#A5B1C8;
+    --hero:#060D1F; --hero-text:#B2C0E0; --stripe:#0F1A30;
+    --red:#F97066; --red-l:#1A0F0E; --red-b:#55201D;
+    --amber:#FDB022; --amber-l:#1A1508; --amber-b:#4E3210;
+    --green:#47CD89; --green-l:#0C1A13; --green-b:#1C3D2C;
+    --blue:#7FB0F2; --blue-l:#0E1C33; --blue-b:#27406B; --navy:#7FB0F2;
+    --c1:#3987e5; --c2:#d95926; --grid:#2c2c2a; --mark:#898781;
+    --mS:#9085e9; --mS-bg:#1E1A3D; --mO:#199e70; --mO-bg:#0F2D24;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0C1222; --fg:#E8ECF4; --card:#162036; --border:#253252; --muted:#A5B1C8;
+  --hero:#060D1F; --hero-text:#B2C0E0; --stripe:#0F1A30;
+  --red:#F97066; --red-l:#1A0F0E; --red-b:#55201D;
+  --amber:#FDB022; --amber-l:#1A1508; --amber-b:#4E3210;
+  --green:#47CD89; --green-l:#0C1A13; --green-b:#1C3D2C;
+  --blue:#7FB0F2; --blue-l:#0E1C33; --blue-b:#27406B; --navy:#7FB0F2;
+  --c1:#3987e5; --c2:#d95926; --grid:#2c2c2a; --mark:#898781;
+    --mS:#9085e9; --mS-bg:#1E1A3D; --mO:#199e70; --mO-bg:#0F2D24;
+  color-scheme: dark;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+.wrap { max-width:1120px; margin:0 auto; padding:24px 0 64px; display:flex; flex-direction:column; gap:26px; }
+h1,h2,h3 { margin:0; text-wrap:balance; }
+p { margin:0; }
+.tabs { display:flex; gap:8px; flex-wrap:wrap; }
+.tabs button { font:inherit; font-size:14px; font-weight:600; padding:9px 18px; border-radius:999px; border:1px solid var(--border); background:var(--card); color:var(--muted); cursor:pointer; }
+.tabs button.on { background:var(--navy); color:#fff; border-color:var(--navy); }
+.tab { display:flex; flex-direction:column; gap:26px; }
+.js .tab:not(.on) { display:none; }
+.hero { background:var(--hero); color:#fff; border-radius:18px; padding:32px 34px; display:flex; flex-direction:column; gap:22px; }
+.hero small { color:var(--hero-text); font-size:13px; }
+.hero h1 { font-size:clamp(26px,4vw,38px); line-height:1.15; letter-spacing:-0.02em; }
+.hero p.lead { color:var(--hero-text); font-size:15px; max-width:780px; }
+.kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr)); gap:14px; }
+.kpi { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:2px; }
+.kpi .v { font-size:28px; font-weight:700; letter-spacing:-0.03em; line-height:1.1; }
+.kpi .v.bad { color:#FDA29B; } .kpi .v.neu { color:#fff; } .kpi .v.ok { color:#A6F4C5; }
+.kpi .l { font-size:12px; color:var(--hero-text); }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px 22px; display:flex; flex-direction:column; gap:14px; min-width:0; }
+.card h2 { font-size:17px; }
+.card h3 { font-size:14px; color:var(--muted); font-weight:600; }
+.note { font-size:12.5px; color:var(--muted); }
+.sec-tag { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); }
+.grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr)); gap:18px; }
+.tw { overflow-x:auto; }
+table { border-collapse:collapse; width:100%; font-size:13px; min-width:520px; font-variant-numeric:tabular-nums; }
+th { text-align:left; font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:8px 8px; border-bottom:2px solid var(--border); white-space:nowrap; }
+th.n, td.n { text-align:right; }
+td { padding:8px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+tr.sum td { background:var(--stripe); font-weight:600; }
+tr.sub td:first-child { padding-left:22px; color:var(--muted); }
+tr.hl td { background:var(--red-l); }
+td.pos { color:var(--green); font-weight:600; } td.neg { color:var(--red); font-weight:600; } td.mut { color:var(--muted); }
+.cols-g th.g { text-align:center; border-bottom:1px solid var(--border); color:var(--fg); }
+.callout { border-radius:12px; padding:14px 16px; border:1px solid; font-size:13.5px; }
+.callout.red { background:var(--red-l); border-color:var(--red-b); }
+.callout.blue { background:var(--blue-l); border-color:var(--blue-b); }
+.callout b { font-weight:700; }
+.chart svg { width:100%; height:auto; display:block; }
+.chart .grid { stroke:var(--grid); stroke-width:1; }
+.chart .ax { fill:var(--mark); font-size:11px; }
+.chart .raw { fill:none; stroke-width:1; opacity:.35; }
+.chart .line { fill:none; stroke-width:2.5; stroke-linejoin:round; stroke-linecap:round; }
+.chart .c1 { stroke:var(--c1); } .chart .c2 { stroke:var(--c2); }
+.chart .mark { stroke:var(--mark); stroke-width:1.2; stroke-dasharray:4 3; }
+.chart .mark2 { stroke:var(--mark); stroke-width:1; stroke-dasharray:2 3; }
+.chart .mk { fill:var(--muted); font-size:11px; }
+.chart .lb { font-size:11.5px; font-weight:600; }
+.chart .c1t { fill:var(--c1); } .chart .c2t { fill:var(--c2); }
+.chart .bar2 { fill:var(--mark); opacity:.55; } .chart .bar2.post { fill:var(--c2); opacity:1; }
+.legend { display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px; color:var(--muted); }
+.legend i { display:inline-block; width:18px; height:3px; border-radius:2px; vertical-align:middle; margin-right:6px; }
+.bars { display:flex; flex-direction:column; gap:8px; }
+.bar { display:grid; grid-template-columns:minmax(130px,200px) 1fr 52px; gap:10px; align-items:center; font-size:13px; }
+.bar .tr { position:relative; height:16px; background:var(--stripe); border-radius:4px; border:1px solid var(--border); }
+.bar .tr::after { content:''; position:absolute; left:50%; top:-2px; bottom:-2px; width:1px; background:var(--mark); }
+.bar .f { position:absolute; top:0; bottom:0; border-radius:3px; }
+.bar .f.neg { background:var(--red); right:50%; } .bar .f.pos { background:var(--green); left:50%; }
+.bar .val { text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+.timeline { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:14px; }
+.tl { background:var(--card); border:1px solid var(--border); border-top:4px solid var(--navy); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; }
+.tl.red { border-top-color:var(--red); }
+.tl b { font-size:17px; letter-spacing:-0.01em; }
+.tl span { font-size:13px; color:var(--muted); }
+.quote { border-left:3px solid var(--blue-b); padding:2px 0 2px 12px; font-size:13px; color:var(--muted); }
+.quote b { color:var(--fg); }
+ul { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:6px; font-size:13.5px; }
+.foot { font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:6px; }
+.fact { display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:start; font-size:13.5px; }
+.fact i { font-style:normal; width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center; }
+.facts { display:flex; flex-direction:column; gap:12px; }
+table td.ms { background:var(--mS-bg); } table td.mo { background:var(--mO-bg); }
+table th.ms { box-shadow:inset 0 3px 0 var(--mS); } table th.mo { box-shadow:inset 0 3px 0 var(--mO); }
+tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 var(--red); }
+.mlegend { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:12.5px; color:var(--muted); }
+.mlegend span { display:inline-flex; align-items:center; gap:6px; }
+.mlegend i { display:inline-block; width:14px; height:14px; border-radius:3px; }
+.mlegend i.s { background:var(--mS-bg); box-shadow:inset 0 3px 0 var(--mS); border:1px solid var(--mS); }
+.mlegend i.o { background:var(--mO-bg); box-shadow:inset 0 3px 0 var(--mO); border:1px solid var(--mO); }
+@media (max-width:560px){ .hero{padding:24px 18px;} .card{padding:16px 14px;} .bar{grid-template-columns:100px 1fr 44px;} }
+
+.bar .val.n0{color:var(--muted);}
+.kpis.k5{grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));}
+.kpi .v.sm{font-size:22px;}
+a.lnk{color:var(--blue);font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Abas" class="tabs">
+<button class="on" data-tab="t1" type="button">Signup</button>
+<button data-tab="t2" type="button">Company Size</button>
+</nav>
+<div aria-label="Cores dos meses" class="mlegend">Nas tabelas: <span><i class="s"></i>Setembro (01 a 30/09)</span><span><i class="o"></i>Outubro (01 a 31/10)</span></div>
+<div class="tab on" id="t1">
+<section class="hero">
+<small>Signup · setembro (01 a 30/09) contra outubro (01 a 31/10) · extraído em 04/11/2026</small>
+<h1>O Signup trouxe mais MQL e mais conectados, mas o ganho vem do Harvest e o SQL caiu.</h1>
+<p class="lead">Os sign-ups no GA caíram 1,9% e os deals de App Signup 7,0%. O MQL subiu 76% e o conectado 21%, quase tudo em deals que passaram pelo Harvest (MQL de 218 para 1.484, conectados de 5 para 66). Nos demais deals, MQL (1.532 → 1.592) e conectados (248 → 240) ficaram estáveis. O SQL de Signup foi de 31 para 22.</p>
+<div class="kpis">
+<div class="kpi"><span class="v neu">4.393 → 4.309</span><span class="l">Sign-ups (GA4), -1,9%. Sessões: 297.251 → 312.615 (+5,2%)</span></div>
+<div class="kpi"><span class="v neu">5.430 → 5.050</span><span class="l">Deals de App Signup (HubSpot), -7,0%</span></div>
+<div class="kpi"><span class="v ok">1.750 → 3.076</span><span class="l">MQL de Signup, +75,8%</span></div>
+<div class="kpi"><span class="v ok">253 → 306</span><span class="l">Conectados de Signup, +20,9% (SQL: 31 → 22)</span></div>
+</div>
+<small>GA conta eventos de sign-up registrados no site. HubSpot conta deals de App Signup criados no funil BR. São bases diferentes, por isso os números não são iguais.</small>
+</section>
+<section class="card">
+<span class="sec-tag">Checkpoint de datas</span>
+<h2>O que mudou no Signup</h2>
+<div class="timeline">
+<div class="tl"><b>22/09</b><span>Teste #667 na home: copy novo e versão sem botão de Signup, até 20/10. Em 22/10 entra o #670.</span></div>
+<div class="tl"><b>24/09</b><span>HubSpot passa a descobrir o tamanho real da empresa (enriquecimento pelo Harvest).</span></div>
+<div class="tl red"><b>07/10</b><span>Novo Signup no ar: formulário em etapas, com 5 faixas de tamanho no lugar de 10. Até 29/10, 372 de 8.594 envios chegaram sem Company Size (1001-5000). Os envios do formulário no HubSpot caíram de cerca de 1.200 para cerca de 430 por dia.</span></div>
+<div class="tl"><b>14/10</b><span>Os steps (identity, segment, company e use cases) passam a ser medidos no GA, e o begin_sign_up passa a disparar quando a pessoa começa a digitar (antes era visualização de página).</span></div>
+<div class="tl"><b>29/10</b><span>Encontramos a causa do Company Size e mapeamos a correção.</span></div>
+</div>
+</section>
+<section class="card">
+<span class="sec-tag">Resumo</span>
+<h2>O que subiu e o que caiu</h2>
+<div class="grid2">
+<div class="callout blue">
+<b>Subimos</b>
+<ul>
+<li>Sessões: +5,2% (297,3 mil → 312,6 mil).</li>
+<li>MQL: 1.750 → 3.076 (+75,8%) e SAL: 1.381 → 1.956 (+41,6%).</li>
+<li>Conectados: 253 → 306 (+20,9%). Os conectados de deals do Harvest foram de 5 para 66.</li>
+<li>Sign-ups de Paid Search: 1.193 → 1.510 (+27%), puxados pelo Google (937 → 1.267).</li>
+<li>Sign-ups que entram pela landing /pt-br/ads/compras: 96 → 606.</li>
+<li>Deals com dono: 1.749 → 3.076 (+76%).</li>
+</ul>
+</div>
+<div class="callout red">
+<b>Perdemos</b>
+<ul>
+<li>Sign-ups no GA: 4.393 → 4.309 (-1,9%) com +5,2% de sessões e investimento do Inbound BR +40% (planilha de fechamento). Deals de App Signup: -7,0%.</li>
+<li>SAL por MQL: 78,9% → 63,6% (p &lt; 0,001). Conectado por SAL: 18,3% → 15,6% (p = 0,041).</li>
+<li>MQL dos deals do Harvest vira SAL em 42%, contra 84% dos demais.</li>
+<li>Sign-ups de Cross-network: 822 → 502 (-39%) e de Organic Search: 739 → 625 (-15%).</li>
+<li>SQL: 31 → 22 (n&lt;40, só monitorar).</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="card chart">
+<span class="sec-tag">1 · Sessões e sign-ups no GA</span>
+<h2>Sign-ups no GA e deals no HubSpot andam juntos</h2>
+<div class="tw"><table style="min-width:520px"><thead><tr><th>Mês fechado</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th></tr></thead><tbody><tr><td>Sessões (GA4)</td><td class="n ms">297.251</td><td class="n mo">312.615</td><td class="n pos">+5,2%</td></tr><tr class="sum"><td>Sign-ups (GA4)</td><td class="n ms">4.393</td><td class="n mo">4.309</td><td class="n mut">-1,9%</td></tr><tr class="sub"><td>Sign-ups por 100 sessões</td><td class="n ms">1,478</td><td class="n neg mo">1,378</td><td class="n neg">-6,7%</td></tr><tr><td>Deals de App Signup (HubSpot, Inbound BR)</td><td class="n ms">5.430</td><td class="n mo">5.050</td><td class="n neg">-7,0%</td></tr><tr><td>Deals por sign-up</td><td class="n ms">1,24</td><td class="n neg mo">1,17</td><td class="n neg">-5,2%</td></tr></tbody></table></div>
+<p class="note">Por dia, 01/09 a 31/10, média móvel de 7 dias (linha grossa) sobre o dado diário (linha fina). Sign-ups do GA vêm da foto do BigQuery; deals são os criados no dia em App Signup (Inbound BR, sem migration). Os dois meses têm 22 dias úteis e um feriado de segunda (07/09 e 12/10).</p>
+<svg aria-label="Sign-ups no GA e deals de App Signup no HubSpot por dia, 01/09 a 31/10" role="img" viewbox="0 0 900 290">
+<line class="grid" x1="44" x2="770" y1="256.0" y2="256.0"></line><text class="ax" text-anchor="end" x="38" y="260.0">0</text>
+<line class="grid" x1="44" x2="770" y1="208.0" y2="208.0"></line><text class="ax" text-anchor="end" x="38" y="212.0">100</text>
+<line class="grid" x1="44" x2="770" y1="160.0" y2="160.0"></line><text class="ax" text-anchor="end" x="38" y="164.0">200</text>
+<line class="grid" x1="44" x2="770" y1="112.0" y2="112.0"></line><text class="ax" text-anchor="end" x="38" y="116.0">300</text>
+<line class="grid" x1="44" x2="770" y1="64.0" y2="64.0"></line><text class="ax" text-anchor="end" x="38" y="68.0">400</text>
+<line class="grid" x1="44" x2="770" y1="16.0" y2="16.0"></line><text class="ax" text-anchor="end" x="38" y="20.0">500</text>
+<text class="ax" text-anchor="middle" x="44.0" y="278">01/09</text>
+<text class="ax" text-anchor="middle" x="128.7" y="278">08/09</text>
+<text class="ax" text-anchor="middle" x="213.4" y="278">15/09</text>
+<text class="ax" text-anchor="middle" x="298.1" y="278">22/09</text>
+<text class="ax" text-anchor="middle" x="394.9" y="278">30/09</text>
+<text class="ax" text-anchor="middle" x="467.5" y="278">06/10</text>
+<text class="ax" text-anchor="middle" x="552.2" y="278">13/10</text>
+<text class="ax" text-anchor="middle" x="636.9" y="278">20/10</text>
+<text class="ax" text-anchor="middle" x="721.6" y="278">27/10</text>
+<text class="ax" text-anchor="middle" x="770.0" y="278">31/10</text>
+<line class="mark" x1="479.6" x2="479.6" y1="16" y2="256"></line><text class="mk" x="484.6" y="28">07/10 novo Signup</text>
+<line class="mark2" x1="564.3" x2="564.3" y1="38" y2="256"></line><text class="mk" x="569.3" y="50">14/10 steps no GA</text>
+<polyline class="raw c1" points="44.0,146.1 56.1,150.4 68.2,154.7 80.3,173.9 92.4,233.9 104.5,239.7 116.6,228.6 128.7,180.6 140.8,160.5 152.9,156.2 165.0,165.8 177.1,224.3 189.2,216.6 201.3,161.9 213.4,143.2 225.5,151.8 237.6,144.6 249.7,161.0 261.8,234.9 273.9,232.0 286.0,159.0 298.1,163.4 310.2,168.2 322.3,174.9 334.4,197.0 346.5,243.0 358.6,241.6 370.7,185.4 382.8,175.8 394.9,202.2 407.0,152.3 419.1,187.8 431.2,239.7 443.3,241.6 455.4,190.2 467.5,165.3 479.6,166.7 491.7,160.0 503.8,178.2 515.9,227.7 528.0,210.4 540.1,219.5 552.2,147.5 564.3,165.3 576.4,161.4 588.5,182.1 600.6,223.8 612.7,229.1 624.8,171.0 636.9,154.2 649.0,152.3 661.1,151.4 673.2,185.4 685.3,234.4 697.4,237.8 709.5,177.8 721.6,164.8 733.7,188.8 745.8,190.2 757.9,179.7 770.0,231.0"></polyline>
+<polyline class="raw c2" points="44.0,225.8 56.1,41.0 68.2,130.7 80.3,151.8 92.4,226.7 104.5,232.5 116.6,218.6 128.7,173.4 140.8,139.8 152.9,143.2 165.0,140.8 177.1,218.6 189.2,211.4 201.3,138.4 213.4,120.2 225.5,123.5 237.6,122.1 249.7,142.7 261.8,222.4 273.9,222.9 286.0,136.5 298.1,135.5 310.2,151.4 322.3,161.9 334.4,176.8 346.5,233.4 358.6,233.9 370.7,163.4 382.8,160.0 394.9,174.4 407.0,135.0 419.1,162.9 431.2,226.2 443.3,225.8 455.4,163.4 467.5,137.0 479.6,165.3 491.7,152.8 503.8,165.8 515.9,221.0 528.0,210.4 540.1,210.4 552.2,132.6 564.3,155.2 576.4,153.3 588.5,163.4 600.6,219.5 612.7,222.9 624.8,158.6 636.9,144.6 649.0,141.3 661.1,140.8 673.2,169.1 685.3,229.6 697.4,229.6 709.5,168.6 721.6,153.8 733.7,175.4 745.8,182.1 757.9,170.1 770.0,225.8"></polyline>
+<polyline class="line c1" points="116.6,189.6 128.7,194.6 140.8,196.0 152.9,196.2 165.0,195.0 177.1,193.7 189.2,190.4 201.3,180.8 213.4,175.5 225.5,174.3 237.6,172.6 249.7,171.9 261.8,173.4 273.9,175.6 286.0,175.2 298.1,178.1 310.2,180.4 322.3,184.8 334.4,189.9 346.5,191.1 358.6,192.4 370.7,196.2 382.8,198.0 394.9,202.9 407.0,199.6 419.1,198.3 431.2,197.9 443.3,197.9 455.4,198.5 467.5,197.0 479.6,192.0 491.7,193.1 503.8,191.7 515.9,190.0 528.0,185.5 540.1,189.7 552.2,187.2 564.3,186.9 576.4,187.2 588.5,187.7 600.6,187.2 612.7,189.8 624.8,182.9 636.9,183.9 649.0,182.0 661.1,180.6 673.2,181.1 685.3,182.6 697.4,183.8 709.5,184.8 721.6,186.3 733.7,191.5 745.8,197.0 757.9,196.2 770.0,195.7"></polyline>
+<polyline class="line c2" points="116.6,175.3 128.7,167.8 140.8,181.9 152.9,183.7 165.0,182.1 177.1,181.0 189.2,178.0 201.3,166.5 213.4,158.9 225.5,156.6 237.6,153.6 249.7,153.8 261.8,154.4 273.9,156.0 286.0,155.7 298.1,157.9 310.2,161.9 322.3,167.6 334.4,172.5 346.5,174.1 358.6,175.6 370.7,179.5 382.8,183.0 394.9,186.3 407.0,182.4 419.1,180.4 431.2,179.4 443.3,178.2 455.4,178.2 467.5,174.9 479.6,173.6 491.7,176.2 503.8,176.6 515.9,175.8 528.0,173.6 540.1,180.4 552.2,179.7 564.3,178.3 576.4,178.4 588.5,178.0 600.6,177.8 612.7,179.6 624.8,172.2 636.9,173.9 649.0,171.9 661.1,170.1 673.2,171.0 685.3,172.4 697.4,173.4 709.5,174.8 721.6,176.1 733.7,181.0 745.8,186.9 757.9,187.0 770.0,186.5"></polyline>
+<text class="lb c1t" x="776" y="211.7">sign_up (GA4)</text>
+<text class="lb c2t" x="776" y="180.5">Deals (HubSpot)</text>
+</svg>
+<div class="legend"><span><i style="background:var(--c1)"></i>sign_up (GA4)</span><span><i style="background:var(--c2)"></i>Deals de App Signup criados (HubSpot)</span></div>
+</section>
+<section class="card">
+<span class="sec-tag">2 · Grupo de canais e página de entrada (GA4)</span>
+<h2>O sign-up de Paid Search subiu com o Google; o Bing mais que dobrou as sessões e não somou sign-ups</h2>
+<div class="tw"><table class="cols-g" style="min-width:820px"><thead><tr><th></th><th class="g" colspan="3" style="text-align:center">Sessões</th><th class="g" colspan="3" style="text-align:center">Sign-ups</th><th class="g" colspan="3" style="text-align:center">Por 100 sessões</th></tr><tr><th>Canal (sessão)</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th></tr></thead><tbody><tr><td>Paid Search</td><td class="n ms">93.882</td><td class="n mo">129.606</td><td class="n pos">+38,1%</td><td class="n ms">1.193</td><td class="n mo">1.510</td><td class="n pos">+26,6%</td><td class="n ms">1,27</td><td class="n neg mo">1,17</td><td class="n neg">-8%</td></tr><tr class="sub"><td>↳ Google (cpc)</td><td class="n ms">75.783</td><td class="n mo">86.890</td><td class="n pos">+14,7%</td><td class="n ms">937</td><td class="n mo">1.267</td><td class="n pos">+35,2%</td><td class="n ms">1,24</td><td class="n pos mo">1,46</td><td class="n pos">+18%</td></tr><tr class="sub"><td>↳ Bing</td><td class="n ms">19.260</td><td class="n mo">43.458</td><td class="n pos">+125,6%</td><td class="n ms">256</td><td class="n mo">243</td><td class="n neg">-5,1%</td><td class="n ms">1,33</td><td class="n neg mo">0,56</td><td class="n neg">-58%</td></tr><tr><td>Cross-network (Google, Performance Max)</td><td class="n ms">89.051</td><td class="n mo">73.456</td><td class="n neg">-17,5%</td><td class="n ms">822</td><td class="n mo">502</td><td class="n neg">-38,9%</td><td class="n ms">0,92</td><td class="n neg mo">0,68</td><td class="n neg">-26%</td></tr><tr class="sum"><td>Pago: Paid Search + Cross-network</td><td class="n ms">182.933</td><td class="n mo">203.062</td><td class="n pos">+11,0%</td><td class="n ms">2.015</td><td class="n mo">2.012</td><td class="n mut">-0,1%</td><td class="n ms">1,10</td><td class="n neg mo">0,99</td><td class="n neg">-10%</td></tr><tr><td>Direct</td><td class="n ms">45.162</td><td class="n mo">41.566</td><td class="n neg">-8,0%</td><td class="n ms">1.739</td><td class="n mo">1.695</td><td class="n mut">-2,5%</td><td class="n ms">3,85</td><td class="n pos mo">4,08</td><td class="n pos">+6%</td></tr><tr><td>Organic Search</td><td class="n ms">42.337</td><td class="n mo">37.849</td><td class="n neg">-10,6%</td><td class="n ms">739</td><td class="n mo">625</td><td class="n neg">-15,4%</td><td class="n ms">1,75</td><td class="n neg mo">1,65</td><td class="n neg">-5%</td></tr><tr><td>Referral</td><td class="n ms">7.378</td><td class="n mo">7.655</td><td class="n pos">+3,8%</td><td class="n ms">238</td><td class="n mo">240</td><td class="n mut">+0,8%</td><td class="n ms">3,23</td><td class="n mut mo">3,14</td><td class="n mut">-3%</td></tr><tr><td>Demais canais</td><td class="n ms">21.976</td><td class="n mo">19.801</td><td class="n neg">-9,9%</td><td class="n ms">224</td><td class="n mo">210</td><td class="n neg">-6,2%</td><td class="n ms">1,02</td><td class="n pos mo">1,06</td><td class="n pos">+4%</td></tr><tr class="sum"><td>Total (API do GA4)</td><td class="n ms">299.786</td><td class="n mo">309.933</td><td class="n pos">+3,4%</td><td class="n ms">4.955</td><td class="n mo">4.782</td><td class="n neg">-3,5%</td><td class="n ms">1,65</td><td class="n neg mo">1,54</td><td class="n neg">-7%</td></tr></tbody></table></div>
+<p class="note">Paid Search reúne Google e Bing, e o Cross-network é quase todo Google (Performance Max). O Bing foi de 19,3 mil para 43,5 mil sessões e de 256 para 243 sign-ups (conversão de 1,33% para 0,56%); o Google (cpc) foi de 75,8 mil para 86,9 mil sessões e de 937 para 1.267 sign-ups (de 1,24% para 1,46%). Somando Paid Search e Cross-network, as sessões sobem 11,0% e os sign-ups ficam estáveis (2.015 → 2.012). Esta tabela usa a API do GA4: as sessões são PT-BR (www.pipefy.com/pt-br e use.pipefy.com) e os sign-ups não têm filtro de página, porque o evento dispara fora de /pt-br. Por isso o total de sign-ups aqui (4.955 e 4.782) é maior que o da foto do BigQuery (4.393 e 4.309): use a tabela para a proporção por canal, e a tabela do início da seção para o total.</p>
+<h3>Sign-ups por página de entrada da sessão</h3>
+<div class="tw"><table style="min-width:520px"><thead><tr><th>Página de entrada</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Δ</th></tr></thead><tbody><tr><td>/pt-br/ads/compras</td><td class="n ms">96</td><td class="n mo">606</td><td class="n pos">+510</td></tr><tr><td>/pt-br/cadastro</td><td class="n ms">179</td><td class="n mo">192</td><td class="n pos">+13</td></tr><tr><td>/signup</td><td class="n ms">41</td><td class="n mo">78</td><td class="n pos">+37</td></tr><tr><td>/ (home em inglês)</td><td class="n ms">189</td><td class="n mo">191</td><td class="n pos">+2</td></tr><tr><td>/pt-br/ads/bpa</td><td class="n ms">180</td><td class="n mo">118</td><td class="n neg">-62</td></tr><tr><td>/pt-br (home)</td><td class="n ms">1.237</td><td class="n mo">1.013</td><td class="n neg">-224</td></tr><tr><td>/pt-br/ads/ai-agents</td><td class="n ms">428</td><td class="n mo">383</td><td class="n neg">-45</td></tr><tr><td>/pt-br/ads/plataforma-no-code</td><td class="n ms">318</td><td class="n mo">133</td><td class="n neg">-185</td></tr><tr><td>/pt-br/formularios</td><td class="n ms">53</td><td class="n mo">42</td><td class="n neg">-11</td></tr><tr><td>/pt-br/precos</td><td class="n ms">54</td><td class="n mo">30</td><td class="n neg">-24</td></tr><tr><td>/realms/pipefy/protocol/openid-connect/auth (login)</td><td class="n ms">1.629</td><td class="n mo">1.576</td><td class="n neg">-53</td></tr></tbody></table></div>
+<p class="note">O evento sign_up não envia previous page (100% (not set) nos dois meses), então a leitura de origem usa a página de entrada. Só aparecem as páginas que estão entre as 16 maiores nos dois meses, mais /pt-br/ads/compras. A página de login é a maior porta de entrada nos dois meses.</p>
+</section>
+<section class="card">
+<span class="sec-tag">3 · Steps do novo Signup</span>
+<h2>O vazamento está antes do segmento e da empresa</h2>
+<div class="tw"><table>
+<thead><tr><th>Step (14 a 26/10, eventos)</th><th class="n">Eventos</th><th class="n">% do step anterior</th><th class="n">% do identity</th></tr></thead>
+<tbody>
+<tr><td>begin_sign_up (começa a digitar)</td><td class="n">10.893</td><td class="n"></td><td class="n"></td></tr>
+<tr><td>signup_step_identity (nome e e-mail)</td><td class="n">3.610</td><td class="n">33,1%</td><td class="n">100%</td></tr>
+<tr><td>signup_step_segment (área e setor)</td><td class="n">2.924</td><td class="n">81,0%</td><td class="n">81,0%</td></tr>
+<tr><td>sign_up_step_company (empresa)</td><td class="n">2.026</td><td class="n">69,3%</td><td class="n">56,1%</td></tr>
+<tr><td>signup_step_use_cases</td><td class="n">2.025</td><td class="n">100%</td><td class="n">56,1%</td></tr>
+<tr class="sum"><td>sign_up (conta criada)</td><td class="n">2.035</td><td class="n">100,5%</td><td class="n">56,4%</td></tr>
+</tbody>
+</table></div>
+<p class="note">Os steps só existem no GA desde 14/10 (única janela disponível), então esta tabela descreve o novo formulário e não compara os dois meses. O begin_sign_up mudou de visualização de página para início de digitação e ficou sem registro de 08 a 13/10. Depois do step da empresa, praticamente todos terminam. Entre 14 e 26/10, 3.610 chegaram ao identity e 2.035 criaram conta: cerca de 1.575 começaram e não terminaram.</p>
+</section>
+<section class="card">
+<span class="sec-tag">4 · HubSpot, até o conectado</span>
+<h2>MQL +76%, conectados +21%, SQL -29%</h2>
+<p class="note">Deals de App Signup, team BR, pipeline Inbound, sem migration. Deals por data de criação; MQL, SAL e conectado por data de entrada na etapa dentro do mês; SQL por data de fechamento no mês. Mesma regra da visão geral. Fora da conta: 290 deals de migration em setembro e 502 deals de App Signup no pipeline Outbound em setembro (244 em outubro).</p>
+<div class="tw"><table style="min-width:640px"><thead><tr><th>Etapa</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th><th class="n ms">% dos deals set</th><th class="n mo">% dos deals out</th></tr></thead><tbody><tr class="sum"><td>Deals criados (Inbound)</td><td class="n ms">5.430</td><td class="n mo">5.050</td><td class="n neg">-7,0%</td><td class="n ms">100%</td><td class="n mo">100%</td></tr><tr><td>MQL</td><td class="n ms">1.750</td><td class="n mo">3.076</td><td class="n pos">+75,8%</td><td class="n ms">32,2%</td><td class="n mo">60,9%</td></tr><tr><td>SAL</td><td class="n ms">1.381</td><td class="n mo">1.956</td><td class="n pos">+41,6%</td><td class="n ms">25,4%</td><td class="n mo">38,7%</td></tr><tr class="hl"><td>SAL Connected</td><td class="n ms">253</td><td class="n mo">306</td><td class="n pos">+20,9%</td><td class="n ms">4,7%</td><td class="n mo">6,1%</td></tr><tr><td>SQL (n&lt;40, só monitorar)</td><td class="n ms">31</td><td class="n mo">22</td><td class="n neg">-29,0%</td><td class="n ms">0,6%</td><td class="n mo">0,4%</td></tr></tbody></table></div>
+<div class="tw"><table style="min-width:480px"><thead><tr><th>Taxas do funil</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th></tr></thead><tbody><tr><td>MQL por deal</td><td class="n ms">32,2%</td><td class="n pos mo">60,9%</td><td class="n pos">+89,0%</td></tr><tr><td>SAL por MQL</td><td class="n ms">78,9%</td><td class="n neg mo">63,6%</td><td class="n neg">-19,4%</td></tr><tr><td>Conectado por SAL</td><td class="n ms">18,3%</td><td class="n neg mo">15,6%</td><td class="n neg">-14,6%</td></tr><tr><td>Conectado por deal</td><td class="n ms">4,7%</td><td class="n pos mo">6,1%</td><td class="n pos">+30,0%</td></tr></tbody></table></div>
+<p class="note">Conectado por SAL: 18,3% → 15,6% (p = 0,041). SAL por MQL: 78,9% → 63,6% (p &lt; 0,001). O SQL de Signup é quase nulo nos dois meses, então o conectado é o marcador de qualidade.</p>
+<h3>Por grupo de canais do HubSpot (hs_analytics_source, Inbound BR)</h3>
+<div class="tw"><table style="min-width:820px"><thead><tr><th>Canal (hs_analytics_source)</th><th class="n ms">Deals set</th><th class="n mo">Deals out</th><th class="n ms">SAL set</th><th class="n mo">SAL out</th><th class="n ms">Conectados set</th><th class="n mo">Conectados out</th><th class="n">Conectado por SAL</th></tr></thead><tbody><tr><td>Direct Traffic</td><td class="n ms">2.836</td><td class="n mo">2.637</td><td class="n ms">827</td><td class="n mo">1.132</td><td class="n ms">152</td><td class="n mo">185</td><td class="n neg">18,4% → 16,3%</td></tr><tr><td>Paid Search</td><td class="n ms">1.416</td><td class="n mo">1.336</td><td class="n ms">238</td><td class="n mo">399</td><td class="n ms">42</td><td class="n mo">59</td><td class="n neg">17,6% → 14,8%</td></tr><tr><td>Organic Search</td><td class="n ms">459</td><td class="n mo">372</td><td class="n ms">120</td><td class="n mo">143</td><td class="n ms">24</td><td class="n mo">28</td><td class="n mut">20,0% → 19,6%</td></tr><tr><td>Offline Sources</td><td class="n ms">345</td><td class="n mo">388</td><td class="n ms">116</td><td class="n mo">166</td><td class="n ms">19</td><td class="n mo">21</td><td class="n neg">16,4% → 12,7%</td></tr><tr><td>Other Campaigns</td><td class="n ms">261</td><td class="n mo">232</td><td class="n ms">45</td><td class="n mo">91</td><td class="n ms">10</td><td class="n mo">9</td><td class="n neg">22,2% → 9,9%</td></tr><tr><td>Referrals, AI, Email, Social</td><td class="n ms">113</td><td class="n mo">85</td><td class="n ms">35</td><td class="n mo">25</td><td class="n ms">6</td><td class="n mo">4</td><td class="n neg">17,1% → 16,0%</td></tr><tr class="sum"><td>Total</td><td class="n ms">5.430</td><td class="n mo">5.050</td><td class="n ms">1.381</td><td class="n mo">1.956</td><td class="n ms">253</td><td class="n mo">306</td><td class="n neg">18,3% → 15,6%</td></tr></tbody></table></div>
+<p class="note">Direct Traffic concentra 52% dos deals nos dois meses. Os conectados de Organic Search ficaram estáveis (24 → 28), assim como os de Offline Sources (19 → 21); Paid Search foi de 42 para 59. O hs_analytics_source é a fonte original do contato no HubSpot, não a sessão do GA.</p>
+</section>
+<section class="card">
+<span class="sec-tag">5 · Enriquecimento (Harvest)</span>
+<h2>O MQL a mais vem de deals que passaram pelo Harvest</h2>
+<div class="tw"><table class="cols-g" style="min-width:700px"><thead><tr><th></th><th class="g" colspan="2" style="text-align:center">Deals</th><th class="g" colspan="2" style="text-align:center">MQL</th><th class="g" colspan="2" style="text-align:center">SAL</th><th class="g" colspan="2" style="text-align:center">Conectado</th></tr><tr><th>Grupo</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th></tr></thead><tbody><tr class="hl"><td>Passaram pelo Harvest</td><td class="n ms">579</td><td class="n mo">3.390</td><td class="n ms">218</td><td class="n mo">1.484</td><td class="n ms">75</td><td class="n mo">626</td><td class="n ms">5</td><td class="n mo">66</td></tr><tr><td>Não passaram</td><td class="n ms">4.851</td><td class="n mo">1.660</td><td class="n ms">1.532</td><td class="n mo">1.592</td><td class="n ms">1.306</td><td class="n mo">1.330</td><td class="n ms">248</td><td class="n mo">240</td></tr><tr class="sum"><td>Total</td><td class="n ms">5.430</td><td class="n mo">5.050</td><td class="n ms">1.750</td><td class="n mo">3.076</td><td class="n ms">1.381</td><td class="n mo">1.956</td><td class="n ms">253</td><td class="n mo">306</td></tr></tbody></table></div>
+<div class="tw"><table class="cols-g" style="min-width:600px"><thead><tr><th></th><th class="g" colspan="2" style="text-align:center">Cobertura do Harvest</th><th class="g" colspan="2" style="text-align:center">SAL por MQL</th><th class="g" colspan="2" style="text-align:center">Conectado por SAL</th></tr><tr><th>Grupo</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th></tr></thead><tbody><tr><td>Passaram pelo Harvest</td><td class="n ms">10,7%</td><td class="n mo">67,1%</td><td class="n ms">34,4%</td><td class="n pos mo">42,2%</td><td class="n ms">6,7%</td><td class="n pos mo">10,5%</td></tr><tr><td>Não passaram</td><td class="n ms">89,3%</td><td class="n mo">32,9%</td><td class="n ms">85,2%</td><td class="n mut mo">83,5%</td><td class="n ms">19,0%</td><td class="n neg mo">18,0%</td></tr></tbody></table></div>
+<div class="callout blue"><b>Dos +1.326 MQL, +1.266 vêm de deals que passaram pelo Harvest.</b> O Harvest passou de 11% para 67% dos deals. O MQL desses deals vira SAL em 42% (contra 84% dos demais) e o SAL vira conectado em 10,5% (contra 18,0%). Nos deals que não passaram, MQL (1.532 → 1.592), SAL (1.306 → 1.330) e conectados (248 → 240) ficaram praticamente iguais.</div>
+<p class="note">"Passaram pelo Harvest" é o campo enrich_harvest_api_company_size preenchido, inclusive quando o Harvest não encontrou a empresa (Unknown). Como a cobertura mudou, a comparação entre os dois grupos não é de populações iguais.</p>
+</section>
+<section class="card">
+<span class="sec-tag">6 · Atendimento</span>
+<h2>De seis donos para dois, e deals sem dono caem de 68% para 39%</h2>
+<div class="tw"><table style="min-width:560px"><thead><tr><th>Dono do deal (Inbound BR)</th><th class="n ms">Deals set</th><th class="n ms">SAL set</th><th class="n mo">Deals out</th><th class="n mo">SAL out</th></tr></thead><tbody><tr><td>Alessandra Amâncio</td><td class="n ms">264</td><td class="n ms">235</td><td class="n mo">1.534</td><td class="n mo">906</td></tr><tr><td>Bruna Figueiredo</td><td class="n ms">113</td><td class="n ms">99</td><td class="n mo">1.538</td><td class="n mo">1.036</td></tr><tr><td>Laura Naomi</td><td class="n ms">580</td><td class="n ms">429</td><td class="n mo">0</td><td class="n mo">8</td></tr><tr><td>Humberto Pisani</td><td class="n ms">299</td><td class="n ms">258</td><td class="n mo">2</td><td class="n mo">3</td></tr><tr><td>João Soares</td><td class="n ms">276</td><td class="n ms">203</td><td class="n mo">0</td><td class="n mo">0</td></tr><tr><td>Antonio De Paula</td><td class="n ms">217</td><td class="n ms">157</td><td class="n mo">2</td><td class="n mo">3</td></tr><tr><td>Sem dono</td><td class="n ms">3.681</td><td class="n ms">0</td><td class="n mo">1.974</td><td class="n mo">0</td></tr><tr class="sum"><td>Total</td><td class="n ms">5.430</td><td class="n ms">1.381</td><td class="n mo">5.050</td><td class="n mo">1.956</td></tr></tbody></table></div>
+<p class="note">Em outubro, Alessandra e Bruna recebem 3.072 dos 5.050 deals (61%); Laura e Antonio, que atendiam Signup em setembro (797 deals), passam a atender Web Request. Entre os deals com dono, o SAL foi de 79,0% (1.381 de 1.749) para 63,6% (1.956 de 3.076). Deals sem dono não chegam a SAL nos dois meses.</p>
+</section>
+<section class="card">
+<span class="sec-tag">7 · Leitura</span>
+<h2>O que explica o funil</h2>
+<div class="facts">
+<div class="fact"><i>1</i><div><b>O topo não cresceu.</b> Sign-ups no GA: 4.393 → 4.309 (-1,9%) com mais sessões. Deals de App Signup: 5.430 → 5.050 (-7,0%).</div></div>
+<div class="fact"><i>2</i><div><b>O MQL a mais é do Harvest.</b> +1.326 MQL, dos quais +1.266 vêm de deals que passaram pelo Harvest. A cobertura foi de 11% para 67%.</div></div>
+<div class="fact"><i>3</i><div><b>Esse MQL chega menos ao fundo.</b> SAL por MQL de 42% nos deals do Harvest contra 84% nos demais; conectado por SAL de 10,5% contra 18,0%.</div></div>
+<div class="fact"><i>4</i><div><b>O conectado subiu, mas só o do Harvest.</b> 253 → 306 no total: 5 → 66 nos deals do Harvest e 248 → 240 nos demais. O SQL de Signup é pequeno (31 → 22).</div></div>
+<div class="fact"><i>5</i><div><b>O atendimento concentrou.</b> Dois donos recebem 61% dos deals; entre os deals com dono, o SAL foi de 79% para 64%. Deals sem dono: 68% → 39%.</div></div>
+<div class="fact"><i>6</i><div><b>O Company Size mudou de estrutura em 07/10.</b> Self-employed e 11-50 quase somem e o topo (1.001 ou mais) perde o tamanho. Detalhe na aba Company Size.</div></div>
+</div>
+<p class="note">Em aberto: quem começa e não termina (cerca de 1.575 entre 14 e 26/10) não vira deal, e falta saber se vira contato no HubSpot e se é enriquecido; separar capacidade de atendimento de qualidade do deal; e por que os sign-ups de Cross-network e Organic Search caíram.</p>
+</section>
+<section class="card">
+<span class="sec-tag">Base: 1:1 de 27/10</span>
+<h2>O que foi pedido e onde está a resposta</h2>
+<div class="quote"><b>Pedido:</b> entender como o Signup está performando desde o novo formulário em etapas. <b>Resposta:</b> sign-ups 4.393 → 4.309 (-1,9%), seção 1.</div>
+<div class="quote"><b>Pedido:</b> comparar com o acompanhamento de antes no GA. <b>Resposta:</b> os steps só existem no GA desde 14/10 e o begin_sign_up mudou de definição, então só dá para comparar a etapa final (seções 1 e 3).</div>
+<div class="quote"><b>Pedido:</b> olhar o funil nos mesmos meses (MQL, SAL e SQL). <b>Resposta:</b> seção 4.</div>
+<div class="quote"><b>Pedido:</b> o MQL pode estar inflado pelo enriquecimento; quantos foram enriquecidos, quais eram os tamanhos originais e para onde foram. <b>Resposta:</b> seção 5 e aba Company Size.</div>
+<div class="quote"><b>Hipótese levantada:</b> o time pode estar priorizando quem não terminou de preencher porque foi enriquecido. <b>Resposta:</b> o SAL dos enriquecidos é 42%, contra 84% dos demais; não há priorização deles.</div>
+<div class="quote"><b>Hipótese levantada:</b> com mais investimento, deveria haver mais sign-ups. <b>Resposta:</b> sign-ups -1,9% no mês com investimento do Inbound BR +40% (planilha de fechamento); Paid Search +27% em sign-ups, puxado pelo Google e pela landing /pt-br/ads/compras.</div>
+<p class="note">A transcrição é automática e tem erros (por exemplo, "signap" foi lido como signup). Os números do painel não vêm dela.</p>
+</section>
+</div>
+<div class="tab" id="t2">
+<section class="hero">
+<small>Company Size · deals de App Signup, team BR, Inbound · setembro e outubro completos</small>
+<h1>O novo formulário reduziu as faixas, e o Harvest passou a decidir o MQL.</h1>
+<p class="lead">Antes de 07/10 o Signup tinha 10 faixas de tamanho. Depois, 5. Self-employed e 11-50 quase desaparecem em outubro, e o Harvest passa a corrigir o tamanho de quem declara 1 a 10. Declarado é o tamanho informado no formulário; Harvest é o que o enriquecimento encontrou. Outubro inclui os seis primeiros dias, ainda no formulário antigo.</p>
+<div class="kpis">
+<div class="kpi"><span class="v neu">2.521 → 480</span><span class="l">Deals declarados como Self-employed</span></div>
+<div class="kpi"><span class="v neu">437 → 99</span><span class="l">Deals declarados como 11-50</span></div>
+<div class="kpi"><span class="v bad">321 de 2.606</span><span class="l">Declararam 1 a 10 e o Harvest aponta 501 ou mais (out)</span></div>
+<div class="kpi"><span class="v bad">3 → 337</span><span class="l">Deals sem Company Size</span></div>
+</div>
+</section>
+<section class="card">
+<span class="sec-tag">1 · Faixas declaradas</span>
+<h2>As faixas do HubSpot em setembro e em outubro</h2>
+<div class="tw"><table style="min-width:520px"><thead><tr><th>Declarado</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th></tr></thead><tbody><tr><td>Self-employed</td><td class="n ms">2.521</td><td class="n mo">480</td><td class="n neg">-81,0%</td></tr><tr><td>1 a 10</td><td class="n ms">1.110</td><td class="n mo">2.606</td><td class="n pos">+134,8%</td></tr><tr><td>11 a 50</td><td class="n ms">437</td><td class="n mo">99</td><td class="n neg">-77,3%</td></tr><tr><td>51 a 200</td><td class="n ms">293</td><td class="n mo">941</td><td class="n pos">+221,2%</td></tr><tr><td>201 a 500</td><td class="n ms">177</td><td class="n mo">287</td><td class="n pos">+62,1%</td></tr><tr><td>501 a 1.000</td><td class="n ms">153</td><td class="n mo">169</td><td class="n pos">+10,5%</td></tr><tr><td>1.001 a 5.000</td><td class="n ms">206</td><td class="n mo">33</td><td class="n neg">-84,0%</td></tr><tr><td>5.001 a 10.000</td><td class="n ms">99</td><td class="n mo">21</td><td class="n neg">-78,8%</td></tr><tr><td>10.001+</td><td class="n ms">164</td><td class="n mo">25</td><td class="n neg">-84,8%</td></tr><tr><td>University Junior Enterprise</td><td class="n ms">267</td><td class="n mo">52</td><td class="n neg">-80,5%</td></tr><tr><td>Sem tamanho</td><td class="n ms">3</td><td class="n mo">337</td><td class="n mut">novo</td></tr><tr class="sum"><td>Total</td><td class="n ms">5.430</td><td class="n mo">5.050</td><td class="n neg">-7,0%</td></tr></tbody></table></div>
+<p class="note">As faixas não são comparáveis uma a uma. O formulário novo mostra 5 faixas: Self-employed, 11-50, 5.001-10.000, 10.001+ e Univ. Junior Enterprise deixam de existir (os valores que ainda aparecem em outubro vêm dos dias 01 a 06), e o 1.001-5.000 é enviado com um formato que o HubSpot não aceita, o que deixa o campo vazio. Na tabela seguinte, as faixas são agrupadas para a comparação.</p>
+</section>
+<section class="card">
+<span class="sec-tag">2 · Funil por faixa comparável</span>
+<h2>Por faixa, o conectado por SAL não piorou; o total cai por mix</h2>
+<div class="tw"><table class="cols-g" style="min-width:860px"><thead><tr><th></th><th class="g" colspan="2" style="text-align:center">Deals</th><th class="g" colspan="2" style="text-align:center">MQL</th><th class="g" colspan="2" style="text-align:center">SAL</th><th class="g" colspan="2" style="text-align:center">Conectado</th><th class="g" colspan="2" style="text-align:center">Conectado por SAL</th></tr><tr><th>Declarado</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th></tr></thead><tbody><tr><td>Até 10 (1-10, Self-employed, Univ. Junior Ent.)</td><td class="n ms">3.898</td><td class="n mo">3.138</td><td class="n ms">220</td><td class="n mo">1.184</td><td class="n ms">72</td><td class="n mo">387</td><td class="n ms">4</td><td class="n mo">32</td><td class="n ms">5,6%</td><td class="n pos mo">8,3%</td></tr><tr class="hl"><td>11 a 200</td><td class="n ms">730</td><td class="n mo">1.040</td><td class="n ms">728</td><td class="n mo">1.037</td><td class="n ms">627</td><td class="n mo">866</td><td class="n ms">122</td><td class="n mo">152</td><td class="n ms">19,5%</td><td class="n neg mo">17,6%</td></tr><tr class="hl"><td>201 a 1.000</td><td class="n ms">330</td><td class="n mo">456</td><td class="n ms">330</td><td class="n mo">455</td><td class="n ms">294</td><td class="n mo">388</td><td class="n ms">55</td><td class="n mo">71</td><td class="n ms">18,7%</td><td class="n mut mo">18,3%</td></tr><tr><td>1.001 ou mais</td><td class="n ms">469</td><td class="n mo">79</td><td class="n ms">469</td><td class="n mo">79</td><td class="n ms">387</td><td class="n mo">81</td><td class="n ms">72</td><td class="n mo">19</td><td class="n ms">18,6%</td><td class="n pos mo">23,5%</td></tr><tr><td>Sem tamanho</td><td class="n ms">3</td><td class="n mo">337</td><td class="n ms">3</td><td class="n mo">321</td><td class="n ms">1</td><td class="n mo">234</td><td class="n ms">0</td><td class="n mo">32</td><td class="n ms">n/d</td><td class="n mut mo">13,7%</td></tr><tr class="sum"><td>Total</td><td class="n ms">5.430</td><td class="n mo">5.050</td><td class="n ms">1.750</td><td class="n mo">3.076</td><td class="n ms">1.381</td><td class="n mo">1.956</td><td class="n ms">253</td><td class="n mo">306</td><td class="n ms">18,3%</td><td class="n neg mo">15,6%</td></tr></tbody></table></div>
+<div class="callout blue"><b>O conectado por SAL fica estável dentro das faixas</b> (11 a 200: 19,5% → 17,6%; 201 a 1.000: 18,7% → 18,3%; 1.001 ou mais: 18,6% → 23,5%). O total cai de 18,3% para 15,6% porque entram muito mais SAL de quem declarou até 10 funcionários (72 → 387) e de deals sem tamanho (1 → 234), faixas em que o conectado por SAL é menor ou não tem base em setembro. O topo continua existindo, só perdeu o tamanho: "1.001 ou mais" e "sem tamanho" somam 472 deals em setembro e 416 em outubro.</div>
+</section>
+<section class="card">
+<span class="sec-tag">3 · Quem declarou 1 a 10</span>
+<h2>Quantos entraram como 1 a 10 e eram 500 ou mais</h2>
+<div class="tw"><table class="cols-g" style="min-width:520px"><thead><tr><th></th><th class="g" colspan="2" style="text-align:center">Declararam 1 a 10</th></tr><tr><th>O Harvest diz</th><th class="n ms">Set</th><th class="n mo">Out</th></tr></thead><tbody><tr><td>Não foi enriquecido</td><td class="n ms">920 (83%)</td><td class="n mo">70 (3%)</td></tr><tr><td>Não encontrou a empresa</td><td class="n ms">102 (9%)</td><td class="n mo">1.212 (47%)</td></tr><tr><td>1 a 10 (confirma)</td><td class="n ms">27 (2%)</td><td class="n mo">307 (12%)</td></tr><tr><td>Self-employed</td><td class="n ms">9 (1%)</td><td class="n mo">178 (7%)</td></tr><tr><td>Empresa com 11 a 500 funcionários</td><td class="n ms">19 (2%)</td><td class="n mo">518 (20%)</td></tr><tr class="hl"><td>Empresa com 501 ou mais funcionários</td><td class="n ms">33 (3%)</td><td class="n mo">321 (12%)</td></tr><tr class="sum"><td>Total que declarou 1 a 10</td><td class="n ms">1.110</td><td class="n mo">2.606</td></tr></tbody></table></div>
+<h3>O que aconteceu com os 2.606 deals de outubro</h3>
+<div class="tw"><table style="min-width:560px"><thead><tr><th>O Harvest diz (outubro)</th><th class="n">Deals</th><th class="n">MQL</th><th class="n">SAL</th><th class="n">Conectado</th></tr></thead><tbody><tr class="hl"><td>Empresa com 501 ou mais funcionários</td><td class="n">321</td><td class="n">320</td><td class="n">82</td><td class="n">2</td></tr><tr><td>Empresa com 11 a 500 funcionários</td><td class="n">518</td><td class="n">518</td><td class="n">129</td><td class="n">6</td></tr><tr><td>1 a 10 (confirma)</td><td class="n">307</td><td class="n">13</td><td class="n">7</td><td class="n">1</td></tr><tr><td>Self-employed</td><td class="n">178</td><td class="n">8</td><td class="n">3</td><td class="n">0</td></tr><tr><td>Não encontrou a empresa</td><td class="n">1.212</td><td class="n">70</td><td class="n">36</td><td class="n">8</td></tr><tr><td>Não foi enriquecido</td><td class="n">70</td><td class="n">20</td><td class="n">0</td><td class="n">0</td></tr><tr class="sum"><td>Total</td><td class="n">2.606</td><td class="n">949</td><td class="n">257</td><td class="n">17</td></tr></tbody></table></div>
+<div class="callout blue"><b>321 de 2.606 (12%) declararam 1 a 10 e o Harvest aponta 501 ou mais.</b> Quase todos viraram MQL (320), 82 chegaram a SAL e 2 foram conectados. Outros 518 têm 11 a 500 funcionários no Harvest. O Harvest passou a cobrir 97% de quem declarou 1 a 10 em outubro, contra 17% em setembro.</div>
+<p class="note">"Não encontrou a empresa" é o valor Unknown do Harvest. MQL, SAL e conectado de outubro são entradas na etapa dentro do mês.</p>
+</section>
+<section class="card">
+<span class="sec-tag">4 · Checkpoint do Company Size</span>
+<h2>O que mudou no formulário</h2>
+<div class="timeline">
+<div class="tl red"><b>07/10</b><span>Novo Signup no ar com 5 faixas no lugar de 10. O HubSpot deixa de receber Self-employed, 11-50, 5.001-10.000, 10.001+ e University Junior Enterprise.</span></div>
+<div class="tl red"><b>07/10 a 29/10</b><span>372 de 8.594 envios do Signup chegaram com 1001-5000 e ficaram sem Company Size. No Book a Demo, 109 envios tiveram o mesmo problema.</span></div>
+<div class="tl"><b>29/10</b><span>Encontramos a causa e mapeamos a correção. A recuperação dos deals afetados fica com o time de CRM.</span></div>
+</div>
+</section>
+<section class="foot">
+<p><b>Método.</b> HubSpot (query_crm_data, 04/11/2026): DEAL com lead_source = App Signup, team = BR, pipeline Inbound (924876629), sem migration. Deals por data de criação; MQL, SAL e conectado por data de entrada na etapa dentro do mês; SQL por data de fechamento. Declarado = company_size__c. Harvest = enrich_harvest_api_company_size. Os envios e as datas do Company Size vêm do relatório técnico do incidente.</p>
+</section>
+</div>
+<section class="foot">
+<p><b>Método (aba Signup).</b> Totais mensais de sessões e sign-ups (297.251 e 312.615; 4.393 e 4.309): foto do BigQuery na planilha de sessões por mês. Canais e páginas: GA4 via Supermetrics, propriedade Pipefy - Official (224213526), fuso America/Sao_Paulo; sessões com filtro PT-BR (www.pipefy.com/pt-br e use.pipefy.com) e eventos sem filtro de página. Steps: signup_step_identity, signup_step_segment, sign_up_step_company, signup_step_use_cases e sign_up, de 14 a 26/10. HubSpot: App Signup, team BR, pipeline Inbound (924876629); conectado = SAL Connected (1430168675). Testes de proporção: z de duas amostras, bicaudal.</p>
+<p>O GA conta eventos do site e o HubSpot conta deals; hs_analytics_source não é a sessão do GA.</p>
+</section>
+</div>
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var btns = document.querySelectorAll('.tabs button');
+  function show(id) {
+    document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('on', t.id === id); });
+    btns.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-tab') === id); });
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-tab')); }); });
+  var h = (location.hash || '').replace('#', '');
+  if (h === 't2') show('t2');
+})();
+</script>
+</body>
+</html>
