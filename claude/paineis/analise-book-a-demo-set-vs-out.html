@@ -121,29 +121,18 @@ tr.hl td { font-weight:700; } tr.hl td:first-child { box-shadow:inset 3px 0 0 va
 .mlegend i { display:inline-block; width:14px; height:14px; border-radius:3px; }
 .mlegend i.s { background:var(--mS-bg); box-shadow:inset 0 3px 0 var(--mS); border:1px solid var(--mS); }
 .mlegend i.o { background:var(--mO-bg); box-shadow:inset 0 3px 0 var(--mO); border:1px solid var(--mO); }
+th.stg { color:#fff; font-weight:700; text-align:center; border-bottom:none; letter-spacing:.02em; padding:6px 8px; font-size:11px; text-transform:uppercase; }
+th.stg-deals { background:#475569; } th.stg-mql { background:#1d4ed8; } th.stg-sal { background:#7c3aed; }
+th.stg-conn { background:#0f766e; } th.stg-sql { background:#15803d; }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  th.stg-deals{background:#64748b;} th.stg-mql{background:#3b82f6;} th.stg-sal{background:#8b5cf6;}
+  th.stg-conn{background:#14b8a6;} th.stg-sql{background:#22c55e;}
+}}
+:root[data-theme="dark"]{
+  th.stg-deals{background:#64748b;} th.stg-mql{background:#3b82f6;} th.stg-sal{background:#8b5cf6;}
+  th.stg-conn{background:#14b8a6;} th.stg-sql{background:#22c55e;}
+}
 @media (max-width:560px){ .hero{padding:24px 18px;} .card{padding:16px 14px;} .bar{grid-template-columns:100px 1fr 44px;} }
-
-.bar .val.n0{color:var(--muted);}
-.kpis.k5{grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));}
-.kpi .v.sm{font-size:22px;}
-a.lnk{color:var(--blue);font-weight:600;}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(195px,100%),1fr));gap:12px;}
-.st{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0;}
-.st .v{font-size:21px;font-weight:700;letter-spacing:-0.02em;line-height:1.15;}
-.st .l{font-size:12px;color:var(--muted);}
-.st .d{font-size:12.5px;font-weight:700;}
-.st .d.pos{color:var(--green);} .st .d.neg{color:var(--red);} .st .d.mut{color:var(--muted);}
-.pb{display:flex;flex-direction:column;gap:10px;min-width:0;}
-.pr{display:grid;grid-template-columns:minmax(110px,170px) 1fr 58px;gap:10px;align-items:center;font-size:13px;}
-.pr .pl{min-width:0;overflow-wrap:anywhere;}
-.pr .pbars{display:flex;flex-direction:column;gap:3px;}
-.pr .pbs,.pr .pbo{display:flex;align-items:center;gap:6px;height:11px;}
-.pr .pbs i,.pr .pbo i{display:block;height:100%;border-radius:3px;min-width:2px;}
-.pr .pbs i{background:var(--mS);} .pr .pbo i{background:var(--mO);}
-.pr .pbs b,.pr .pbo b{font-size:11px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1;}
-.pr .pv{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;font-size:12.5px;}
-.pr .pv.pos{color:var(--green);} .pr .pv.neg{color:var(--red);} .pr .pv.mut{color:var(--muted);}
-@media (max-width:560px){.pr{grid-template-columns:96px 1fr 50px;}}
 </style>
 </head>
 <body>
@@ -152,19 +141,20 @@ a.lnk{color:var(--blue);font-weight:600;}
 <button class="on" data-tab="t1" type="button">Book a Demo</button>
 <button data-tab="t2" type="button">Company Size</button>
 </nav>
-<div aria-label="Cores dos meses" class="mlegend">Nas tabelas: <span><i class="s"></i>Setembro (01 a 30/09)</span><span><i class="o"></i>Outubro (01 a 31/10)</span></div>
+<div aria-label="Cores dos meses" class="mlegend">Nas tabelas: <span><i class="s"></i>Setembro</span><span><i class="o"></i>Outubro</span></div>
+<!-- ============================ ABA 1 ============================ -->
 <div class="tab on" id="t1">
 <section class="hero">
 <small>Book a Demo, setembro (01 a 30/09) contra outubro (01 a 31/10) · escopo PT-BR · extraído em 04/11/2026</small>
-<h1>O Book a Demo ficou estável no site, os deals de Web Request subiram 29% e o SQL caiu 25%.</h1>
-<p class="lead">O volume de envios praticamente não mudou no GA (+1,8%). No HubSpot, os deals de Web Request subiram de 665 para 856, mas o SQL foi de 125 para 94. A queda está nos deals do formulário do site, principalmente na faixa de 11 a 50 funcionários, e não vem de mudança de mix.</p>
+<h1>O Book a Demo cresceu 1,8% no site, mas o SQL caiu 23%.</h1>
+<p class="lead">O volume de envios praticamente não mudou. Mudou de onde ele vem (menos formulário do site, mais landing page) e, depois do deal criado, o quanto ele vira SQL. A queda está nos deals do formulário do site, principalmente na faixa de 11 a 200 funcionários.</p>
 <div class="kpis">
 <div class="kpi"><span class="v neu">297.251 → 312.615</span><span class="l">Sessões (GA4), +5,2%</span></div>
 <div class="kpi"><span class="v neu">842 → 857</span><span class="l">Envios de Book a Demo no site (GA4), +1,8%</span></div>
-<div class="kpi"><span class="v ok">665 → 856</span><span class="l">Deals de Web Request criados no HubSpot (Inbound BR), +28,7%</span></div>
-<div class="kpi"><span class="v bad">125 → 94</span><span class="l">SQL de Web Request, -24,8% (SQL por deal: 18,8% → 11,0%)</span></div>
+<div class="kpi"><span class="v neu">680 → 690</span><span class="l">Deals de Web Request criados no HubSpot (BR, Inbound + Outbound), +1,5%</span></div>
+<div class="kpi"><span class="v bad">100 → 77</span><span class="l">SQL desses deals, -23% (criados de 02 a 26, etapas até +8 dias)</span></div>
 </div>
-<small>GA conta envios de formulário registrados no site. HubSpot conta deals de Web Request do funil BR, sem migration, por mês fechado. São duas bases diferentes, por isso os números não são iguais.</small>
+<small>GA conta envios de formulário registrados no site. HubSpot conta deals criados no funil BR. São duas bases diferentes, por isso os números não são iguais.</small>
 </section>
 <section class="card">
 <span class="sec-tag">Checkpoint de datas</span>
@@ -185,21 +175,20 @@ a.lnk{color:var(--blue);font-weight:600;}
 <div class="callout blue">
 <b>Subimos</b>
 <ul>
-<li>Sessões: +5,2% (297,3 mil → 312,6 mil). Paid Search +38%, dois terços disso é Bing, e Paid Social +39%.</li>
-<li>Envios por landing page no GA: 368 → 474, +29%.</li>
-<li>Deals de Web Request: 665 → 856 (+28,7%). LPs de ads 206 → 332 (+61%), LPs use.pipefy.com 99 → 136 (+37%) e formulário do site 259 → 280 (+8%).</li>
-<li>MQL: 472 → 686 (+45%), vindo de quem declarou 1 a 10 funcionários (+83) e de deals sem tamanho (+71).</li>
-<li>Conectados: 200 → 225 (+12,5%).</li>
+<li>Sessões: +5,2% (297,3 mil → 312,6 mil). Paid Search +38%, Paid Social +39%.</li>
+<li>Envios por landing page (submit LP): 368 → 474, +29%. Puxado por /ads/compras (+32), /ads/workflow-software (+26), /ads/plataforma-no-code (+17) e LPs do use.pipefy.com (+30).</li>
+<li>Chegada ao formulário do site pela home (+55%) e por preços (+71%).</li>
+<li>Deals de landing page de ads: 180 → 260 (+44%), com SQL por deal em 5%.</li>
+<li>MQL: 395 → 530 (+34%), vindo de quem declarou 1 a 10 funcionários (+70) e de deals sem tamanho (+55).</li>
 </ul>
 </div>
 <div class="callout red">
 <b>Perdemos</b>
 <ul>
-<li>SQL: 125 → 94 (-24,8%). SQL por deal: 18,8% → 11,0% (p &lt; 0,001).</li>
-<li>Formulário do site: SQL 82 → 49 com deals de 259 → 280. SQL por deal 31,7% → 17,5%.</li>
-<li>Faixa de 11 a 50 funcionários: SQL 49 → 20. As demais faixas somam -2.</li>
-<li>SAL por MQL: 96,4% → 70,3%. Entre deals com dono, SAL por deal de 90,1% para 69,7%.</li>
-<li>Formulário do site no GA: 476 → 364 envios (-24%). Sessões orgânicas, diretas e social orgânico: -11%.</li>
+<li>Formulário do site (step 2): 476 → 364, -24%. Paid Search 168 → 112 e Organic Search 110 → 89.</li>
+<li>Sessões orgânicas, diretas e social orgânico: -11%. Book a Demo desse grupo: 224 → 186.</li>
+<li>SQL: 100 → 77 com deals estáveis. Faixa de 11 a 200 funcionários: 57 → 39 SQL e 181 → 158 SAL.</li>
+<li>Entre deals com dono, SAL foi de 92% para 71% e conectados de 45% para 31%.</li>
 </ul>
 </div>
 </div>
@@ -207,7 +196,6 @@ a.lnk{color:var(--blue);font-weight:600;}
 <section class="card chart">
 <span class="sec-tag">1 · Sessões e eventos no GA</span>
 <h2>A queda do formulário do site foi compensada pelas landing pages</h2>
-<div class="stats"><div class="st"><span class="v">297.251 → 312.615</span><span class="l">Sessões</span><span class="d pos">+5,2%</span></div><div class="st"><span class="v">842 → 857</span><span class="l">Book a Demo (envios)</span><span class="d mut">+1,8%</span></div><div class="st"><span class="v">0,283 → 0,274</span><span class="l">Book a Demo por 100 sessões</span><span class="d neg">-3,2%</span></div><div class="st"><span class="v">476 → 364</span><span class="l">Formulário do site (step 2)</span><span class="d neg">-23,5%</span></div><div class="st"><span class="v">368 → 474</span><span class="l">Landing pages (submit LP)</span><span class="d pos">+28,8%</span></div></div>
 <p class="note">Eventos diários, média móvel de 7 dias (linha grossa) sobre o dado diário (linha fina). Os dois meses têm 22 dias úteis e um feriado de segunda (07/09 e 12/10).</p>
 <svg aria-label="Eventos diários de Book a Demo: formulário do site (step 2) e landing pages (submit LP), média móvel de 7 dias, 01/09 a 31/10" role="img" viewbox="0 0 900 280">
 <line class="grid" x1="40" x2="775" y1="246.0" y2="246.0"></line><text class="ax" text-anchor="end" x="34" y="250.0">0</text>
@@ -234,104 +222,238 @@ a.lnk{color:var(--blue);font-weight:600;}
 <text class="lb c1t" x="781" y="191.7">Formulário do site</text><text class="lb c1t" x="781" y="204.7">(step 2)</text>
 <text class="lb c2t" x="781" y="141.1">Landing pages</text><text class="lb c2t" x="781" y="154.1">(submit LP)</text>
 </svg>
-<div class="legend"><span><i style="background:var(--c1)"></i>Formulário do site (step 2)</span><span><i style="background:var(--c2)"></i>Landing pages (submit LP)</span></div>
+<div class="legend"><span><i style="background:var(--c1)"></i>book_a_demo_step_2 (formulário do site)</span><span><i style="background:var(--c2)"></i>book_a_demo_submit_lp (landing pages)</span></div>
+<div class="tw"><table>
+<thead><tr><th>GA4</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th></tr></thead>
+<tbody>
+<tr><td>Sessões</td><td class="n ms">297.251</td><td class="n mo">312.615</td><td class="n pos">+5,2%</td></tr>
+<tr class="sum"><td>Book a Demo</td><td class="n ms">842</td><td class="n mo">857</td><td class="n pos">+1,8%</td></tr>
+<tr><td>Book a Demo por 100 sessões</td><td class="n ms">0,283</td><td class="n mo">0,274</td><td class="n neg">-3,2%</td></tr>
+<tr class="sub"><td>Abertura: formulário do site (step 2)</td><td class="n ms">476</td><td class="n mo">364</td><td class="n neg">-23,5%</td></tr>
+<tr class="sub"><td>Abertura: landing pages www.pipefy.com/pt-br/ads (submit LP)</td><td class="n ms">251</td><td class="n mo">327</td><td class="n pos">+30,3%</td></tr>
+<tr class="sub"><td>Abertura: landing pages use.pipefy.com (submit LP)</td><td class="n ms">117</td><td class="n mo">147</td><td class="n pos">+25,6%</td></tr>
+</tbody>
+</table></div>
+<p class="note">O geral (sessões e Book a Demo) é a visão fechada do mês. As aberturas por canal, página e origem usam consulta própria (PT-BR) e somam 844 e 838 Book a Demo.</p>
+<p class="note">Por dia útil, o step 2 foi de 19,8 (01 a 22/09) para 17,7 (23 a 30/09, após o deploy oficial) e 14,6 em outubro. Não há salto depois de 23/09.</p>
 </section>
 <section class="card">
 <span class="sec-tag">2 · Grupo de canais (GA4)</span>
-<h2>O aumento de tráfego pago é Bing, e o Bing quase não converte em Book a Demo</h2>
-<div class="grid2">
-<div class="pb"><h3>Sessões por canal</h3><div class="pr"><span class="pl">Google (cpc)</span><div class="pbars"><div class="pbs"><i style="width:85.1%"></i><b>75.783</b></div><div class="pbo"><i style="width:97.6%"></i><b>86.890</b></div></div><span class="pv pos">+15%</span></div><div class="pr"><span class="pl">Bing</span><div class="pbars"><div class="pbs"><i style="width:21.6%"></i><b>19.260</b></div><div class="pbo"><i style="width:48.8%"></i><b>43.458</b></div></div><span class="pv pos">+126%</span></div><div class="pr"><span class="pl">Cross-network (Performance Max)</span><div class="pbars"><div class="pbs"><i style="width:100.0%"></i><b>89.051</b></div><div class="pbo"><i style="width:82.5%"></i><b>73.456</b></div></div><span class="pv neg">-18%</span></div><div class="pr"><span class="pl">Organic Search</span><div class="pbars"><div class="pbs"><i style="width:47.5%"></i><b>42.337</b></div><div class="pbo"><i style="width:42.5%"></i><b>37.849</b></div></div><span class="pv neg">-11%</span></div><div class="pr"><span class="pl">Direct</span><div class="pbars"><div class="pbs"><i style="width:50.7%"></i><b>45.162</b></div><div class="pbo"><i style="width:46.7%"></i><b>41.566</b></div></div><span class="pv neg">-8%</span></div><div class="pr"><span class="pl">Paid Social</span><div class="pbars"><div class="pbs"><i style="width:4.1%"></i><b>3.668</b></div><div class="pbo"><i style="width:5.7%"></i><b>5.109</b></div></div><span class="pv pos">+39%</span></div><div class="pr"><span class="pl">Organic Social</span><div class="pbars"><div class="pbs"><i style="width:3.9%"></i><b>3.511</b></div><div class="pbo"><i style="width:1.5%"></i><b>1.297</b></div></div><span class="pv neg">-63%</span></div><div class="pr"><span class="pl">Demais canais</span><div class="pbars"><div class="pbs"><i style="width:24.9%"></i><b>22.175</b></div><div class="pbo"><i style="width:23.6%"></i><b>21.050</b></div></div><span class="pv neg">-5%</span></div></div>
-<div class="pb"><h3>Book a Demo por canal</h3><div class="pr"><span class="pl">Google (cpc)</span><div class="pbars"><div class="pbs"><i style="width:94.5%"></i><b>358</b></div><div class="pbo"><i style="width:100.0%"></i><b>379</b></div></div><span class="pv pos">+6%</span></div><div class="pr"><span class="pl">Bing</span><div class="pbars"><div class="pbs"><i style="width:7.9%"></i><b>30</b></div><div class="pbo"><i style="width:7.4%"></i><b>28</b></div></div><span class="pv neg">-7%</span></div><div class="pr"><span class="pl">Cross-network (Performance Max)</span><div class="pbars"><div class="pbs"><i style="width:32.2%"></i><b>122</b></div><div class="pbo"><i style="width:38.5%"></i><b>146</b></div></div><span class="pv pos">+20%</span></div><div class="pr"><span class="pl">Organic Search</span><div class="pbars"><div class="pbs"><i style="width:31.1%"></i><b>118</b></div><div class="pbo"><i style="width:26.9%"></i><b>102</b></div></div><span class="pv neg">-14%</span></div><div class="pr"><span class="pl">Direct</span><div class="pbars"><div class="pbs"><i style="width:20.1%"></i><b>76</b></div><div class="pbo"><i style="width:17.4%"></i><b>66</b></div></div><span class="pv neg">-13%</span></div><div class="pr"><span class="pl">Paid Social</span><div class="pbars"><div class="pbs"><i style="width:14.8%"></i><b>56</b></div><div class="pbo"><i style="width:12.4%"></i><b>47</b></div></div><span class="pv neg">-16%</span></div><div class="pr"><span class="pl">Organic Social</span><div class="pbars"><div class="pbs"><i style="width:7.9%"></i><b>30</b></div><div class="pbo"><i style="width:4.7%"></i><b>18</b></div></div><span class="pv neg">-40%</span></div><div class="pr"><span class="pl">Demais canais</span><div class="pbars"><div class="pbs"><i style="width:14.8%"></i><b>56</b></div><div class="pbo"><i style="width:14.8%"></i><b>56</b></div></div><span class="pv mut">+0%</span></div></div>
-</div>
-<p class="note">O Bing foi de 19 mil para 43 mil sessões (+126%) e entregou 30 e 28 envios: dois terços do aumento de sessões de Paid Search é Bing. O Google (cpc) manteve a conversão (0,47% → 0,44%). Google e Bing usam fonte e mídia da sessão e somam cerca de 1% a mais que o grupo Paid Search. Escopo PT-BR.</p>
+<h2>O tráfego novo é pago e converte menos em Book a Demo</h2>
+<div class="tw"><table>
+<thead>
+<tr><th></th><th class="stg stg-deals" colspan="3">Sessões</th><th class="stg stg-mql" colspan="3">Book a Demo</th><th class="stg stg-sal" colspan="3">Por 100 sessões</th></tr>
+<tr><th>Canal (sessão)</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th></tr>
+</thead>
+<tbody>
+<tr><td>Paid Search</td><td class="n ms">93.882</td><td class="n mo">129.606</td><td class="n pos">+38,1%</td><td class="n ms">384</td><td class="n mo">403</td><td class="n pos">+4,9%</td><td class="n ms">0,409%</td><td class="n mo">0,311%</td><td class="n neg">-24%</td></tr>
+<tr><td>Cross-network</td><td class="n ms">89.051</td><td class="n mo">73.456</td><td class="n neg">-17,5%</td><td class="n ms">122</td><td class="n mo">146</td><td class="n pos">+19,7%</td><td class="n ms">0,137%</td><td class="n mo">0,199%</td><td class="n pos">+45%</td></tr>
+<tr class="sum"><td>Google pago combinado</td><td class="n ms">182.933</td><td class="n mo">203.062</td><td class="n pos">+11,0%</td><td class="n ms">506</td><td class="n mo">549</td><td class="n pos">+8,5%</td><td class="n ms">0,277%</td><td class="n mo">0,270%</td><td class="n mut">-2%</td></tr>
+<tr><td>Organic Search</td><td class="n ms">42.337</td><td class="n mo">37.849</td><td class="n neg">-10,6%</td><td class="n ms">118</td><td class="n mo">102</td><td class="n neg">-13,6%</td><td class="n ms">0,279%</td><td class="n mo">0,269%</td><td class="n neg">-3%</td></tr>
+<tr><td>Direct</td><td class="n ms">45.162</td><td class="n mo">41.566</td><td class="n neg">-8,0%</td><td class="n ms">76</td><td class="n mo">66</td><td class="n neg">-13,2%</td><td class="n ms">0,168%</td><td class="n mo">0,159%</td><td class="n neg">-6%</td></tr>
+<tr><td>Paid Social</td><td class="n ms">3.668</td><td class="n mo">5.109</td><td class="n pos">+39,3%</td><td class="n ms">56</td><td class="n mo">47</td><td class="n neg">-16,1%</td><td class="n ms">1,527%</td><td class="n mo">0,920%</td><td class="n neg">-40%</td></tr>
+<tr><td>Organic Social</td><td class="n ms">3.511</td><td class="n mo">1.297</td><td class="n neg">-63,1%</td><td class="n ms">30</td><td class="n mo">18</td><td class="n neg">-40,0%</td><td class="n ms">0,854%</td><td class="n mo">1,388%</td><td class="n pos">+62%</td></tr>
+<tr><td>Demais canais</td><td class="n ms">22.175</td><td class="n mo">21.050</td><td class="n neg">-5,1%</td><td class="n ms">56</td><td class="n mo">56</td><td class="n mut">+0,0%</td><td class="n ms">0,253%</td><td class="n mo">0,266%</td><td class="n pos">+5%</td></tr>
+</tbody>
+</table></div>
+<p class="note">Paid Search e Cross-network são as campanhas Google; somadas, as sessões sobem 11,0% e o Book a Demo 8,5%, com conversão de 0,277% para 0,270%. Escopo PT-BR: www.pipefy.com/pt-br e use.pipefy.com. Em setembro a soma por canal é 842 (2 eventos do step 2 ficam sem canal).</p>
 </section>
 <section class="card">
-<span class="sec-tag">3 · Origem dos envios</span>
-<h2>De onde veio cada Book a Demo</h2>
-<div class="grid2">
-<div class="pb"><h3>Formulário do site: página de origem do envio</h3><div class="pr"><span class="pl">Home</span><div class="pbars"><div class="pbs"><i style="width:34.8%"></i><b>92</b></div><div class="pbo"><i style="width:54.2%"></i><b>143</b></div></div><span class="pv pos">+55%</span></div><div class="pr"><span class="pl">Preços</span><div class="pbars"><div class="pbs"><i style="width:23.5%"></i><b>62</b></div><div class="pbo"><i style="width:40.2%"></i><b>106</b></div></div><span class="pv pos">+71%</span></div><div class="pr"><span class="pl">Outras páginas do site</span><div class="pbars"><div class="pbs"><i style="width:23.5%"></i><b>62</b></div><div class="pbo"><i style="width:32.6%"></i><b>86</b></div></div><span class="pv pos">+39%</span></div><div class="pr"><span class="pl">Sem página de origem identificada</span><div class="pbars"><div class="pbs"><i style="width:100.0%"></i><b>264</b></div><div class="pbo"><i style="width:11.0%"></i><b>29</b></div></div><span class="pv neg">-89%</span></div></div>
-<div class="pb"><h3>Landing pages: envios por página</h3><div class="pr"><span class="pl">LP ads: compras</span><div class="pbars"><div class="pbs"><i style="width:22.4%"></i><b>22</b></div><div class="pbo"><i style="width:55.1%"></i><b>54</b></div></div><span class="pv pos">+145%</span></div><div class="pr"><span class="pl">LP ads: workflow-software</span><div class="pbars"><div class="pbs"><i style="width:20.4%"></i><b>20</b></div><div class="pbo"><i style="width:46.9%"></i><b>46</b></div></div><span class="pv pos">+130%</span></div><div class="pr"><span class="pl">LP ads: plataforma-no-code</span><div class="pbars"><div class="pbs"><i style="width:82.7%"></i><b>81</b></div><div class="pbo"><i style="width:100.0%"></i><b>98</b></div></div><span class="pv pos">+21%</span></div><div class="pr"><span class="pl">LP use: srm-ai-studio</span><div class="pbars"><div class="pbs"><i style="width:25.5%"></i><b>25</b></div><div class="pbo"><i style="width:39.8%"></i><b>39</b></div></div><span class="pv pos">+56%</span></div><div class="pr"><span class="pl">LP use: background-check</span><div class="pbars"><div class="pbs"><i style="width:6.1%"></i><b>6</b></div><div class="pbo"><i style="width:19.4%"></i><b>19</b></div></div><span class="pv mut">novo</span></div><div class="pr"><span class="pl">LP use: serviços financeiros</span><div class="pbars"><div class="pbs"><i style="width:42.9%"></i><b>42</b></div><div class="pbo"><i style="width:35.7%"></i><b>35</b></div></div><span class="pv neg">-17%</span></div><div class="pr"><span class="pl">LP ads: automação de processos</span><div class="pbars"><div class="pbs"><i style="width:22.4%"></i><b>22</b></div><div class="pbo"><i style="width:16.3%"></i><b>16</b></div></div><span class="pv neg">-27%</span></div><div class="pr"><span class="pl">LP inglês: book-a-demo</span><div class="pbars"><div class="pbs"><i style="width:69.4%"></i><b>68</b></div><div class="pbo"><i style="width:44.9%"></i><b>44</b></div></div><span class="pv neg">-35%</span></div></div>
-</div>
-<p class="note">Em setembro, 264 dos 480 envios do formulário do site não tinham página de origem identificada; em outubro, 29. Sem eles, o formulário vai de 216 para 335 envios (+55%): é a maior parte da diferença entre os dois meses. A home é a principal página de origem do formulário nos dois meses.</p>
-</section>
-<section class="card">
-<span class="sec-tag">4 · HubSpot, até o SQL</span>
-<h2>Deals +29%, SQL -25%</h2>
-<div class="stats"><div class="st"><span class="v">665 → 856</span><span class="l">Deals criados</span><span class="d pos">+28,7%</span></div><div class="st"><span class="v">472 → 686</span><span class="l">MQL</span><span class="d pos">+45,3%</span></div><div class="st"><span class="v">455 → 482</span><span class="l">SAL</span><span class="d pos">+5,9%</span></div><div class="st"><span class="v">200 → 225</span><span class="l">Conectados</span><span class="d pos">+12,5%</span></div><div class="st"><span class="v">125 → 94</span><span class="l">SQL</span><span class="d neg">-24,8%</span></div></div>
-<div class="stats"><div class="st"><span class="v">96,4% → 70,3%</span><span class="l">SAL por MQL</span><span class="d neg">-27,1%</span></div><div class="st"><span class="v">62,5% → 41,8%</span><span class="l">SQL por conectado</span><span class="d neg">-33,2%</span></div><div class="st"><span class="v">18,8% → 11,0%</span><span class="l">SQL por deal</span><span class="d neg">-41,6%</span></div></div>
-<p class="note">Deals de Web Request, team BR, pipeline Inbound, sem migration. Deals por data de criação; MQL, SAL e conectado por data de entrada na etapa dentro do mês; SQL por data de fechamento no mês. Mesma regra da visão geral. Fora da conta: 85 deals de migration em setembro e 114 deals de Web Request no pipeline Outbound em setembro (23 em outubro). A queda de SQL por deal aparece em duas etapas: SAL por MQL (96,4% → 70,3%) e SQL por conectado (62,5% → 41,8%). Conectado por SAL ficou estável.</p>
-<h3>Por origem do deal</h3>
-<div class="tw"><table style="min-width:520px"><thead><tr><th>Origem do deal</th><th class="n ms">Deals set → out</th><th class="n ms">SQL set → out</th><th class="n">SQL por deal</th></tr></thead><tbody><tr class="hl"><td>Formulário do site</td><td class="n ms">259 → 280</td><td class="n ms">82 → 49</td><td class="n neg">31,7% → 17,5%</td></tr><tr><td>LPs de ads (www.pipefy.com/pt-br/ads)</td><td class="n ms">206 → 332</td><td class="n ms">12 → 14</td><td class="n neg">5,8% → 4,2%</td></tr><tr><td>LPs use.pipefy.com</td><td class="n ms">99 → 136</td><td class="n ms">9 → 19</td><td class="n pos">9,1% → 14,0%</td></tr><tr><td>Formulário em inglês (US)</td><td class="n ms">27 → 35</td><td class="n ms">4 → 1</td><td class="n neg">14,8% → 2,9%</td></tr><tr><td>Outros (meetings link, login, blog, sem form)</td><td class="n ms">74 → 73</td><td class="n ms">18 → 11</td><td class="n neg">24,3% → 15,1%</td></tr><tr class="sum"><td>Total</td><td class="n ms">665 → 856</td><td class="n ms">125 → 94</td><td class="n neg">18,8% → 11,0%</td></tr></tbody></table></div>
-<p class="note">Nos deals do formulário do site, o SQL por deal caiu de 31,7% para 17,5% (p &lt; 0,001), com volume estável. As landing pages cresceram e mantiveram a conversão baixa de sempre.</p>
+<span class="sec-tag">3 · HubSpot, até o SQL</span>
+<h2>Deals estáveis, SQL -23%</h2>
+<p class="note">Deals de Web Request, team BR, Inbound + Outbound somados. Deals criados de 02 a 26 de cada mês, com entrada nas etapas até 04/10 (set) e 03/11 (out). O dia 01 de cada mês fica fora (01/09 teve 98 deals no Inbound, 3 a 4 vezes o normal).</p>
+<div class="tw"><table>
+<thead>
+<tr><th></th><th class="stg stg-deals" colspan="3">Volume</th><th class="stg stg-deals" colspan="2">% dos deals</th></tr>
+<tr><th>Etapa</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th><th class="n ms">Set</th><th class="n mo">Out</th></tr>
+</thead>
+<tbody>
+<tr class="sum"><td>Deals criados (Inbound + Outbound)</td><td class="n ms">680</td><td class="n mo">690</td><td class="n mut">+1,5%</td><td class="n ms">100%</td><td class="n mo">100%</td></tr>
+<tr class="sub"><td>Inbound</td><td class="n ms">573</td><td class="n mo">667</td><td class="n pos">+16,4%</td><td class="n ms"></td><td class="n mo"></td></tr>
+<tr class="sub"><td>Outbound (set: 46 de lote sem formulário e 61 de formulário)</td><td class="n ms">107</td><td class="n mo">23</td><td class="n neg">-78%</td><td class="n ms"></td><td class="n mo"></td></tr>
+<tr><td>MQL (só existe no Inbound)</td><td class="n ms">395</td><td class="n mo">530</td><td class="n pos">+34,2%</td><td class="n ms">68,9%*</td><td class="n mo">79,5%*</td></tr>
+<tr><td>SAL</td><td class="n ms">413</td><td class="n mo">377</td><td class="n neg">-8,7%</td><td class="n ms">60,7%</td><td class="n mo">54,6%</td></tr>
+<tr><td>SAL Connected</td><td class="n ms">198</td><td class="n mo">164</td><td class="n neg">-17,2%</td><td class="n ms">29,1%</td><td class="n mo">23,8%</td></tr>
+<tr class="hl"><td>SQL</td><td class="n ms">100</td><td class="n mo">77</td><td class="n neg">-23,0%</td><td class="n ms">14,7%</td><td class="n mo">11,2%</td></tr>
+</tbody>
+</table></div>
+<p class="note">* MQL sobre os deals do Inbound. SQL por deal: 14,7% → 11,2% (p = 0,050 com os dois pipelines; 0,025 sem o lote do Outbound; 0,006 só no Inbound).</p>
+<h3>No recorte do novo Signup (Inbound BR)</h3>
+<div class="tw"><table>
+<thead>
+<tr><th></th><th class="stg stg-deals" colspan="3">Volume</th></tr>
+<tr><th>Deals de Web Request criados</th><th class="n ms">Set (17/09 a 06/10)</th><th class="n mo">Out (07/10 a 26/10)</th><th class="n">Var.</th></tr>
+</thead>
+<tbody>
+<tr><td>Deals criados</td><td class="n ms">463</td><td class="n mo">549</td><td class="n pos">+18,6%</td></tr>
+<tr><td>MQL</td><td class="n ms">362</td><td class="n mo">432</td><td class="n pos">+19,3%</td></tr>
+<tr><td>SAL</td><td class="n ms">321</td><td class="n mo">304</td><td class="n neg">-5,3%</td></tr>
+<tr><td>SAL Connected</td><td class="n ms">149</td><td class="n mo">134</td><td class="n neg">-10,1%</td></tr>
+<tr class="hl"><td>SQL</td><td class="n ms">81</td><td class="n mo">62</td><td class="n neg">-23,5%</td></tr>
+<tr class="sum"><td>SQL por deal</td><td class="n ms">17,5%</td><td class="n mo">11,3%</td><td class="n neg">-35%</td></tr>
+</tbody>
+</table></div>
+<p class="note">Nesse recorte não há deals sem time nem lote no Outbound, e a leitura é a mesma, mais forte: deals +18,6% e SQL -23,5% (p = 0,005). Etapas até 14/10 (set) e 03/11 (out).</p>
 <div class="grid2">
 <div>
+<h3>Por formulário de origem (Inbound BR)</h3>
+<div class="tw"><table>
+<thead>
+<tr><th></th><th class="stg stg-deals" colspan="2">Deals</th><th class="stg stg-sql" colspan="2">SQL</th><th class="stg stg-sql">SQL/Deal</th></tr>
+<tr><th>Origem (first_conversion)</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n">Var.</th></tr>
+</thead>
+<tbody>
+<tr class="hl"><td>Formulário do site (revamp 2026 + antigo)</td><td class="n ms">213</td><td class="n mo">220</td><td class="n ms">65</td><td class="n mo">41</td><td class="n neg">30,5% → 18,6%</td></tr>
+<tr class="sub"><td>só revamp 2026</td><td class="n ms">186</td><td class="n mo">214</td><td class="n ms">60</td><td class="n mo">39</td><td class="n neg">32,3% → 18,2%</td></tr>
+<tr><td>LPs de ads (www.pipefy.com/pt-br/ads)</td><td class="n ms">180</td><td class="n mo">260</td><td class="n ms">10</td><td class="n mo">13</td><td class="n mut">5,6% → 5,0%</td></tr>
+<tr><td>LPs use.pipefy.com</td><td class="n ms">93</td><td class="n mo">100</td><td class="n ms">9</td><td class="n mo">13</td><td class="n mut">9,7% → 13,0%</td></tr>
+<tr><td>Formulário em inglês (US)</td><td class="n ms">21</td><td class="n mo">27</td><td class="n ms">4</td><td class="n mo">1</td><td class="n mut">19,0% → 3,7%</td></tr>
+<tr><td>Outros (meetings link, login, blog, sem form)</td><td class="n ms">66</td><td class="n mo">60</td><td class="n ms">9</td><td class="n mo">9</td><td class="n mut">13,6% → 15,0%</td></tr>
+<tr class="sum"><td>Total Inbound</td><td class="n ms">573</td><td class="n mo">667</td><td class="n ms">97</td><td class="n mo">77</td><td class="n neg">16,9% → 11,5%</td></tr>
+</tbody>
+</table></div>
+</div>
+<div>
 <h3>De onde vem a perda de SQL (set → out)</h3>
-<div class="bars"><div class="bar"><span>Formulário do site</span><div class="tr"><div class="f neg" style="width:41%"></div></div><span class="val" style="color:var(--red)">-33</span></div><div class="bar"><span>LPs de ads</span><div class="tr"><div class="f pos" style="width:2%"></div></div><span class="val" style="color:var(--green)">+2</span></div><div class="bar"><span>LPs use.pipefy.com</span><div class="tr"><div class="f pos" style="width:12%"></div></div><span class="val" style="color:var(--green)">+10</span></div><div class="bar"><span>Formulário em inglês (US)</span><div class="tr"><div class="f neg" style="width:4%"></div></div><span class="val" style="color:var(--red)">-3</span></div><div class="bar"><span>Outros (meetings link, login, blog, sem form)</span><div class="tr"><div class="f neg" style="width:9%"></div></div><span class="val" style="color:var(--red)">-7</span></div><div class="bar" style="font-weight:700"><span>Total</span><div class="tr"><div class="f neg" style="width:39%"></div></div><span class="val" style="color:var(--red)">-31</span></div></div>
+<div class="bars">
+<div class="bar"><span>Formulário do site</span><div class="tr"><div class="f neg" style="width:48%"></div></div><span class="val" style="color:var(--red)">-24</span></div>
+<div class="bar"><span>Outbound (Web Request)</span><div class="tr"><div class="f neg" style="width:6%"></div></div><span class="val" style="color:var(--red)">-3</span></div>
+<div class="bar"><span>Formulário em inglês</span><div class="tr"><div class="f neg" style="width:6%"></div></div><span class="val" style="color:var(--red)">-3</span></div>
+<div class="bar"><span>LPs de ads</span><div class="tr"><div class="f pos" style="width:6%"></div></div><span class="val" style="color:var(--green)">+3</span></div>
+<div class="bar"><span>LPs use.pipefy.com</span><div class="tr"><div class="f pos" style="width:8%"></div></div><span class="val" style="color:var(--green)">+4</span></div>
+<div class="bar"><span>Outros</span><div class="tr"></div><span class="val">0</span></div>
+<div class="bar" style="font-weight:700"><span>Total</span><div class="tr"><div class="f neg" style="width:46%"></div></div><span class="val" style="color:var(--red)">-23</span></div>
 </div>
-<div class="callout blue" style="align-self:start"><b>Não é mix.</b> Aplicando as taxas de setembro ao mix de outubro, o esperado seria 143 SQL (real em set: 125, real em out: 94). A perda está no deal do formulário do site, que mantém o volume e perde 14 pontos de conversão.</div>
+<div class="callout blue" style="margin-top:6px"><b>Não é mix.</b> Aplicando as taxas de setembro ao mix de outubro, o esperado seria 105 SQL no Inbound (real em set: 97, real em out: 77). A perda está no deal do formulário do site, que mantém o volume e perde 12 pontos de conversão.</div>
 </div>
-<p class="note">Por canal do HubSpot, Paid Search entrega 136 deals e 2 SQL a mais. O SQL se perde em Offline Sources (-11), Direct (-8), Organic Social (-6), Other Campaigns + AI Referrals (-5) e Organic Search (-4).</p>
+</div>
+<h3>Por grupo de canais do HubSpot (hs_analytics_source, Inbound BR)</h3>
+<div class="tw"><table>
+<thead>
+<tr><th></th><th class="stg stg-deals" colspan="2">Deals</th><th class="stg stg-sql" colspan="2">SQL</th><th class="stg stg-sql" colspan="2">SQL/Deal</th></tr>
+<tr><th>Canal</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th></tr>
+</thead>
+<tbody>
+<tr><td>Paid Search</td><td class="n ms">305</td><td class="n mo">367</td><td class="n ms">31</td><td class="n mo">35</td><td class="n ms">10,2%</td><td class="n mo">9,5%</td></tr>
+<tr class="hl"><td>Direct Traffic</td><td class="n ms">103</td><td class="n mo">130</td><td class="n ms">22</td><td class="n mo">15</td><td class="n ms">21,4%</td><td class="n neg mo">11,5%</td></tr>
+<tr><td>Organic Search</td><td class="n ms">58</td><td class="n mo">54</td><td class="n ms">17</td><td class="n mo">14</td><td class="n ms">29,3%</td><td class="n mo">25,9%</td></tr>
+<tr class="hl"><td>Offline Sources</td><td class="n ms">43</td><td class="n mo">31</td><td class="n ms">14</td><td class="n mo">7</td><td class="n ms">32,6%</td><td class="n neg mo">22,6%</td></tr>
+<tr><td>Paid Social</td><td class="n ms">22</td><td class="n mo">35</td><td class="n ms">0</td><td class="n mo">2</td><td class="n ms">0%</td><td class="n mo">5,7%</td></tr>
+<tr><td>Organic Social</td><td class="n ms">11</td><td class="n mo">10</td><td class="n ms">5</td><td class="n mo">0</td><td class="n ms">45,5%</td><td class="n mo">0%</td></tr>
+<tr><td>Other Campaigns + AI Referrals</td><td class="n ms">25</td><td class="n mo">29</td><td class="n ms">8</td><td class="n mo">4</td><td class="n ms">32,0%</td><td class="n mo">13,8%</td></tr>
+<tr><td>Referrals, Email, sem fonte</td><td class="n ms">6</td><td class="n mo">11</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td></tr>
+</tbody>
+</table></div>
+<p class="note">Paid Search entrega 62 deals e 4 SQL a mais. O SQL se perde em Direct (-7), Offline (-7) e Organic Social (-5). O hs_analytics_source é a fonte original do contato no HubSpot, não a sessão do GA. O utm_source__c está vazio em 69% dos deals do formulário do site (147 de 214, criados de 02 a 26/10) contra 5% nos deals de LP (15 de 293); o hs_analytics_source segue preenchido.</p>
 </section>
 <section class="card">
-<span class="sec-tag">5 · Atendimento</span>
-<h2>Dois donos passaram a concentrar 80% dos deals</h2>
-<div class="tw"><table style="min-width:640px"><thead><tr><th>Dono do deal (Inbound BR)</th><th class="n ms">Deals set</th><th class="n ms">SAL</th><th class="n ms">SQL</th><th class="n mo">Deals out</th><th class="n mo">SAL</th><th class="n mo">SQL</th></tr></thead><tbody><tr><td>Laura Naomi</td><td class="n ms">114</td><td class="n ms">105</td><td class="n ms">24</td><td class="n mo">335</td><td class="n mo">256</td><td class="n mo">51</td></tr><tr><td>Antonio De Paula</td><td class="n ms">64</td><td class="n ms">52</td><td class="n ms">21</td><td class="n mo">352</td><td class="n mo">222</td><td class="n mo">41</td></tr><tr><td>Alessandra Amâncio</td><td class="n ms">101</td><td class="n ms">89</td><td class="n ms">26</td><td class="n mo">1</td><td class="n mo">1</td><td class="n mo">0</td></tr><tr><td>Humberto Pisani</td><td class="n ms">83</td><td class="n ms">82</td><td class="n ms">17</td><td class="n mo">0</td><td class="n mo">0</td><td class="n mo">0</td></tr><tr><td>João Soares</td><td class="n ms">75</td><td class="n ms">65</td><td class="n ms">19</td><td class="n mo">1</td><td class="n mo">2</td><td class="n mo">1</td></tr><tr><td>Bruna Figueiredo</td><td class="n ms">68</td><td class="n ms">62</td><td class="n ms">18</td><td class="n mo">1</td><td class="n mo">0</td><td class="n mo">1</td></tr><tr><td>Carolina Petitinga</td><td class="n ms">0</td><td class="n ms">0</td><td class="n ms">0</td><td class="n mo">2</td><td class="n mo">1</td><td class="n mo">0</td></tr><tr><td>Sem dono</td><td class="n ms">160</td><td class="n ms">0</td><td class="n ms">0</td><td class="n mo">164</td><td class="n mo">0</td><td class="n mo">0</td></tr><tr class="sum"><td>Total</td><td class="n ms">665</td><td class="n ms">455</td><td class="n ms">125</td><td class="n mo">856</td><td class="n mo">482</td><td class="n mo">94</td></tr></tbody></table></div>
-<p class="note">Em outubro, Laura e Antonio recebem 687 de 856 deals (80,3%). Em setembro eram 178 de 665 (26,8%). Entre os deals com dono, SAL por deal foi de 90,1% (455 de 505) para 69,7% (482 de 692). O SQL dos dois subiu de 45 para 92 e o dos demais donos caiu de 80 para 2. Deals sem dono não chegam a SAL nos dois meses (24% → 19% dos deals).</p>
+<span class="sec-tag">4 · Atendimento</span>
+<h2>Dois donos passaram a concentrar 79% dos deals</h2>
+<div class="tw"><table>
+<thead>
+<tr><th></th><th class="stg stg-deals" colspan="3">Setembro</th><th class="stg stg-deals" colspan="3">Outubro</th></tr>
+<tr><th>Dono do deal (Inbound BR)</th><th class="n ms">Deals</th><th class="n ms">SAL</th><th class="n ms">SQL</th><th class="n mo">Deals</th><th class="n mo">SAL</th><th class="n mo">SQL</th></tr>
+</thead>
+<tbody>
+<tr><td>Laura Naomi</td><td class="n ms">96</td><td class="n ms">90</td><td class="n ms">19</td><td class="n mo">258</td><td class="n mo">203</td><td class="n mo">40</td></tr>
+<tr><td>Antonio De Paula</td><td class="n ms">50</td><td class="n ms">42</td><td class="n ms">15</td><td class="n mo">272</td><td class="n mo">172</td><td class="n mo">37</td></tr>
+<tr><td>Alessandra Amâncio</td><td class="n ms">88</td><td class="n ms">78</td><td class="n ms">20</td><td class="n mo">1</td><td class="n mo">1</td><td class="n mo">0</td></tr>
+<tr><td>Humberto Pisani</td><td class="n ms">69</td><td class="n ms">69</td><td class="n ms">12</td><td class="n mo">0</td><td class="n mo">0</td><td class="n mo">0</td></tr>
+<tr><td>João Soares</td><td class="n ms">65</td><td class="n ms">58</td><td class="n ms">16</td><td class="n mo">0</td><td class="n mo">0</td><td class="n mo">0</td></tr>
+<tr><td>Bruna Figueiredo</td><td class="n ms">60</td><td class="n ms">55</td><td class="n ms">15</td><td class="n mo">1</td><td class="n mo">0</td><td class="n mo">0</td></tr>
+<tr><td>Carolina Petitinga</td><td class="n ms">0</td><td class="n ms">0</td><td class="n ms">0</td><td class="n mo">2</td><td class="n mo">1</td><td class="n mo">0</td></tr>
+<tr><td>Sem dono</td><td class="n ms">145</td><td class="n ms">0</td><td class="n ms">0</td><td class="n mo">133</td><td class="n mo">0</td><td class="n mo">0</td></tr>
+<tr class="sum"><td>Total</td><td class="n ms">573</td><td class="n ms">392</td><td class="n ms">97</td><td class="n mo">667</td><td class="n mo">377</td><td class="n mo">77</td></tr>
+</tbody>
+</table></div>
+<p class="note">Em outubro, Laura e Antonio recebem 530 de 667 deals (79%). Em setembro eram 146 de 573 (25%). Entre os deals com dono, SAL foi de 92% (392 de 428) para 71% (377 de 534); SQL por deal dos dois: 23,3% → 14,5%. Deals sem dono não chegam a SAL nos dois meses (25% → 20%).</p>
 </section>
 <section class="card">
-<span class="sec-tag">6 · Leitura</span>
+<span class="sec-tag">5 · Leitura</span>
 <h2>O que explica a queda de SQL</h2>
 <div class="facts">
-<div class="fact"><i>1</i><div><b>Não é volume.</b> Deals de Web Request: 665 → 856. Envios no site (GA): 842 → 857.</div></div>
-<div class="fact"><i>2</i><div><b>Não é mix de origem.</b> Com as taxas de setembro, o mix de outubro daria 143 SQL. Saíram 94.</div></div>
-<div class="fact"><i>3</i><div><b>É o deal do formulário do site.</b> 259 → 280 deals, SQL de 82 para 49 (31,7% → 17,5%, p &lt; 0,001).</div></div>
-<div class="fact"><i>4</i><div><b>Está na faixa de 11 a 50 funcionários.</b> SQL 49 → 20, conectados 81 → 52 e SAL 151 → 104. As demais faixas somam -2 SQL (aba Company Size).</div></div>
-<div class="fact"><i>5</i><div><b>O MQL a mais não vira SQL.</b> Dos +214 MQL, +154 vêm de quem declarou 1 a 10 ou ficou sem tamanho. Esses dois grupos geraram 1 SQL em cada mês.</div></div>
-<div class="fact"><i>6</i><div><b>O atendimento concentrou.</b> 2 donos com 80% dos deals; SAL por deal com dono de 90% para 70%.</div></div>
+<div class="fact"><i>1</i><div><b>Não é volume.</b> Deals de Web Request: 680 → 690. Envios no site: 842 → 857.</div></div>
+<div class="fact"><i>2</i><div><b>Não é mix de origem.</b> Com as taxas de setembro, o mix de outubro daria 105 SQL. Saíram 77.</div></div>
+<div class="fact"><i>3</i><div><b>É o deal do formulário do site.</b> 213 → 220 deals, SQL por deal de 30,5% para 18,6% (p = 0,004).</div></div>
+<div class="fact"><i>4</i><div><b>Está na faixa de 11 a 200 funcionários.</b> SQL 57 → 39 e SAL 181 → 158. As outras faixas somam -2 SQL (aba Company Size).</div></div>
+<div class="fact"><i>5</i><div><b>O MQL a mais não vira SQL.</b> Dos +135 MQL, +125 vêm de quem declarou 1 a 10 ou ficou sem tamanho. Esses dois grupos geraram 1 SQL em 308 deals.</div></div>
+<div class="fact"><i>6</i><div><b>O atendimento concentrou.</b> 2 donos com 79% dos deals; SAL por deal com dono de 92% para 71%.</div></div>
 </div>
 <p class="note">Em aberto: separar capacidade de atendimento de qualidade do deal (os dois mudaram juntos em outubro) e entender por que as sessões orgânicas e diretas caíram 11%.</p>
 </section>
-<section class="card">
-<span class="sec-tag">Base: 1:1 de 27/10</span>
-<h2>O que foi pedido e onde está a resposta</h2>
-<div class="quote"><b>Pedido:</b> "o desempenho do funil, ele mora no detalhe [...] até o fundo do funil". <b>Resposta:</b> do GA (sessões, canal, origem do envio) até o SQL no HubSpot, nas seções 1 a 6.</div>
-<div class="quote"><b>Pedido:</b> o step 2 "era para ter crescido" depois do rollout. <b>Resposta:</b> não cresceu. Por dia útil: 19,8 → 17,7 → 14,6.</div>
-<div class="quote"><b>Pedido:</b> comparar as páginas de mídia paga com as páginas do site depois do rollout. <b>Resposta:</b> seções 1 e 3 (landing pages de mídia e formulário do site).</div>
-<div class="quote"><b>Levantado:</b> "a maior queda de Step 1 e Step 2 foi do Google CPC". <b>Resposta:</b> confirmado. Paid Search: step 2 de 168 para 112.</div>
-<div class="quote"><b>Pedido:</b> MQL subiu por enriquecimento e o SAL caiu. <b>Resposta:</b> MQL +45%, SAL por MQL de 96% para 70%. Detalhe na aba Company Size.</div>
-<div class="quote"><b>Pedido:</b> mudança no atendimento. <b>Resposta:</b> seção 5.</div>
-<p class="note">A transcrição é automática e tem erros (por exemplo, "Bucademo" foi lido como Book a Demo). Nenhum número saiu dela.</p>
-</section>
 </div>
+<!-- ============================ ABA 2 ============================ -->
 <div class="tab" id="t2">
 <section class="hero">
-<small>Company Size · deals de Web Request, team BR, Inbound · setembro e outubro completos</small>
+<small>Company Size · deals de Web Request, team BR, Inbound · criados de 02 a 26 de cada mês</small>
 <h1>Quem declarou 1 a 10 virou MQL, mas não virou SQL.</h1>
-<p class="lead">Declarado é o tamanho que a pessoa informou no formulário. Enriquecido é o tamanho que o Harvest encontrou depois. Em setembro, 5% dos deals passaram pelo Harvest (36 de 665). Em outubro, 40% (346 de 856), e ele encontrou o tamanho em 17% (142).</p>
+<p class="lead">Declarado é o tamanho que a pessoa informou no formulário. Enriquecido é o tamanho que o Harvest encontrou depois. Em setembro quase nenhum deal passou pelo Harvest. Em outubro, 42% passaram, mas ele só encontrou o tamanho em 17%.</p>
 <div class="kpis">
-<div class="kpi"><span class="v neu">36 → 346</span><span class="l">Deals que passaram pelo Harvest (5,4% → 40,4%). Ele encontrou o tamanho em 8 → 142</span></div>
-<div class="kpi"><span class="v bad">41 de 261</span><span class="l">Declararam 1 a 10 e o Harvest aponta 501 ou mais (out)</span></div>
-<div class="kpi"><span class="v bad">27 → 110</span><span class="l">MQL de quem declarou 1 a 10. SQL: 1 → 1</span></div>
-<div class="kpi"><span class="v bad">44 → 121</span><span class="l">Deals sem Company Size. 0 SQL nos dois meses</span></div>
+<div class="kpi"><span class="v neu">8 → 283</span><span class="l">Deals que passaram pelo Harvest (1,4% → 42,4%). Ele encontrou o tamanho em 2 → 113</span></div>
+<div class="kpi"><span class="v bad">34 de 214</span><span class="l">Declararam 1 a 10 e o Harvest aponta 501 ou mais funcionários</span></div>
+<div class="kpi"><span class="v bad">18 → 88</span><span class="l">MQL de quem declarou 1 a 10. SQL: 1 → 1</span></div>
+<div class="kpi"><span class="v bad">39 → 94</span><span class="l">Deals sem Company Size. 0 SQL nos dois meses</span></div>
 </div>
 </section>
 <section class="card">
 <span class="sec-tag">1 · Funil por tamanho declarado</span>
-<h2>A perda de SQL está na faixa de 11 a 50 funcionários</h2>
-<p class="note">"Sem tamanho" é o campo vazio no HubSpot. Declarado é o tamanho informado no formulário. Outubro completo, incluindo o período anterior à padronização de 07/10.</p>
-<div class="tw"><table class="cols-g" style="min-width:600px"><thead><tr><th></th><th class="g" colspan="2" style="text-align:center">Deals</th><th class="g" colspan="2" style="text-align:center">MQL</th><th class="g" colspan="2" style="text-align:center">SQL</th></tr><tr><th>Declarado</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th></tr></thead><tbody><tr><td>Sem tamanho</td><td class="n ms">44</td><td class="n mo">121</td><td class="n ms">44</td><td class="n mo">115</td><td class="n ms">0</td><td class="n mo">0</td></tr><tr><td>1 a 10</td><td class="n ms">188</td><td class="n mo">261</td><td class="n ms">27</td><td class="n mo">110</td><td class="n ms">1</td><td class="n mo">1</td></tr><tr class="hl"><td>11 a 50</td><td class="n ms">162</td><td class="n mo">133</td><td class="n ms">156</td><td class="n mo">132</td><td class="n ms">49</td><td class="n mo">20</td></tr><tr><td>51 a 200</td><td class="n ms">70</td><td class="n mo">109</td><td class="n ms">67</td><td class="n mo">108</td><td class="n ms">22</td><td class="n mo">24</td></tr><tr><td>201 ou mais</td><td class="n ms">177</td><td class="n mo">215</td><td class="n ms">175</td><td class="n mo">212</td><td class="n ms">53</td><td class="n mo">49</td></tr><tr><td>Outros (Self-employed, Univ. Junior Enterprise)</td><td class="n ms">24</td><td class="n mo">17</td><td class="n ms">3</td><td class="n mo">9</td><td class="n ms">0</td><td class="n mo">0</td></tr><tr class="sum"><td>Total</td><td class="n ms">665</td><td class="n mo">856</td><td class="n ms">472</td><td class="n mo">686</td><td class="n ms">125</td><td class="n mo">94</td></tr></tbody></table></div>
-<div class="callout blue"><b>Dos +214 MQL, +154 vêm de quem declarou 1 a 10 (+83) ou ficou sem tamanho (+71).</b> Esses dois grupos geraram 1 SQL em cada mês. A faixa de 11 a 50 perdeu 29 SQL (49 → 20), a de 51 a 200 ganhou 2 e a de 201 ou mais perdeu 4.</div>
+<h2>A perda de SQL está na faixa de 11 a 200 funcionários</h2>
+<p class="note">"Sem tamanho" é o campo vazio no HubSpot. Declarado é o tamanho informado no formulário.</p>
+<div class="tw"><table style="min-width:700px">
+<thead>
+<tr><th></th><th class="stg stg-deals" colspan="2">Deals</th><th class="stg stg-mql" colspan="2">MQL</th><th class="stg stg-sal" colspan="2">SAL</th><th class="stg stg-sql" colspan="2">SQL</th><th class="stg stg-sql" colspan="2">SQL/Deal</th></tr>
+<tr><th>Declarado</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th><th class="n ms">Set</th><th class="n mo">Out</th></tr>
+</thead>
+<tbody>
+<tr><td>Sem tamanho</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">39</td><td class="n mo">94</td><td class="n ms">36</td><td class="n mo">41</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td></tr>
+<tr><td>1 a 10</td><td class="n ms">165</td><td class="n mo">214</td><td class="n ms">18</td><td class="n mo">88</td><td class="n ms">33</td><td class="n mo">48</td><td class="n ms">1</td><td class="n mo">1</td><td class="n ms">0,6%</td><td class="n mo">0,5%</td></tr>
+<tr class="hl"><td>11 a 50</td><td class="n ms">136</td><td class="n mo">108</td><td class="n ms">130</td><td class="n mo">107</td><td class="n ms">127</td><td class="n mo">85</td><td class="n ms">39</td><td class="n mo">18</td><td class="n ms">28,7%</td><td class="n mo">16,7%</td></tr>
+<tr class="hl"><td>51 a 200</td><td class="n ms">58</td><td class="n mo">84</td><td class="n ms">55</td><td class="n mo">84</td><td class="n ms">54</td><td class="n mo">73</td><td class="n ms">18</td><td class="n mo">21</td><td class="n ms">31,0%</td><td class="n mo">25,0%</td></tr>
+<tr><td>201 ou mais</td><td class="n ms">155</td><td class="n mo">154</td><td class="n ms">153</td><td class="n mo">151</td><td class="n ms">142</td><td class="n mo">128</td><td class="n ms">39</td><td class="n mo">37</td><td class="n ms">25,2%</td><td class="n mo">24,0%</td></tr>
+<tr><td>Outros (Self-employed, Univ. Junior Enterprise)</td><td class="n ms">20</td><td class="n mo">13</td><td class="n ms">0</td><td class="n mo">6</td><td class="n ms">0</td><td class="n mo">2</td><td class="n ms">0</td><td class="n mo">0</td><td class="n ms">0%</td><td class="n mo">0%</td></tr>
+<tr class="sum"><td>Total</td><td class="n ms">573</td><td class="n mo">667</td><td class="n ms">395</td><td class="n mo">530</td><td class="n ms">392</td><td class="n mo">377</td><td class="n ms">97</td><td class="n mo">77</td><td class="n ms">16,9%</td><td class="n mo">11,5%</td></tr>
+</tbody>
+</table></div>
+<div class="callout blue"><b>Dos +135 MQL, +125 vêm de quem declarou 1 a 10 (+70) ou ficou sem tamanho (+55).</b> Esses dois grupos geraram 1 SQL em 308 deals. Já a faixa de 11 a 200 (11 a 50 e 51 a 200 somadas) perdeu 18 SQL, de 57 para 39, e todas as outras faixas somam -2.</div>
 </section>
 <section class="card">
-<span class="sec-tag">2 · Quem declarou 1 a 10</span>
-<h2>Dos 261 deals de outubro, 258 passaram pelo Harvest. O que ele encontrou</h2>
-<div class="stats"><div class="st"><span class="v">36 → 346</span><span class="l">Deals que passaram pelo Harvest</span><span class="d pos">+861,1%</span></div><div class="st"><span class="v">8 → 142</span><span class="l">Harvest encontrou o tamanho</span><span class="d mut">novo</span></div><div class="st"><span class="v">41 de 261</span><span class="l">Deals que declararam 1 a 10 e o Harvest aponta 501 ou mais (out)</span><span class="d neg">16%</span></div></div>
-<div class="tw"><table style="min-width:620px"><thead><tr><th>Declararam 1 a 10 (out)</th><th class="n">Deals</th><th class="n">% dos 261</th><th class="n">MQL</th><th class="n">SAL</th><th class="n">SQL</th></tr></thead><tbody><tr class="sum"><td>Passaram pelo Harvest</td><td class="n">258</td><td class="n">99%</td><td class="n">109</td><td class="n">59</td><td class="n">0</td></tr><tr class="sub"><td>Harvest encontrou o tamanho</td><td class="n">100</td><td class="n">38%</td><td class="n">75</td><td class="n">31</td><td class="n">0</td></tr><tr class="hl"><td>Empresa com 501 ou mais funcionários</td><td class="n">41</td><td class="n">16%</td><td class="n">41</td><td class="n">12</td><td class="n">0</td></tr><tr class="sub"><td>Empresa com 11 a 500 funcionários</td><td class="n">24</td><td class="n">9%</td><td class="n">24</td><td class="n">14</td><td class="n">0</td></tr><tr class="sub"><td>1 a 10 (confirma o que foi declarado)</td><td class="n">24</td><td class="n">9%</td><td class="n">6</td><td class="n">3</td><td class="n">0</td></tr><tr class="sub"><td>Self-employed</td><td class="n">11</td><td class="n">4%</td><td class="n">4</td><td class="n">2</td><td class="n">0</td></tr><tr class="sub"><td>Harvest não encontrou a empresa</td><td class="n">158</td><td class="n">61%</td><td class="n">34</td><td class="n">28</td><td class="n">0</td></tr><tr><td>Não passaram pelo Harvest</td><td class="n">3</td><td class="n">1%</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr><tr class="sum"><td>Total que declarou 1 a 10</td><td class="n">261</td><td class="n">100%</td><td class="n">110</td><td class="n">60</td><td class="n">1</td></tr></tbody></table></div>
-<div class="callout blue"><b>41 de 261 declararam 1 a 10 e o Harvest aponta 501 ou mais.</b> Todos viraram MQL, 12 chegaram a SAL e nenhum virou SQL. Somando os 24 de 11 a 500, são 65 deals (25%) maiores do que o declarado. Em setembro, só 5 dos 188 deals que declararam 1 a 10 tiveram o tamanho encontrado pelo Harvest.</div>
-<p class="note">"Passaram pelo Harvest" é o campo enrich_harvest_api_company_size preenchido, inclusive quando o Harvest não encontrou a empresa (Unknown).</p>
+<span class="sec-tag">2 · Harvest</span>
+<h2>Dos 667 deals de outubro, 283 passaram pelo Harvest e ele encontrou o tamanho em 113</h2>
+<div class="tw"><table style="min-width:620px">
+<thead><tr><th>Declarado (out)</th><th class="n">Deals</th><th class="n">Passaram pelo Harvest</th><th class="n">Harvest encontrou o tamanho</th><th class="n">Harvest não encontrou a empresa</th></tr></thead>
+<tbody>
+<tr class="hl"><td>1 a 10</td><td class="n">214</td><td class="n">211</td><td class="n">80</td><td class="n">131</td></tr>
+<tr><td>Sem tamanho</td><td class="n">94</td><td class="n">37</td><td class="n">14</td><td class="n">23</td></tr>
+<tr><td>11 a 50</td><td class="n">108</td><td class="n">9</td><td class="n">4</td><td class="n">5</td></tr>
+<tr><td>51 a 200</td><td class="n">84</td><td class="n">9</td><td class="n">4</td><td class="n">5</td></tr>
+<tr><td>201 ou mais</td><td class="n">154</td><td class="n">4</td><td class="n">4</td><td class="n">0</td></tr>
+<tr><td>Outros (Self-employed, Univ. Junior Enterprise)</td><td class="n">13</td><td class="n">13</td><td class="n">7</td><td class="n">6</td></tr>
+<tr class="sum"><td>Total</td><td class="n">667</td><td class="n">283</td><td class="n">113</td><td class="n">170</td></tr>
+</tbody>
+</table></div>
+<p class="note">O Harvest foi usado quase só em quem declarou 1 a 10 (211 de 214) e em quem ficou sem tamanho (37 de 94). Em setembro, só 8 deals passaram por ele (o tamanho foi encontrado em 2).</p>
+</section>
+<section class="card">
+<span class="sec-tag">3 · Quem declarou 1 a 10</span>
+<h2>Dos 214 deals, 211 passaram pelo Harvest. O que ele encontrou</h2>
+<div class="tw"><table>
+<thead><tr><th>Declararam 1 a 10 (out)</th><th class="n">Deals</th><th class="n">% dos 214</th><th class="n">MQL</th><th class="n">SAL</th><th class="n">SQL</th></tr></thead>
+<tbody>
+<tr class="sum"><td>Passaram pelo Harvest</td><td class="n">211</td><td class="n">99%</td><td class="n">87</td><td class="n">47</td><td class="n">0</td></tr>
+<tr class="sub"><td>Harvest encontrou o tamanho</td><td class="n">80</td><td class="n">37%</td><td class="n">60</td><td class="n">25</td><td class="n">0</td></tr>
+<tr class="sub hl"><td>Empresa com 501 ou mais funcionários</td><td class="n">34</td><td class="n">16%</td><td class="n">34</td><td class="n">10</td><td class="n">0</td></tr>
+<tr class="sub"><td>Empresa com 11 a 500 funcionários</td><td class="n">19</td><td class="n">9%</td><td class="n">19</td><td class="n">11</td><td class="n">0</td></tr>
+<tr class="sub"><td>1 a 10 (confirma o que foi declarado)</td><td class="n">18</td><td class="n">8%</td><td class="n">3</td><td class="n">2</td><td class="n">0</td></tr>
+<tr class="sub"><td>Self-employed</td><td class="n">9</td><td class="n">4%</td><td class="n">4</td><td class="n">2</td><td class="n">0</td></tr>
+<tr class="sub"><td>Harvest não encontrou a empresa</td><td class="n">131</td><td class="n">61%</td><td class="n">27</td><td class="n">22</td><td class="n">0</td></tr>
+<tr><td>Não passaram pelo Harvest</td><td class="n">3</td><td class="n">1%</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
+<tr class="sum"><td>Total que declarou 1 a 10</td><td class="n">214</td><td class="n">100%</td><td class="n">88</td><td class="n">48</td><td class="n">1</td></tr>
+</tbody>
+</table></div>
+<div class="callout blue"><b>34 de 214 declararam 1 a 10 e o Harvest aponta 501 ou mais.</b> Todos viraram MQL, 10 chegaram a SAL e nenhum virou SQL. Somando os 19 de 11 a 500, são 53 deals (25%) maiores do que o declarado.</div>
 </section>
 <section class="card chart">
-<span class="sec-tag">3 · Checkpoint do Company Size</span>
+<span class="sec-tag">4 · Checkpoint do Company Size</span>
 <h2>Deals sem Company Size por dia</h2>
 <div class="timeline">
 <div class="tl red"><b>07/10</b><span>Padronização do Company Size no step 2 do Book a Demo. Alguns valores enviados não existiam na lista do HubSpot e o campo ficou vazio. O Signup, no ar em 07/10, teve o mesmo problema.</span></div>
@@ -385,15 +507,15 @@ a.lnk{color:var(--blue);font-weight:600;}
 <text class="ax" text-anchor="middle" x="867.6" y="190">31/10</text>
 <line class="mark" x1="237.6" x2="237.6" y1="14" y2="170"></line><text class="mk" x="242.6" y="24">a partir de 06/10: 4,3 por dia (antes: 1,6)</text>
 </svg>
-<p class="note">Deals de Web Request (Inbound BR) com Company Size vazio, por dia de criação. Setembro teve 44 e outubro 121. Antes de 06/10: 1,6 por dia; de 06/10 a 31/10: 4,3 por dia.</p>
+<p class="note">Deals de Web Request (BR, Inbound) com Company Size vazio, por dia de criação. Antes de 06/10: 1,6 por dia. De 06/10 a 31/10: 4,3 por dia. De 07/10 a 26/10 foram 81 deals sem tamanho, com 0 SQL.</p>
 </section>
 <section class="foot">
-<p><b>Método.</b> HubSpot (query_crm_data, 04/11/2026): DEAL com lead_source = Web Request, team = BR, pipeline Inbound, sem migration. Deals por data de criação; MQL, SAL e SQL como na aba Book a Demo. Declarado = company_size__c. Passou pelo Harvest = enrich_harvest_api_company_size preenchido; o Harvest encontrou o tamanho quando o valor é uma faixa, e não encontrou quando o valor é Unknown. Os envios e as datas do Company Size vêm do relatório técnico do incidente.</p>
+<p><b>Método.</b> HubSpot (query_crm_data, 04/11/2026): DEAL com lead_source = Web Request, team = BR, pipeline Inbound, criados de 02 a 26 de cada mês; MQL, SAL e SQL por data de entrada na etapa até 04/10 (set) e 03/11 (out). Declarado = company_size__c. Passou pelo Harvest = enrich_harvest_api_company_size preenchido; o Harvest encontrou o tamanho quando o valor é uma faixa, e não encontrou quando o valor é Unknown. Os envios e as datas do Company Size vêm do relatório técnico do incidente.</p>
 </section>
 </div>
 <section class="foot">
-<p><b>Método (aba Book a Demo).</b> Totais gerais de sessões e Book a Demo (297.251 e 312.615; 842 e 857): visão fechada do mês no GA4. Aberturas: GA4 via Supermetrics, propriedade Pipefy - Official (224213526), fuso America/Sao_Paulo. Escopo PT-BR: www.pipefy.com/pt-br e use.pipefy.com. Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2. HubSpot: Web Request, team BR, pipeline Inbound (924876629), sem migration; MQL (1416613216), SAL (1416613217), SAL Connected (1430168675), SQL por fechamento (1416613221 e 1416613231). Testes de proporção: z de duas amostras, bicaudal.</p>
-<p>O GA conta eventos do site e o HubSpot conta deals; hs_analytics_source não é a sessão do GA.</p>
+<p><b>Método (aba Book a Demo).</b> Totais gerais de sessões e Book a Demo (297.251 e 312.615; 842 e 857): visão fechada do mês no GA4. Aberturas: GA4 via Supermetrics, propriedade Pipefy - Official (224213526), fuso America/Sao_Paulo. Escopo PT-BR: www.pipefy.com/pt-br e use.pipefy.com. Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2. HubSpot: Web Request, team BR, pipelines Inbound (924876629) e Outbound (924877607). Testes de proporção: z de duas amostras, bicaudal.</p>
+<p>O GA conta eventos do site e o HubSpot conta deals criados; hs_analytics_source não é a sessão do GA; a safra de outubro tem no máximo 8 dias de maturação.</p>
 </section>
 </div>
 <script>
