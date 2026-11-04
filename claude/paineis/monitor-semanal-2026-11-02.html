@@ -1,0 +1,523 @@
+<title>Monitor Semanal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #fafafa;
+  --fg: #1a1a2e;
+  --card: #ffffff;
+  --border: #e2e2e8;
+  --muted: #6b6b80;
+  --accent: #2563eb;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --red-border: #fecaca;
+  --yellow: #d97706;
+  --yellow-bg: #fffbeb;
+  --yellow-border: #fde68a;
+  --green: #059669;
+  --green-bg: #ecfdf5;
+  --green-border: #a7f3d0;
+  --gray: #6b7280;
+  --gray-bg: #f3f4f6;
+  --gray-border: #d1d5db;
+  --table-stripe: #f8f8fc;
+  --table-hover: #f0f0f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0f1a;
+    --fg: #e8e8f0;
+    --card: #1a1a2e;
+    --border: #2a2a40;
+    --muted: #9090a8;
+    --accent: #60a5fa;
+    --red: #f87171;
+    --red-bg: #1f0a0a;
+    --red-border: #7f1d1d;
+    --yellow: #fbbf24;
+    --yellow-bg: #1a1500;
+    --yellow-border: #78350f;
+    --green: #34d399;
+    --green-bg: #0a1f15;
+    --green-border: #064e3b;
+    --gray: #9ca3af;
+    --gray-bg: #1f2028;
+    --gray-border: #374151;
+    --table-stripe: #16162a;
+    --table-hover: #1e1e36;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0f1a;
+  --fg: #e8e8f0;
+  --card: #1a1a2e;
+  --border: #2a2a40;
+  --muted: #9090a8;
+  --accent: #60a5fa;
+  --red: #f87171;
+  --red-bg: #1f0a0a;
+  --red-border: #7f1d1d;
+  --yellow: #fbbf24;
+  --yellow-bg: #1a1500;
+  --yellow-border: #78350f;
+  --green: #34d399;
+  --green-bg: #0a1f15;
+  --green-border: #064e3b;
+  --gray: #9ca3af;
+  --gray-bg: #1f2028;
+  --gray-border: #374151;
+  --table-stripe: #16162a;
+  --table-hover: #1e1e36;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  text-wrap: balance;
+}
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  text-wrap: balance;
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 24px;
+}
+.summary-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 0 24px;
+}
+.summary-box p {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+.summary-box p:last-child { margin-bottom: 0; }
+.summary-box strong { color: var(--red); }
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.status-card {
+  border-radius: 8px;
+  padding: 12px 14px;
+  border: 1px solid;
+}
+.status-card .label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.status-card .value {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.status-card .delta {
+  font-size: 0.78rem;
+  margin-top: 2px;
+}
+.s-red { background: var(--red-bg); border-color: var(--red-border); }
+.s-red .label { color: var(--red); }
+.s-red .value { color: var(--red); }
+.s-yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+.s-yellow .label { color: var(--yellow); }
+.s-yellow .value { color: var(--yellow); }
+.s-green { background: var(--green-bg); border-color: var(--green-border); }
+.s-green .label { color: var(--green); }
+.s-green .value { color: var(--green); }
+.s-gray { background: var(--gray-bg); border-color: var(--gray-border); }
+.s-gray .label { color: var(--gray); }
+.s-gray .value { color: var(--gray); }
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+thead th {
+  background: var(--card);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  padding: 10px 12px;
+  text-align: right;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+}
+thead th:first-child { text-align: left; }
+tbody td {
+  padding: 8px 12px;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+tbody tr:nth-child(even) { background: var(--table-stripe); }
+tbody tr:hover { background: var(--table-hover); }
+.total-row {
+  font-weight: 700;
+  background: var(--card) !important;
+  border-top: 2px solid var(--border);
+}
+.neg { color: var(--red); }
+.pos { color: var(--green); }
+.warn { color: var(--yellow); }
+.sm { font-size: 0.78rem; color: var(--muted); }
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+.badge-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+.badge-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.badge-gray { background: var(--gray-bg); color: var(--gray); border: 1px solid var(--gray-border); }
+
+footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .status-grid { grid-template-columns: 1fr 1fr; }
+  table { font-size: 0.78rem; }
+  thead th, tbody td { padding: 6px 8px; }
+}
+</style>
+
+<h1>Monitor Semanal</h1>
+<p class="subtitle">27/10 a 02/11/2026 &middot; Funil PT-BR &middot; Inbound, team BR</p>
+
+<div class="summary-box">
+  <p><strong>SAL desabou.</strong> Topo do funil estavel (sessoes 67k, sign-ups 840), mas SAL Signup caiu 22% contra a semana anterior e 44% contra a mediana de 4 semanas. Enriquecidos pioraram mais: SAL enriquecido caiu 25% vs anterior e 62% vs mediana.</p>
+  <p>SAL zerou de sexta (31/10) a domingo (02/11). Hipotese: efeito do feriado de Halloween + final de semana. Nao da para afirmar sem comparar com outras sextas.</p>
+  <p><em>Proximo passo: verificar se SAL normaliza na proxima segunda/terca. Se continuar zerado, escalar para operacao.</em></p>
+</div>
+
+<h2>Situacao por metrica</h2>
+
+<div class="status-grid">
+  <div class="status-card s-green">
+    <div class="label">Sessoes PT-BR</div>
+    <div class="value">67.327</div>
+    <div class="delta">-5% vs ant. &middot; -5% vs med.</div>
+  </div>
+  <div class="status-card s-green">
+    <div class="label">Sign-up (GA4)</div>
+    <div class="value">840</div>
+    <div class="delta">-0,1% vs ant. &middot; -9% vs med.</div>
+  </div>
+  <div class="status-card s-green">
+    <div class="label">Book a Demo</div>
+    <div class="value">170</div>
+    <div class="delta">-2% vs ant. &middot; -7% vs med.</div>
+  </div>
+  <div class="status-card s-yellow">
+    <div class="label">Signup Deals</div>
+    <div class="value">914</div>
+    <div class="delta">-5% vs ant. &middot; <span class="neg">-15% vs med.</span></div>
+  </div>
+  <div class="status-card s-yellow">
+    <div class="label">Signup MQL</div>
+    <div class="value">509</div>
+    <div class="delta">-9% vs ant. &middot; <span class="neg">-24% vs med.</span></div>
+  </div>
+  <div class="status-card s-red">
+    <div class="label">Signup SAL</div>
+    <div class="value">247</div>
+    <div class="delta"><span class="neg">-22% vs ant.</span> &middot; <span class="neg">-44% vs med.</span></div>
+  </div>
+  <div class="status-card s-red">
+    <div class="label">WR SAL</div>
+    <div class="value">91</div>
+    <div class="delta"><span class="neg">-17% vs ant.</span> &middot; <span class="neg">-22% vs med.</span></div>
+  </div>
+  <div class="status-card s-red">
+    <div class="label">SAL Enriquecido</div>
+    <div class="value">42</div>
+    <div class="delta"><span class="neg">-25% vs ant.</span> &middot; <span class="neg">-62% vs med.</span></div>
+  </div>
+  <div class="status-card s-gray">
+    <div class="label">Signup SQL</div>
+    <div class="value">4</div>
+    <div class="delta">So monitorar (n&lt;40)</div>
+  </div>
+  <div class="status-card s-gray">
+    <div class="label">WR SQL</div>
+    <div class="value">14</div>
+    <div class="delta">So monitorar (n&lt;40)</div>
+  </div>
+</div>
+
+<h2>GA4 por dia (filtro PT-BR)</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Dia</th>
+      <th>Sessoes</th>
+      <th>Sign-up</th>
+      <th>Book a Demo</th>
+      <th>Qualified</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>27/10 (ter)</td><td>16.209</td><td>202</td><td>63</td><td>169</td></tr>
+    <tr><td>28/10 (qua)</td><td>16.274</td><td>164</td><td>39</td><td>161</td></tr>
+    <tr><td>29/10 (qui)</td><td>13.018</td><td>139</td><td>26</td><td>110</td></tr>
+    <tr><td>30/10 (sex)</td><td>10.185</td><td>162</td><td>22</td><td>90</td></tr>
+    <tr><td>31/10 (sab)</td><td>3.123</td><td>57</td><td>4</td><td>48</td></tr>
+    <tr><td>01/11 (dom)</td><td>4.086</td><td>56</td><td>8</td><td>65</td></tr>
+    <tr><td>02/11 (seg)</td><td>4.692</td><td>60</td><td>8</td><td>60</td></tr>
+    <tr class="total-row"><td>Total</td><td>67.327*</td><td>840</td><td>170</td><td>703</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="sm">*Sessoes: total semanal consultado em uma query (nao soma dos dias). Eventos sem filtro PT-BR (sign_up dispara fora de /pt-br/). Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2.</p>
+
+<h2>HubSpot: funil semanal (Inbound, team BR)</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Lead Source</th>
+      <th>Deals</th>
+      <th>MQL</th>
+      <th>SAL</th>
+      <th>SQL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>App Signup</td><td>914</td><td>509</td><td>247</td><td>4</td></tr>
+    <tr><td>Web Request</td><td>184</td><td>151</td><td>91</td><td>14</td></tr>
+    <tr><td>Qualified</td><td>111</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Enriquecidos (Signup, ldr_source preenchido)</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Grupo</th>
+      <th>MQL</th>
+      <th>SAL</th>
+      <th>Taxa MQL&rarr;SAL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enriquecido</td>
+      <td>227</td>
+      <td>42</td>
+      <td>18,5%</td>
+    </tr>
+    <tr>
+      <td>Nao enriquecido</td>
+      <td>282</td>
+      <td>205</td>
+      <td>72,7%</td>
+    </tr>
+    <tr class="total-row">
+      <td>Total Signup</td>
+      <td>509</td>
+      <td>247</td>
+      <td>48,5%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="sm">MQL e SAL sao entradas na etapa durante a semana, nao conversao de coorte. Deals que entraram em SAL podem ter entrado em MQL em semanas anteriores.</p>
+
+<h2>Comparativos</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Metrica</th>
+      <th>Semana atual</th>
+      <th>Anterior</th>
+      <th>Var.</th>
+      <th>Mediana 4s</th>
+      <th>Var.</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sessoes</td><td>67.327</td><td>71.203</td><td class="neg">-5,4%</td>
+      <td>70.642</td><td class="neg">-4,7%</td>
+      <td><span class="badge badge-green">OK</span></td>
+    </tr>
+    <tr>
+      <td>Sign-up GA</td><td>840</td><td>841</td><td>-0,1%</td>
+      <td>921</td><td class="neg">-8,8%</td>
+      <td><span class="badge badge-green">OK</span></td>
+    </tr>
+    <tr>
+      <td>Demo GA</td><td>170</td><td>173</td><td>-1,7%</td>
+      <td>183</td><td class="neg">-7,1%</td>
+      <td><span class="badge badge-green">OK</span></td>
+    </tr>
+    <tr>
+      <td>Signup Deals</td><td>914</td><td>959</td><td class="neg">-4,7%</td>
+      <td>1.076</td><td class="neg">-15,0%</td>
+      <td><span class="badge badge-yellow">Atencao</span></td>
+    </tr>
+    <tr>
+      <td>WR Deals</td><td>184</td><td>182</td><td class="pos">+1,1%</td>
+      <td>188</td><td>-1,9%</td>
+      <td><span class="badge badge-green">OK</span></td>
+    </tr>
+    <tr>
+      <td>Qualified Deals</td><td>111</td><td>125</td><td class="neg">-11,2%</td>
+      <td>154</td><td class="neg">-27,9%</td>
+      <td><span class="badge badge-yellow">Atencao</span></td>
+    </tr>
+    <tr>
+      <td>Signup MQL</td><td>509</td><td>559</td><td class="neg">-8,9%</td>
+      <td>669</td><td class="neg">-23,9%</td>
+      <td><span class="badge badge-yellow">Atencao</span></td>
+    </tr>
+    <tr>
+      <td>WR MQL</td><td>151</td><td>157</td><td>-3,8%</td>
+      <td>162</td><td class="neg">-6,5%</td>
+      <td><span class="badge badge-green">OK</span></td>
+    </tr>
+    <tr>
+      <td>Signup SAL</td><td>247</td><td>317</td><td class="neg">-22,1%</td>
+      <td>441</td><td class="neg">-44,0%</td>
+      <td><span class="badge badge-red">Vermelho</span></td>
+    </tr>
+    <tr>
+      <td>WR SAL</td><td>91</td><td>110</td><td class="neg">-17,3%</td>
+      <td>117</td><td class="neg">-21,9%</td>
+      <td><span class="badge badge-red">Vermelho</span></td>
+    </tr>
+    <tr>
+      <td>Signup SQL</td><td>4</td><td>5</td><td class="neg">-20%</td>
+      <td>6</td><td class="neg">-27%</td>
+      <td><span class="badge badge-gray">n&lt;40</span></td>
+    </tr>
+    <tr>
+      <td>WR SQL</td><td>14</td><td>20</td><td class="neg">-30%</td>
+      <td>21</td><td class="neg">-32%</td>
+      <td><span class="badge badge-gray">n&lt;40</span></td>
+    </tr>
+    <tr>
+      <td>MQL Enriq.</td><td>227</td><td>234</td><td>-3,0%</td>
+      <td>294</td><td class="neg">-22,8%</td>
+      <td><span class="badge badge-yellow">Atencao</span></td>
+    </tr>
+    <tr>
+      <td>SAL Enriq.</td><td>42</td><td>56</td><td class="neg">-25,0%</td>
+      <td>109</td><td class="neg">-61,5%</td>
+      <td><span class="badge badge-red">Vermelho</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Taxas e ligacoes GA4 &harr; HubSpot</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Taxa</th>
+      <th>Atual</th>
+      <th>Anterior</th>
+      <th>Var.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Sign-up / sessao</td><td>1,25%</td><td>1,18%</td><td class="pos">+5,6%</td></tr>
+    <tr><td>Demo / sessao</td><td>0,25%</td><td>0,24%</td><td class="pos">+3,9%</td></tr>
+    <tr><td>Signup MQL / Signup Deals</td><td>55,7%</td><td>58,3%</td><td class="neg">-4,4%</td></tr>
+    <tr><td>Signup SAL / Signup MQL</td><td>48,5%</td><td>56,7%</td><td class="neg">-14,4%</td></tr>
+    <tr><td>Signup Deals / Sign-up GA</td><td>1,09</td><td>1,14</td><td>-4,4%</td></tr>
+    <tr><td>WR Deals / Demo GA</td><td>1,08</td><td>1,05</td><td>+2,9%</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="sm">Ligacoes GA4-HubSpot estaveis (variacao &lt;15%). Razoes &gt;1 sao normais: deals incluem atribuicoes retroativas.</p>
+
+<h2>Enriquecimento Signup: SAL por dia</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Dia</th>
+      <th>MQL Enriq.</th>
+      <th>SAL Enriq.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>27/10 (ter)</td><td>54</td><td>13</td></tr>
+    <tr><td>28/10 (qua)</td><td>39</td><td>9</td></tr>
+    <tr><td>29/10 (qui)</td><td>37</td><td>12</td></tr>
+    <tr><td>30/10 (sex)</td><td>43</td><td>8</td></tr>
+    <tr><td>31/10 (sab)</td><td>12</td><td>0</td></tr>
+    <tr><td>01/11 (dom)</td><td>22</td><td>0</td></tr>
+    <tr><td>02/11 (seg)</td><td>20</td><td>0</td></tr>
+    <tr class="total-row"><td>Total</td><td>227</td><td>42</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="sm">SAL enriquecido zerou a partir de sexta 31/10 e nao retomou na segunda 02/11. Ponto de atencao.</p>
+
+<footer>
+  <p>Metodo: sessoes GA4 via Supermetrics (propriedade 224213526, filtro fullPageUrl =@ use.pipefy.com OR =@ www.pipefy.com/pt-br). Eventos GA4 sem filtro de pagina (sign_up dispara fora de /pt-br/). HubSpot: pipeline Inside Sales Inbound (924876629), team BR. Enriquecido = ldr_source IS NOT NULL. Vermelho = queda 15%+ vs anterior E 10%+ vs mediana. Atencao = queda 15%+ em uma comparacao. n&lt;40 = so monitorar.</p>
+  <p>Gerado em 03/11/2026.</p>
+</footer>
