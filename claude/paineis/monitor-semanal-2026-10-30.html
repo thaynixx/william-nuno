@@ -85,7 +85,7 @@ body {
 .sec-head h2 { margin: 0; font-size: 16px; font-weight: 700; }
 .sec-head .note { font-size: 12px; color: var(--muted); }
 
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 14px; }
 .tile { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
 .tile-label { font-size: 13px; font-weight: 600; color: var(--muted); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .tile-val { font-family: 'Sora', 'Inter', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
@@ -235,11 +235,78 @@ body {
       <div class="tile-delta">ant. 180 <strong class="pos">+5,6%</strong> · med. 183 <strong class="pos">+3,8%</strong></div>
     </div>
     <div class="card tile">
-      <div class="tile-label">Qualified Event <span class="badge b-ok">OK</span></div>
-      <div class="tile-val">805</div>
-      <div class="tile-delta">primeira semana com esse dado</div>
+      <div class="tile-label">Qualified: Conversation Started <span class="badge b-ok">OK</span></div>
+      <div class="tile-val">683</div>
+      <div class="tile-delta">ant. 605 <strong class="pos">+12,9%</strong> · med. 636 <strong class="pos">+7,4%</strong></div>
+    </div>
+    <div class="card tile">
+      <div class="tile-label">Qualified: Email Captured <span class="badge b-ok">OK</span></div>
+      <div class="tile-val">94</div>
+      <div class="tile-delta">ant. 84 <strong class="pos">+11,9%</strong> · med. 88 <strong class="pos">+7,4%</strong></div>
+    </div>
+    <div class="card tile">
+      <div class="tile-label">Qualified: Meeting Booked <span class="badge b-gray">n&lt;40</span></div>
+      <div class="tile-val">28</div>
+      <div class="tile-delta">ant. 18 <strong class="pos">+55,6%</strong> · med. 28 <strong>0,0%</strong></div>
     </div>
   </div>
+</section>
+
+<!-- QUALIFIED POR AÇÃO -->
+<section class="card">
+  <div class="tbl-head">
+    <h2>Qualified: o que está dentro do evento</h2>
+    <p>O qualified_event é aberto pela dimensão qualified_action (categoria Qualified Chat). O total do evento não entra na análise. Semanas de sábado a sexta: anterior é 17 a 23/10 e a mediana usa as 4 semanas de 26/09 a 22/10.</p>
+  </div>
+  <div class="tbl-wrap">
+    <div class="tbl">
+      <div class="tbl-hdr">
+        <span>Ação</span><span>Semana</span><span>Anterior</span><span>Δ</span><span>Mediana</span><span>Δ</span><span>Situação</span>
+      </div>
+      <div class="tbl-row">
+        <span class="tbl-name">Conversation Started</span>
+        <span class="tbl-v"><strong>683</strong></span><span class="tbl-v">605</span><span class="d pos">+12,9%</span><span class="tbl-v">636</span><span class="d pos">+7,4%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+      <div class="tbl-row">
+        <span class="tbl-name">Email Captured</span>
+        <span class="tbl-v"><strong>94</strong></span><span class="tbl-v">84</span><span class="d pos">+11,9%</span><span class="tbl-v">88</span><span class="d pos">+7,4%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+      <div class="tbl-row">
+        <span class="tbl-name">Meeting Booked</span>
+        <span class="tbl-v"><strong>28</strong></span><span class="tbl-v">18</span><span class="d pos">+55,6%</span><span class="tbl-v">28</span><span class="d">0,0%</span>
+        <span><span class="badge b-gray">n&lt;40</span></span>
+      </div>
+      <div class="tbl-group">Conversão dentro do chat</div>
+      <div class="tbl-row">
+        <span class="tbl-name">Email Captured por Conversation Started</span>
+        <span class="tbl-v"><strong>13,8%</strong></span><span class="tbl-v">13,9%</span><span class="d">-0,9%</span><span class="tbl-v">14,6%</span><span class="d">-5,5%</span>
+        <span><span class="badge b-ok">OK</span></span>
+      </div>
+      <div class="tbl-row">
+        <span class="tbl-name">Meeting Booked por Conversation Started</span>
+        <span class="tbl-v"><strong>4,1%</strong></span><span class="tbl-v">3,0%</span><span class="d pos">+37,8%</span><span class="tbl-v">5,2%</span><span class="d" style="color:var(--gray)">-20,4%</span>
+        <span><span class="badge b-gray">n&lt;40</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="tbl-head" style="border-top:1px solid var(--border);border-bottom:none;padding-bottom:6px">
+    <h2 style="font-size:14px">Últimas 5 semanas (sábado a sexta)</h2>
+  </div>
+  <div class="tbl-wrap">
+    <div class="tbl" style="min-width:640px">
+      <div class="tbl-hdr" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))">
+        <span>Semana</span><span>Conversation Started</span><span>Email Captured</span><span>Meeting Booked</span><span>Email por Conv.</span><span>Meeting por Conv.</span>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">26/09 a 02/10</span><span class="tbl-v">409</span><span class="tbl-v">68</span><span class="tbl-v">21</span><span class="tbl-v">16,6%</span><span class="tbl-v">5,1%</span></div>
+      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">03/10 a 09/10</span><span class="tbl-v">673</span><span class="tbl-v">103</span><span class="tbl-v">42</span><span class="tbl-v">15,3%</span><span class="tbl-v">6,2%</span></div>
+      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">10/10 a 16/10</span><span class="tbl-v">667</span><span class="tbl-v">91</span><span class="tbl-v">35</span><span class="tbl-v">13,6%</span><span class="tbl-v">5,2%</span></div>
+      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr))"><span class="tbl-name">17/10 a 23/10</span><span class="tbl-v">605</span><span class="tbl-v">84</span><span class="tbl-v">18</span><span class="tbl-v">13,9%</span><span class="tbl-v">3,0%</span></div>
+      <div class="tbl-row" style="grid-template-columns:minmax(150px,1.2fr) repeat(5,minmax(70px,1fr));background:var(--stripe)"><span class="tbl-name">24/10 a 30/10 (esta)</span><span class="tbl-v"><strong>683</strong></span><span class="tbl-v"><strong>94</strong></span><span class="tbl-v"><strong>28</strong></span><span class="tbl-v"><strong>13,8%</strong></span><span class="tbl-v"><strong>4,1%</strong></span></div>
+    </div>
+  </div>
+  <p class="sm" style="padding-top:8px">Os três volumes subiram contra a semana anterior e contra a mediana. A taxa de Email Captured por Conversation Started caiu de 16,6% para 13,8% entre a primeira e a terceira semana e está estável desde então. Meeting Booked tem 28 eventos (n&lt;40): variação de taxa só para monitorar.</p>
 </section>
 
 <!-- COMPARAÇÃO SEMANAL -->
@@ -501,14 +568,36 @@ body {
       </div>
 
       <div class="heat-row">
-        <div class="heat-label">Qualified <small>GA4</small></div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.26)">57</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.27)">59</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.56)">159</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">169</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.56)">161</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">110</div>
-        <div class="heat-cell" style="background:rgba(47,91,234,0.37)">90</div>
+        <div class="heat-label">Conversation Started <small>Qualified, GA4</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.28)">53</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.27)">52</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.56)">133</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">145</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.56)">132</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.43)">93</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.36)">75</div>
+      </div>
+
+      <div class="heat-row">
+        <div class="heat-label">Email Captured <small>Qualified, GA4</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.17)">4</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.21)">5</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">20</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.58)">19</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">20</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.46)">14</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.40)">12</div>
+      </div>
+
+      <div class="heat-row">
+        <div class="heat-label">Meeting Booked <small>Qualified, GA4</small></div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.08)">0</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.19)">2</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.44)">6</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.38)">5</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.60)">9</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.26)">3</div>
+        <div class="heat-cell" style="background:rgba(47,91,234,0.26)">3</div>
       </div>
 
       <div class="heat-row">
@@ -534,7 +623,7 @@ body {
       </div>
     </div>
   </div>
-  <p class="sm">Sessões: query semanal separada (77.177 total). Eventos GA4 sem filtro de página. Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2. MQL/SAL enriquecidos: Inbound Signup, team BR, ldr_source preenchido.</p>
+  <p class="sm">Sessões: query semanal separada (77.177 total). Eventos GA4 sem filtro de página. Book a Demo = book_a_demo_submit_lp + book_a_demo_step_2. Qualified = qualified_event aberto por qualified_action (Conversation Started, Email Captured, Meeting Booked). MQL/SAL enriquecidos: Inbound Signup, team BR, ldr_source preenchido.</p>
 </section>
 
 <!-- RODAPÉ -->

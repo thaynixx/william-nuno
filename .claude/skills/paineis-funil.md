@@ -59,6 +59,8 @@ Campos uteis: `date`, `hostName`, `pagePath`, `fullPageUrl`, `sessions`, `active
 
 Eventos: `sign_up` (Signup), `begin_sign_up`, `signupSteps`, `book_a_demo_pageview`, `book_a_demo_step_1` a `book_a_demo_step_5_typ`, `book_a_demo_step_5_skip`, `book_a_demo_submit_lp`, `form_submit`, `qualified_event`.
 
+Qualified: nunca use o total do `qualified_event`. Abra sempre pela dimensao `c_customevent_qualified_action` (categoria `c_customevent_qualified_category` = Qualified Chat). Valores: `Conversation Started`, `Email Captured`, `Meeting Booked`. A soma das tres acoes fecha com o total do evento. Consulte por dia (`date`, `c_customevent_qualified_action`, `eventCount`) e some por semana sabado a sexta.
+
 Book a Demo = `book_a_demo_submit_lp` + `book_a_demo_step_2`.
 
 Nota: `activeUsers` e non-aggregatable. Nao some valores diarios para obter o total semanal; consulte a semana inteira em uma unica query.
@@ -81,7 +83,7 @@ Argumento: `/paineis-funil mensal` ou `/paineis-funil mensal nov` (para novembro
 3. Funil por lead source, so Inbound: deals, MQL, SAL, Conectado, SQL.
 4. Signup e Web Request por Company Size (Inbound): deals, MQL, SAL, Conectado, SQL.
 5. Enriquecidos (ldr_source preenchido), Signup: deals, MQL, SAL, Conectado, SQL.
-6. GA4: sessoes, usuarios, sign_up, Book a Demo, qualified_event por dia na janela.
+6. GA4: sessoes, usuarios, sign_up, Book a Demo e Qualified por acao (Conversation Started, Email Captured, Meeting Booked) por dia na janela.
 
 ### Paineis a gerar
 
@@ -107,7 +109,7 @@ Argumento: `/paineis-funil semanal` ou `/paineis-funil semanal 2026-11-03` (para
 ### Rotina
 
 1. Defina a semana fechada: sabado a sexta (o time de vendas trabalha seg-sex antes do corte).
-2. GA4 por dia: sessions, activeUsers, sign_up, Book a Demo, qualified_event. Filtro PT-BR (fullPageUrl).
+2. GA4 por dia: sessions, activeUsers, sign_up, Book a Demo. Filtro PT-BR (fullPageUrl). Qualified por acao (qualified_action), sem filtro de pagina.
 3. HubSpot por dia, Inbound, team BR:
    - Deals criados por createdate: lead_source App Signup, Web Request e Qualified.
    - Entradas em MQL, SAL e SQL Converted por data de entrada na etapa, separando App Signup e Web Request.
@@ -118,7 +120,9 @@ Argumento: `/paineis-funil semanal` ou `/paineis-funil semanal 2026-11-03` (para
 
 ### Colunas do CSV
 
-`semana_inicio,semana_fim,sessoes,usuarios,signup_ga,demo_ga,qualified_ga,signup_deals,wr_deals,qualified_deals,signup_mql,wr_mql,signup_sal,wr_sal,signup_sql,wr_sql,signup_mql_enriq,signup_sal_enriq`
+`semana_inicio,semana_fim,sessoes,usuarios,signup_ga,demo_ga,qualified_ga,signup_deals,wr_deals,qualified_deals,signup_mql,wr_mql,signup_sal,wr_sal,signup_sql,wr_sql,signup_mql_enriq,signup_sal_enriq,qualified_conversation,qualified_email,qualified_meeting`
+
+`qualified_ga` e a soma das tres acoes. Conversation Started, Email Captured e Meeting Booked sao as metricas de Qualified no monitor; compare tambem Email Captured e Meeting Booked por Conversation Started.
 
 ### Metricas e taxas
 
@@ -130,7 +134,7 @@ Argumento: `/paineis-funil semanal` ou `/paineis-funil semanal 2026-11-03` (para
 
 - Vermelho: queda de 15%+ contra a semana anterior E de 10%+ contra a mediana.
 - Atencao: queda de 15%+ em uma das duas comparacoes.
-- So monitorar: contagem abaixo de 40 na semana (SQL, qualified_ga). Percentual em numero pequeno e ruido.
+- So monitorar: contagem abaixo de 40 na semana (SQL, Meeting Booked). Percentual em numero pequeno e ruido.
 - Ligacoes GA4-HubSpot: alerta em variacao de 15%+ nos dois sentidos.
 - Feriado: marque a semana e nao compare sem avisar.
 
