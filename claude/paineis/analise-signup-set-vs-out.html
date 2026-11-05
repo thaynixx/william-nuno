@@ -283,24 +283,22 @@ th.stg-conn { background:#0f766e; } th.stg-sql { background:#15803d; }
 <section class="card">
 <span class="sec-tag">4 · HubSpot, até o conectado</span>
 <h2>MQL +35%, conectados -17%</h2>
-<p class="note">Deals de App Signup, team BR. Deals criados de 17/09 a 06/10 (antes) e de 07/10 a 26/10 (depois), com entrada nas etapas até 14/10 e 03/11. Pipeline Inbound, salvo quando indicado.</p>
+<p class="note">Deals de App Signup, team BR, Inbound. Deals criados de 17/09 a 06/10 (antes) e de 07/10 a 26/10 (depois), com entrada nas etapas até 14/10 e 03/11.</p>
 <div class="tw"><table>
 <thead>
 <tr><th></th><th class="stg stg-deals" colspan="3">Volume</th><th class="stg stg-deals" colspan="2">% dos deals</th></tr>
 <tr><th>Etapa</th><th class="n ms">Antes</th><th class="n mo">Depois</th><th class="n">Var.</th><th class="n ms">Antes</th><th class="n mo">Depois</th></tr>
 </thead>
 <tbody>
-<tr class="sum"><td>Deals criados (Inbound + Outbound)</td><td class="n ms">3.538</td><td class="n mo">3.496</td><td class="n mut">-1,2%</td><td class="n ms">100%</td><td class="n mo">100%</td></tr>
-<tr class="sub"><td>Inbound</td><td class="n ms">3.401</td><td class="n mo">3.261</td><td class="n neg">-4,1%</td><td class="n ms">100%*</td><td class="n mo">100%*</td></tr>
-<tr class="sub"><td>Outbound</td><td class="n ms">137</td><td class="n mo">235</td><td class="n pos">+71,5%</td><td class="n ms"></td><td class="n mo"></td></tr>
-<tr><td>MQL</td><td class="n ms">1.513</td><td class="n mo">2.045</td><td class="n pos">+35,2%</td><td class="n ms">44,5%*</td><td class="n mo">62,7%*</td></tr>
-<tr><td>SAL</td><td class="n ms">1.150</td><td class="n mo">1.263</td><td class="n pos">+9,8%</td><td class="n ms">33,8%*</td><td class="n mo">38,7%*</td></tr>
-<tr class="hl"><td>SAL Connected</td><td class="n ms">192</td><td class="n mo">160</td><td class="n neg">-16,7%</td><td class="n ms">5,6%*</td><td class="n mo">4,9%*</td></tr>
-<tr><td>SQL (n&lt;40, só monitorar)</td><td class="n ms">13</td><td class="n mo">11</td><td class="n mut">-15,4%</td><td class="n ms">0,4%*</td><td class="n mo">0,3%*</td></tr>
-<tr><td>Desqualificados</td><td class="n ms">2.593</td><td class="n mo">2.273</td><td class="n mut">-12,3%</td><td class="n ms">76,2%*</td><td class="n mo">69,7%*</td></tr>
+<tr class="sum"><td>Deals criados</td><td class="n ms">3.401</td><td class="n mo">3.261</td><td class="n neg">-4,1%</td><td class="n ms">100%</td><td class="n mo">100%</td></tr>
+<tr><td>MQL</td><td class="n ms">1.513</td><td class="n mo">2.045</td><td class="n pos">+35,2%</td><td class="n ms">44,5%</td><td class="n mo">62,7%</td></tr>
+<tr><td>SAL</td><td class="n ms">1.150</td><td class="n mo">1.263</td><td class="n pos">+9,8%</td><td class="n ms">33,8%</td><td class="n mo">38,7%</td></tr>
+<tr class="hl"><td>SAL Connected</td><td class="n ms">192</td><td class="n mo">160</td><td class="n neg">-16,7%</td><td class="n ms">5,6%</td><td class="n mo">4,9%</td></tr>
+<tr><td>SQL (n&lt;40, só monitorar)</td><td class="n ms">13</td><td class="n mo">11</td><td class="n mut">-15,4%</td><td class="n ms">0,4%</td><td class="n mo">0,3%</td></tr>
+<tr><td>Desqualificados</td><td class="n ms">2.593</td><td class="n mo">2.273</td><td class="n mut">-12,3%</td><td class="n ms">76,2%</td><td class="n mo">69,7%</td></tr>
 </tbody>
 </table></div>
-<p class="note">* Sobre os deals do Inbound. Conversões: SAL por MQL 76,0% → 61,8%; conectado por SAL 16,7% → 12,7% (p = 0,005); conectado por deal 5,6% → 4,9% (p = 0,18, sem diferença significativa). O SQL de Signup é quase nulo nos dois períodos, então o conectado é o marcador de qualidade.</p>
+<p class="note">Conversões: SAL por MQL 76,0% → 61,8%; conectado por SAL 16,7% → 12,7% (p = 0,005); conectado por deal 5,6% → 4,9% (p = 0,18, sem diferença significativa). O SQL de Signup é quase nulo nos dois períodos, então o conectado é o marcador de qualidade.</p>
 <h3>Por grupo de canais do HubSpot (hs_analytics_source, Inbound BR)</h3>
 <div class="tw"><table>
 <thead>
@@ -482,7 +480,7 @@ th.stg-conn { background:#0f766e; } th.stg-sql { background:#15803d; }
 </section>
 </div>
 <section class="foot">
-<p><b>Método (aba Signup).</b> Visão fechada do mês (sessões 297.251 e 312.615; sign-ups 4.393 e 4.309): GA4. Recorte: GA4 via Supermetrics, propriedade Pipefy - Official (224213526), fuso America/Sao_Paulo; sessões com filtro PT-BR (www.pipefy.com/pt-br e use.pipefy.com) e eventos sem filtro de página. Steps: signup_step_identity, signup_step_segment, sign_up_step_company, signup_step_use_cases e sign_up, de 14 a 26/10. HubSpot: App Signup, team BR, pipelines Inbound (924876629) e Outbound (924877607). Conectado = SAL Connected (1430168675). Testes de proporção: z de duas amostras, bicaudal.</p>
+<p><b>Método (aba Signup).</b> Visão fechada do mês (sessões 297.251 e 312.615; sign-ups 4.393 e 4.309): GA4. Recorte: GA4 via Supermetrics, propriedade Pipefy - Official (224213526), fuso America/Sao_Paulo; sessões com filtro PT-BR (www.pipefy.com/pt-br e use.pipefy.com) e eventos sem filtro de página. Steps: signup_step_identity, signup_step_segment, sign_up_step_company, signup_step_use_cases e sign_up, de 14 a 26/10. HubSpot: App Signup, team BR, pipeline Inbound (924876629). Conectado = SAL Connected (1430168675). Testes de proporção: z de duas amostras, bicaudal.</p>
 <p>O GA conta eventos do site e o HubSpot conta deals criados; hs_analytics_source não é a sessão do GA; os deals de depois têm no máximo 8 dias de maturação.</p>
 </section>
 </div>
